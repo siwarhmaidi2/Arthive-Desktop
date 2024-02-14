@@ -5,7 +5,7 @@ import edu.esprit.services.ServiceUser;
 
 import java.time.LocalDate;
 
-import com.arthive.entities.User;
+import edu.esprit.entities.User;
 
 public class Main {
     public static void main(String[] args) {
