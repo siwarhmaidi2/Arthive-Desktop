@@ -1,6 +1,6 @@
-package com.arthive.services;
+package edu.esprit.services;
 
-import com.arthive.entities.User;
+import edu.esprit.entities.User;
 
 import java.util.Set;
 

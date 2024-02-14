@@ -1,7 +1,7 @@
-package com.arthive.tests;
+package edu.esprit.tests;
 
 
-import com.arthive.services.ServiceUser;
+import edu.esprit.services.ServiceUser;
 
 public class Main {
     public static void main(String[] args) {
