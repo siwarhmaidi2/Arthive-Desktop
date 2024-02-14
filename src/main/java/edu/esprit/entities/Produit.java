@@ -3,107 +3,129 @@ package edu.esprit.entities;
 
 import edu.esprit.enums.TypeCategorie;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Produit {
-    private int id;
-    private String nom;
-    //private User artiste;
-    private double prix;
-    private String description;
-    private int stock;
-    private boolean disponible;
-    private TypeCategorie categorie;
+    private int id_produit;
+    private String nom_produit;
+    private double prix_produit;
+    private String description_produit;
+    private boolean disponibilite;
+    private TypeCategorie categ_produit;
+    private int stock_produit;
+    private int id_user;
+    private LocalDateTime d_publication_produit;
 
     public Produit() {
     }
 
-    public Produit(String nom /*User artiste*/ , double prix, String description, int stock, boolean disponible, TypeCategorie categorie) {
-        this.nom = nom;
-       // this.artiste = artiste;
-        this.prix = prix;
-        this.description = description;
-        this.stock = stock;
-        this.disponible = disponible;
-        this.categorie = categorie;
+    public Produit(int id_produit, String nom_produit, double prix_produit, String description_produit, boolean disponibilite, TypeCategorie categ_produit, int stock_produit, int id_user, LocalDateTime d_publication_produit) {
+        this.id_produit = id_produit;
+        this.nom_produit = nom_produit;
+        this.prix_produit = prix_produit;
+        this.description_produit = description_produit;
+        this.disponibilite = disponibilite;
+        this.categ_produit = categ_produit;
+        this.stock_produit = stock_produit;
+        this.id_user = id_user;
+        this.d_publication_produit = d_publication_produit;
     }
 
-    public Produit(int id, String nom /*User artiste*/, double prix, String description, int stock, boolean disponible, TypeCategorie categorie) {
-        this.id = id;
-        this.nom = nom;
-       // this.artiste = artiste;
-        this.prix = prix;
-        this.description = description;
-        this.stock = stock;
-        this.disponible = disponible;
-        this.categorie = categorie;
+    public Produit(String nom_produit, double prix_produit, String description_produit, boolean disponibilite, TypeCategorie categ_produit, int stock_produit, int id_user, LocalDateTime d_publication_produit) {
+        this.nom_produit = nom_produit;
+        this.prix_produit = prix_produit;
+        this.description_produit = description_produit;
+        this.disponibilite = disponibilite;
+        this.categ_produit = categ_produit;
+        this.stock_produit = stock_produit;
+        this.id_user = id_user;
+        this.d_publication_produit = d_publication_produit;
     }
 
-    public int getId() {
-        return id;
+    public int getId_produit() {
+        return id_produit;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_produit(int id_produit) {
+        this.id_produit = id_produit;
     }
 
-    public String getNom() {
-        return nom;
+    public String getNom_produit() {
+        return nom_produit;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNom_produit(String nom_produit) {
+        this.nom_produit = nom_produit;
     }
 
-    public double getPrix() {
-        return prix;
+    public double getPrix_produit() {
+        return prix_produit;
     }
 
-    public void setPrix(double prix) {
-        this.prix = prix;
+    public void setPrix_produit(double prix_produit) {
+        this.prix_produit = prix_produit;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescription_produit() {
+        return description_produit;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription_produit(String description_produit) {
+        this.description_produit = description_produit;
     }
 
-    public int getStock() {
-        return stock;
+    public boolean isDisponibilite() {
+        return disponibilite;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setDisponibilite(boolean disponibilite) {
+        this.disponibilite = disponibilite;
     }
 
-    public boolean isDisponible() {
-        return disponible;
+    public TypeCategorie getCateg_produit() {
+        return categ_produit;
     }
 
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
+    public void setCateg_produit(TypeCategorie categ_produit) {
+        this.categ_produit = categ_produit;
     }
 
-    public TypeCategorie getCategorie() {
-        return categorie;
+    public int getStock_produit() {
+        return stock_produit;
     }
 
-    public void setCategorie(TypeCategorie categorie) {
-        this.categorie = categorie;
+    public void setStock_produit(int stock_produit) {
+        this.stock_produit = stock_produit;
+    }
+
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
+    public LocalDateTime getD_publication_produit() {
+        return d_publication_produit;
+    }
+
+    public void setD_publication_produit(LocalDateTime d_publication_produit) {
+        this.d_publication_produit = d_publication_produit;
     }
 
     @Override
     public String toString() {
         return "Produit{" +
-                "nom='" + nom + '\'' +
-                ", prix=" + prix +
-                ", description='" + description + '\'' +
-                ", stock=" + stock +
-                ", disponible=" + disponible +
-                ", categorie=" + categorie +
+                "nom_produit='" + nom_produit + '\'' +
+                ", prix_produit=" + prix_produit +
+                ", description_produit='" + description_produit + '\'' +
+                ", disponibilite=" + disponibilite +
+                ", categ_produit=" + categ_produit +
+                ", stock_produit=" + stock_produit +
+                ", id_user=" + id_user +
+                ", d_publication_produit=" + d_publication_produit +
                 '}';
     }
 
@@ -112,11 +134,11 @@ public class Produit {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Produit produit = (Produit) o;
-        return Objects.equals(id, produit.id);
+        return id_produit == produit.id_produit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id_produit);
     }
 }
