@@ -7,69 +7,76 @@ import java.util.Objects;
 
 public class User {
 
-    private int id ;
-    private String nom ;
-    private String prenom ;
+    private int id_user;
+    private String nom_user;
+    private String prenom_user;
 
-    private String email ;
+    private String email;
 
-    private String password ;
+    private String mdp_user;
 
-    private Date dateNaiss ;
+    private Date d_naissance_user;
 
-    private String ville ;
+    private String ville;
 
-    private int numtel ;
+    private int num_tel_user;
 
 
-    public User(){
 
+
+    public User() {
     }
-    public User(int id, String nom, String prenom, String email, String password, Date dateNaiss, String ville, int numtel) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
+
+    public User (int id_user){
+        this.id_user = id_user;
+    }
+
+    public User(int id_user, String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user) {
+        this.id_user = id_user;
+        this.nom_user = nom_user;
+        this.prenom_user = prenom_user;
         this.email = email;
-        this.password = password;
-        this.dateNaiss = dateNaiss;
+        this.mdp_user = mdp_user;
+        this.d_naissance_user = d_naissance_user;
         this.ville = ville;
-        this.numtel = numtel;
+        this.num_tel_user = num_tel_user;
     }
 
-    public User(String nom, String prenom, String email, String password, Date dateNaiss, String ville, int numtel) {
-        this.nom = nom;
-        this.prenom = prenom;
+    public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user) {
+        this.nom_user = nom_user;
+        this.prenom_user = prenom_user;
         this.email = email;
-        this.password = password;
-        this.dateNaiss = dateNaiss;
+        this.mdp_user = mdp_user;
+        this.d_naissance_user = d_naissance_user;
         this.ville = ville;
-        this.numtel = numtel;
+        this.num_tel_user = num_tel_user;
     }
 
 
 
-    public int getId() {
-        return id;
+
+    public int getId_user() {
+        return id_user;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
-    public String getNom() {
-        return nom;
+    public String getNom_user() {
+        return nom_user;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNom_user(String nom_user) {
+        this.nom_user = nom_user;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getPrenom_user() {
+        return prenom_user;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setPrenom_user(String prenom_user) {
+        this.prenom_user = prenom_user;
     }
 
     public String getEmail() {
@@ -80,18 +87,20 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getMdp_user() {
+        return mdp_user;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMdp_user(String mdp_user) {
+        this.mdp_user = mdp_user;
     }
 
+    public Date getD_naissance_user() {
+        return d_naissance_user;
+    }
 
-
-    public void setDateNaiss(Date dateNaiss) {
-        this.dateNaiss = dateNaiss;
+    public void setD_naissance_user(Date d_naissance_user) {
+        this.d_naissance_user = d_naissance_user;
     }
 
     public String getVille() {
@@ -102,28 +111,24 @@ public class User {
         this.ville = ville;
     }
 
-    public Date getDateNaiss() {
-        return dateNaiss;
+    public int getNum_tel_user() {
+        return num_tel_user;
     }
 
-    public int getNumtel() {
-        return numtel;
-    }
-
-    public void setNumtel(int numtel) {
-        this.numtel = numtel;
+    public void setNum_tel_user(int num_tel_user) {
+        this.num_tel_user = num_tel_user;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
+                "nom_user='" + nom_user + '\'' +
+                ", prenom_user='" + prenom_user + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", dateNaiss=" + dateNaiss +
+                ", mdp_user='" + mdp_user + '\'' +
+                ", d_naissance_user=" + d_naissance_user +
                 ", ville='" + ville + '\'' +
-                ", numtel=" + numtel +
+                ", num_tel_user=" + num_tel_user +
                 '}';
     }
 
@@ -132,11 +137,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && numtel == user.numtel && Objects.equals(nom, user.nom) && Objects.equals(prenom, user.prenom) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(dateNaiss, user.dateNaiss) && Objects.equals(ville, user.ville);
+        return id_user == user.id_user && num_tel_user == user.num_tel_user && Objects.equals(nom_user, user.nom_user) && Objects.equals(prenom_user, user.prenom_user) && Objects.equals(email, user.email) && Objects.equals(mdp_user, user.mdp_user) && Objects.equals(d_naissance_user, user.d_naissance_user) && Objects.equals(ville, user.ville);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nom, prenom, email, password, dateNaiss, ville, numtel);
+        return Objects.hash(id_user, nom_user, prenom_user, email, mdp_user, d_naissance_user, ville, num_tel_user);
     }
 }
