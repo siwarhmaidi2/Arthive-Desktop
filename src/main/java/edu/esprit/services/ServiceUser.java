@@ -1,8 +1,8 @@
-package com.arthive.services;
+package edu.esprit.services;
 
 
-import com.arthive.entities.User;
-import com.arthive.utils.DataSource;
+import edu.esprit.entities.User;
+import edu.esprit.utils.DataSource;
 
 import java.sql.*;
 import java.util.HashSet;

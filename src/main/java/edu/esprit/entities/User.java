@@ -1,4 +1,4 @@
-package com.arthive.entities;
+package edu.esprit.entities;
 
 
 
