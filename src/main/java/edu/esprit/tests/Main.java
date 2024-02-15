@@ -14,12 +14,15 @@ public class Main {
         // Create a user
         //create date of user
 
-        LocalDate birthDate = LocalDate.of(2001, 5, 15);
-        User user = new User("ayoub", "toujani", "ayoubtoujani@gmail.com", "1234563", java.sql.Date.valueOf(birthDate), "tunis", 123456789);
+        LocalDate birthDateAyoub = LocalDate.of(2001, 5, 15);
+        LocalDate birthDateZied = LocalDate.of(2001, 11, 15);
+        User user1 = new User("zied", "zhiri", "ziedzhiri@gmail.com", "1234563", java.sql.Date.valueOf(birthDateZied), "tunis", 123456789);
+        User user2 = new User("ayoub", "toujani", "ayoubtoujani@gmail.com", "1234563", java.sql.Date.valueOf(birthDateAyoub), "tunis", 123456789);
         ServiceUser userService = new ServiceUser();
 
+
         //Add a user
-      // userService.add(user);
+      // userService.add(user2);
       //  userService.getOneByID(30);
      //   userService.getAll();
 
