@@ -22,7 +22,7 @@ public class ServiceUser implements IServiceUser<User> {
             System.out.println(e.getMessage());
         }*/
 
-        String req = "INSERT INTO `users`(`nom_user`, `prenom_user`, `email`, `mdp_user`, `d_naissance_user`, `ville`, `num_tel_user`)  VALUES (?,?,?,?,?,?,?)";
+        String req = "INSERT INTO `users`(`nom_user`, `prenom_user`, `email`, `mdp_user`, `d_naissance_user`, `ville`, `num_tel_user`, `role`)  VALUES (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, user.getNom_user());
@@ -32,6 +32,7 @@ public class ServiceUser implements IServiceUser<User> {
             ps.setDate(5, user.getD_naissance_user());
             ps.setString(6, user.getVille());
             ps.setInt(7, user.getNum_tel_user());
+            ps.setString(8, user.getRole());
             ps.executeUpdate();
             System.out.println("User added !");
         } catch (SQLException e) {
@@ -55,7 +56,8 @@ public class ServiceUser implements IServiceUser<User> {
                 Date dateNaiss = rs.getDate("d_naissance_user");
                 String ville = rs.getString("ville");
                 Integer numtel = rs.getInt("num_tel_user");
-                User u = new User(id,nom,prenom,email,password,dateNaiss,ville,numtel);
+                String role = rs.getString("role");
+                User u = new User(id,nom,prenom,email,password,dateNaiss,ville,numtel, role);
                 users.add(u);
             }
         } catch (SQLException e) {
@@ -87,7 +89,8 @@ public class ServiceUser implements IServiceUser<User> {
                 Date dateNaiss = rs.getDate("d_naissance_user");
                 String ville = rs.getString("ville");
                 Integer numtel = rs.getInt("num_tel_user");
-                user = new User(userId, nom, prenom, email, password, dateNaiss, ville, numtel);
+                String role = rs.getString("role");
+                user = new User(userId, nom, prenom, email, password, dateNaiss, ville, numtel, role);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

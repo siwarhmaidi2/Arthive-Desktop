@@ -21,6 +21,7 @@ public class User {
 
     private int num_tel_user;
 
+    private String role;
 
 
 
@@ -31,7 +32,7 @@ public class User {
         this.id_user = id_user;
     }
 
-    public User(int id_user, String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user) {
+    public User(int id_user, String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user, String role) {
         this.id_user = id_user;
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
@@ -40,9 +41,10 @@ public class User {
         this.d_naissance_user = d_naissance_user;
         this.ville = ville;
         this.num_tel_user = num_tel_user;
+        this.role = role;
     }
 
-    public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user) {
+    public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user, String role) {
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
         this.email = email;
@@ -50,6 +52,7 @@ public class User {
         this.d_naissance_user = d_naissance_user;
         this.ville = ville;
         this.num_tel_user = num_tel_user;
+        this.role = role;
     }
 
 
@@ -118,6 +121,10 @@ public class User {
     public void setNum_tel_user(int num_tel_user) {
         this.num_tel_user = num_tel_user;
     }
+
+    public void setRole(String role) {this.role = role; }
+
+    public String getRole() { return role; }
 
     @Override
     public String toString() {
