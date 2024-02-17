@@ -6,9 +6,9 @@ import java.util.Objects;
 public class ReactionCommentaire {
 
     private int idReactionCommentaire;
-    private int idCommentaire;
-    private int idUser;
-    private int idPublication;
+    private Commentaire commentaire;
+    private User user ;
+    private Publication publication;
 
     private Timestamp dateAjoutReactionCommentaire;
 
@@ -16,21 +16,19 @@ public class ReactionCommentaire {
     public ReactionCommentaire() {
     }
 
-
-    public ReactionCommentaire(int idReactionCommentaire, int idCommentaire, int idUser, int idPublication, Timestamp dateAjoutReactionCommentaire) {
+    public ReactionCommentaire(int idReactionCommentaire, Commentaire commentaire, User user, Publication publication, Timestamp dateAjoutReactionCommentaire) {
         this.idReactionCommentaire = idReactionCommentaire;
-        this.idCommentaire = idCommentaire;
-        this.idUser = idUser;
-        this.idPublication = idPublication;
+        this.commentaire = commentaire;
+        this.user = user;
+        this.publication = publication;
         this.dateAjoutReactionCommentaire = dateAjoutReactionCommentaire;
     }
 
-
-
-    public ReactionCommentaire(int idUser, int idPublication, int idCommentaire) {
-        this.idUser = idUser;
-        this.idPublication = idPublication;
-        this.idCommentaire = idCommentaire;
+    public ReactionCommentaire(Commentaire commentaire, User user, Publication publication, Timestamp dateAjoutReactionCommentaire) {
+        this.commentaire = commentaire;
+        this.user = user;
+        this.publication = publication;
+        this.dateAjoutReactionCommentaire = dateAjoutReactionCommentaire;
     }
 
     public int getIdReactionCommentaire() {
@@ -41,28 +39,28 @@ public class ReactionCommentaire {
         this.idReactionCommentaire = idReactionCommentaire;
     }
 
-    public int getIdCommentaire() {
-        return idCommentaire;
+    public Commentaire getCommentaire() {
+        return commentaire;
     }
 
-    public void setIdCommentaire(int idCommentaire) {
-        this.idCommentaire = idCommentaire;
+    public void setCommentaire(Commentaire commentaire) {
+        this.commentaire = commentaire;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getIdPublication() {
-        return idPublication;
+    public Publication getPublication() {
+        return publication;
     }
 
-    public void setIdPublication(int idPublication) {
-        this.idPublication = idPublication;
+    public void setPublication(Publication publication) {
+        this.publication = publication;
     }
 
     public Timestamp getDateAjoutReactionCommentaire() {
@@ -74,25 +72,25 @@ public class ReactionCommentaire {
     }
 
     @Override
-    public String toString() {
-        return "ReactionCommentaire{" +
-                "idCommentaire=" + idCommentaire +
-                ", idUser=" + idUser +
-                ", idPublication=" + idPublication +
-                ", dateAjoutReactionCommentaire=" + dateAjoutReactionCommentaire +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ReactionCommentaire that = (ReactionCommentaire) o;
-        return idReactionCommentaire == that.idReactionCommentaire && idCommentaire == that.idCommentaire && idUser == that.idUser && idPublication == that.idPublication && Objects.equals(dateAjoutReactionCommentaire, that.dateAjoutReactionCommentaire);
+        return idReactionCommentaire == that.idReactionCommentaire && Objects.equals(commentaire, that.commentaire) && Objects.equals(user, that.user) && Objects.equals(publication, that.publication) && Objects.equals(dateAjoutReactionCommentaire, that.dateAjoutReactionCommentaire);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idReactionCommentaire, idCommentaire, idUser, idPublication, dateAjoutReactionCommentaire);
+        return Objects.hash(idReactionCommentaire, commentaire, user, publication, dateAjoutReactionCommentaire);
+    }
+
+    @Override
+    public String toString() {
+        return "ReactionCommentaire{" +
+                "commentaire=" + commentaire +
+                ", user=" + user +
+                ", publication=" + publication +
+                ", dateAjoutReactionCommentaire=" + dateAjoutReactionCommentaire +
+                '}';
     }
 }
