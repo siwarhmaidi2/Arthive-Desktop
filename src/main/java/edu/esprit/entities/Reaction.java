@@ -5,24 +5,25 @@ import java.util.Objects;
 
 public class Reaction {
     private int idReaction;
-    private int idUser;
-    private int idPublication;
+    private User user;
+    private Publication publication;
 
     private Timestamp dateAjoutReaction;
+
 
     public Reaction() {
     }
 
-    public Reaction(int idReaction, int idUser, int idPublication, int idCommentaire, Timestamp dateAjoutReaction) {
+    public Reaction(int idReaction, User user, Publication publication, Timestamp dateAjoutReaction) {
         this.idReaction = idReaction;
-        this.idUser = idUser;
-        this.idPublication = idPublication;
+        this.user = user;
+        this.publication = publication;
         this.dateAjoutReaction = dateAjoutReaction;
     }
 
-    public Reaction(int idUser, int idPublication, int idCommentaire, Timestamp dateAjoutReaction) {
-        this.idUser = idUser;
-        this.idPublication = idPublication;
+    public Reaction(User user, Publication publication, Timestamp dateAjoutReaction) {
+        this.user = user;
+        this.publication = publication;
         this.dateAjoutReaction = dateAjoutReaction;
     }
 
@@ -34,23 +35,21 @@ public class Reaction {
         this.idReaction = idReaction;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getIdPublication() {
-        return idPublication;
+    public Publication getPublication() {
+        return publication;
     }
 
-    public void setIdPublication(int idPublication) {
-        this.idPublication = idPublication;
+    public void setPublication(Publication publication) {
+        this.publication = publication;
     }
-
-
 
     public Timestamp getDateAjoutReaction() {
         return dateAjoutReaction;
@@ -65,26 +64,20 @@ public class Reaction {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reaction reaction = (Reaction) o;
-        return idReaction == reaction.idReaction && idUser == reaction.idUser && idPublication == reaction.idPublication && Objects.equals(dateAjoutReaction, reaction.dateAjoutReaction);
+        return idReaction == reaction.idReaction && Objects.equals(user, reaction.user) && Objects.equals(publication, reaction.publication) && Objects.equals(dateAjoutReaction, reaction.dateAjoutReaction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idReaction, idUser, idPublication, dateAjoutReaction);
+        return Objects.hash(idReaction, user, publication, dateAjoutReaction);
     }
 
     @Override
     public String toString() {
         return "Reaction{" +
-                "idUser=" + idUser +
-                ", idPublication=" + idPublication +
+                "user=" + user +
+                ", publication=" + publication +
                 ", dateAjoutReaction=" + dateAjoutReaction +
                 '}';
-
-
     }
 }
-
-
-
-
