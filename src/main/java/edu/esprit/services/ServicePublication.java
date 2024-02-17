@@ -11,15 +11,24 @@ import java.util.Set;
 public class ServicePublication implements IServicePublication<Publication> {
     Connection cnx = DataSource.getInstance().getCnx();
 
+    private ServiceUser serviceUser = new ServiceUser();
+
+    public ServicePublication() {
+    this.serviceUser = new ServiceUser();
+    }
+
 
     @Override
     public void add(Publication publication) {
-        String req = "INSERT INTO `publications`(`contenu_publication`, `d_creation_publication`, `id_user`)VALUES (?,?,?)";
+        String req = "INSERT INTO `publications`(`contenu_publication`, `d_creation_publication`, `id_user`, `url_file`) VALUES (?, ?, ?, ?)";
+
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, publication.getContenu_publication());
             ps.setTimestamp(2, publication.getD_creation_publication());
-            ps.setInt(3, publication.getId_user());
+            ps.setInt(3, publication.getUser().getId_user());
+            ps.setString(4, publication.getUrl_file());
+
             ps.executeUpdate();
             System.out.println("Publication added !");
         } catch (SQLException e) {
@@ -29,13 +38,14 @@ public class ServicePublication implements IServicePublication<Publication> {
 
     @Override
     public void update(Publication publication) {
-            String req = "UPDATE `publications` SET `contenu_publication` = ?, `d_creation_publication` = ?, `id_user` = ? WHERE `id_publication` = ?";
+            String req = "UPDATE `publications` SET `contenu_publication` = ?, `d_creation_publication` = ?, `id_user` = ?, `url_file`= ? WHERE `id_publication` = ?";
             try {
                 PreparedStatement ps = cnx.prepareStatement(req);
                 ps.setString(1, publication.getContenu_publication());
                 ps.setTimestamp(2, publication.getD_creation_publication());
-                ps.setInt(3, publication.getId_user());
-                ps.setInt(4, publication.getId_publication());
+                ps.setInt(3, publication.getUser().getId_user());
+                ps.setString(4, publication.getUrl_file());
+                ps.setInt(5, publication.getId_publication());
                 ps.executeUpdate();
                 System.out.println("Publication updated !");
             } catch (SQLException e) {
@@ -58,23 +68,41 @@ public class ServicePublication implements IServicePublication<Publication> {
 
     @Override
     public Publication getOneByID(int id) {
+        Publication publication = null;
         String req = "SELECT * FROM `publications` WHERE `id_publication` = ?";
+
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, id);
+
+
             ResultSet resultSet = ps.executeQuery();
+
             if (resultSet.next()) {
                 int idPublication = resultSet.getInt("id_publication");
                 String contenuPublication = resultSet.getString("contenu_publication");
                 Timestamp dateCreationPublication = resultSet.getTimestamp("d_creation_publication");
                 int idUser = resultSet.getInt("id_user");
-                return new Publication(idPublication, contenuPublication, dateCreationPublication, idUser);
+                String urlFile = resultSet.getString("url_file");
+
+
+
+                // Check if User retrieval is successful
+                User user = serviceUser.getOneByID(idUser);
+
+                if (user != null) {
+                    publication = new Publication(idPublication, contenuPublication, urlFile, dateCreationPublication, user);
+                } else {
+                    System.out.println("User with ID " + idUser + " not found.");
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return null;
+
+        return publication;
     }
+
 
     @Override
     public Set<Publication> getAll() {
@@ -90,7 +118,8 @@ public class ServicePublication implements IServicePublication<Publication> {
                 String contenuPublication = resultSet.getString("contenu_publication");
                 Timestamp dateCreationPublication = resultSet.getTimestamp("d_creation_publication");
                 int idUser = resultSet.getInt("id_user");
-                Publication publication = new Publication(idPublication, contenuPublication, dateCreationPublication, idUser);
+                String urlFile = resultSet.getString("url_file");
+                Publication publication = new Publication(idPublication, contenuPublication, urlFile,dateCreationPublication, serviceUser.getOneByID(idUser));
                 publications.add(publication);
             }
 
