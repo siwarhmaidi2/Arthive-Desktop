@@ -14,17 +14,19 @@ public class Main {
         // Create a user
         //create date of user
 
-        LocalDate birthDateAyoub = LocalDate.of(2001, 5, 15);
-        LocalDate birthDateZied = LocalDate.of(2001, 11, 15);
-        User user1 = new User("zied", "zhiri", "ziedzhiri@gmail.com", "1234563", java.sql.Date.valueOf(birthDateZied), "tunis", 123456789);
-        User user2 = new User("ayoub", "toujani", "ayoubtoujani@gmail.com", "1234563", java.sql.Date.valueOf(birthDateAyoub), "tunis", 123456789);
-        ServiceUser userService = new ServiceUser();
+      // LocalDate birthDate = LocalDate.of(2001, 5, 15);
+      //  LocalDate birthDateZied = LocalDate.of(2001, 11, 15);
+      //  User user = new User("John", "Doe", "john.doe@example.com", "password", Date.valueOf("1990-01-01"), "City", 123456789);
+       ServiceUser userService = new ServiceUser();
+
+      //  User user2 = new User("ayoub", "toujani", "ayoubtoujani@gmail.com", "1234563", java.sql.Date.valueOf(birthDateAyoub), "tunis", 123456789);
+
 
 
         //Add a user
-      // userService.add(user2);
-      //  userService.getOneByID(30);
-     //   userService.getAll();
+        //userService.add(user);
+        //System.out.println(userService.getOneByID(30));
+        //System.out.println(userService.getAll());
 
 
 
@@ -37,48 +39,48 @@ public class Main {
         */
 
         // Update a user
-        //  userService.update(new User(20,"Ayoub", "Toujani", "ayoubtoujani808@gmail.com", "1234563", java.sql.Date.valueOf(birthDate), "tunis", 123456789));
+         // userService.update(new User(44,"Ayoub", "Toujani", "ayoubtoujani808@gmail.com", "1234563", java.sql.Date.valueOf(birthDate), "tunis", 123456789));
 
         // Delete a user
-        //userService.delete(20);
+      //  userService.delete(38);
 
         // get one user by id
-        //  System.out.println(userService.getOneByID(20));
+       //  System.out.println(userService.getOneByID(29));
 
 
 
         // Create a publication
-      Publication publication = new Publication(18,"Hello World!", Timestamp.valueOf(LocalDateTime.now()), user.getId_user());
-       ServicePublication publicationService = new ServicePublication();
+      //Publication publication = new Publication("Test Content", "testfile.txt", new Timestamp(System.currentTimeMillis()),new User(44,"John", "Doe", "john.doe@example.com", "password", Date.valueOf("1990-01-01"), "City", 123456789));
+       Publication publication = new Publication("Test Content", "testfile.txt", new Timestamp(System.currentTimeMillis()),userService.getOneByID(44));
+        ServicePublication publicationService = new ServicePublication();
 
         // Add a publication
-    //  publicationService.add(publication);
+      //publicationService.add(publication);
 
+/*
         // Get all publications
-        /*Set<Publication> publications = publicationService.getAll();
+        Set<Publication> publications = publicationService.getAll();
         System.out.println("List of Publications:");
         for (Publication p : publications) {
             System.out.println(p);
         }
 */
 
-
         // Update a publication
-        //publicationService.update(new Publication(11,"Hello World!", Timestamp.valueOf(LocalDateTime.now()), user.getId_user()));
-
+//publicationService.update(new Publication(26, "waaaaa", "testfile.txt", new Timestamp(System.currentTimeMillis()),userService.getOneByID(44)));
         // Delete a publication
-        //publicationService.delete(11);
+      //  publicationService.delete(26);
 
         // get one publication by id
-       // System.out.println(publicationService.getOneByID(11));
+        //System.out.println(publicationService.getOneByID(18));
 
 
         // Create a comment
-        Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalDateTime.now()), user.getId_user(), publication.getId_publication());
-       ServiceCommentaire commentaireService = new ServiceCommentaire();
+Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalDateTime.now()), userService.getOneByID(30), publicationService.getOneByID(17));
+      ServiceCommentaire commentaireService = new ServiceCommentaire();
 
         // Add a comment
-       // commentaireService.add(commentaire);
+       //commentaireService.add(commentaire);
 
         // Get all comments for a publication
        /* Set<Commentaire> commentsForPublication = commentaireService.getAll();
@@ -92,8 +94,7 @@ public class Main {
 
 */
         // Update a comment
-       // commentaireService.update(new Commentaire(1, "Nice post!", Timestamp.valueOf(LocalDateTime.now()), user.getId_user(), publication.getId_publication()));
-
+//commentaireService.update(new Commentaire(11, "Nice post!", Timestamp.valueOf(LocalDateTime.now()), userService.getOneByID(30), publicationService.getOneByID(17)));
         // Delete a comment
         //commentaireService.delete(1);
 
@@ -103,17 +104,17 @@ public class Main {
 
         // Create a reaction
 
-      Reaction reaction = new Reaction(user.getId_user(), publication.getId_publication(), commentaire.getIdCommentaire(), Timestamp.valueOf(LocalDateTime.now()));
+     Reaction reaction = new Reaction(userService.getOneByID(30), publicationService.getOneByID(17), Timestamp.valueOf(LocalDateTime.now()));
      ServiceReaction reactionService = new ServiceReaction();
 
         // Add a reaction
      // reactionService.add(reaction);
 
         // Get all reactions for a publication
-      //  Set<Reaction> reactionsForPublication = reactionService.getAll();
+      /* //  Set<Reaction> reactionsForPublication = reactionService.getAll();
 
         // Print the reactions
-       /* System.out.println("List of Reactions:");
+       System.out.println("List of Reactions:");
         for (Reaction r : reactionsForPublication) {
             System.out.println(r);
         }
@@ -121,13 +122,12 @@ public class Main {
 
 
         // Update a reaction
-       // reactionService.update(new Reaction(1, user.getId_user(), publication.getId_publication(), commentaire.getIdCommentaire(), Timestamp.valueOf(LocalDateTime.now())));
-
+//reactionService.update(new Reaction(1, userService.getOneByID(30), publicationService.getOneByID(17), Timestamp.valueOf(LocalDateTime.now())));
         // Delete a reaction
-       // reactionService.delete(1);
+    //   reactionService.delete(1);
 
         // get one reaction by id
-        //System.out.println(reactionService.getOneByID(1));
+     //   System.out.println(reactionService.getOneByID(6));
 
 
       /* ServiceMessage sm = new ServiceMessage()   ;
@@ -148,9 +148,30 @@ public class Main {
         }
 */
 
-        ServiceReactionCommentaire reactionCommentaireService = new ServiceReactionCommentaire();
-        ReactionCommentaire reactionCommentaire = new ReactionCommentaire(36, 18, 9);
-       // reactionCommentaireService.add(reactionCommentaire);
+       ServiceReactionCommentaire reactionCommentaireService = new ServiceReactionCommentaire();
+       ReactionCommentaire    reactionCommentaire = new ReactionCommentaire(commentaireService.getOneByID(8),userService.getOneByID(30),publicationService.getOneByID(17), Timestamp.valueOf(LocalDateTime.now()));
+
+      //reactionCommentaireService.add(reactionCommentaire);
+
+        // Get all reactions for a comment
+        Set<ReactionCommentaire> reactionsForComment = reactionCommentaireService.getAll();
+
+        // Print the reactions
+        System.out.println("List of Reactions:");
+        for (ReactionCommentaire r : reactionsForComment) {
+            System.out.println(r);
+        }
+
+
+        // update a reaction
+        //reactionCommentaireService.update(new ReactionCommentaire(1, commentaireService.getOneByID(8),userService.getOneByID(30),publicationService.getOneByID(17), Timestamp.valueOf(LocalDateTime.now())));
+        // Delete a reaction
+        //reactionCommentaireService.delete(1);
+
+        // get one reaction by id
+
+        //System.out.println(reactionCommentaireService.getOneByID(1));
+
 
     }
 }
