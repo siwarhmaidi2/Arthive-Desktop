@@ -7,26 +7,25 @@ public class Commentaire {
     private int idCommentaire;
     private String contenuCommentaire;
     private Timestamp dateAjoutCommentaire;
-    private int idUser; // Foreign key referencing User
-    private int idPublication; // Foreign key referencing Publication
+   private User user ;
+   private Publication publication;
 
-
-    public Commentaire() {
+       public Commentaire() {
     }
 
-    public Commentaire(int idCommentaire, String contenuCommentaire, Timestamp dateAjoutCommentaire, int idUser, int idPublication) {
+    public Commentaire(int idCommentaire, String contenuCommentaire, Timestamp dateAjoutCommentaire, User user, Publication publication) {
         this.idCommentaire = idCommentaire;
         this.contenuCommentaire = contenuCommentaire;
         this.dateAjoutCommentaire = dateAjoutCommentaire;
-        this.idUser = idUser;
-        this.idPublication = idPublication;
+        this.user = user;
+        this.publication = publication;
     }
 
-    public Commentaire(String contenuCommentaire, Timestamp dateAjoutCommentaire, int idUser, int idPublication) {
+    public Commentaire(String contenuCommentaire, Timestamp dateAjoutCommentaire, User user, Publication publication) {
         this.contenuCommentaire = contenuCommentaire;
         this.dateAjoutCommentaire = dateAjoutCommentaire;
-        this.idUser = idUser;
-        this.idPublication = idPublication;
+        this.user = user;
+        this.publication = publication;
     }
 
     public int getIdCommentaire() {
@@ -53,33 +52,20 @@ public class Commentaire {
         this.dateAjoutCommentaire = dateAjoutCommentaire;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getIdPublication() {
-        return idPublication;
+    public Publication getPublication() {
+        return publication;
     }
 
-    public void setIdPublication(int idPublication) {
-        this.idPublication = idPublication;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Commentaire that = (Commentaire) o;
-        return idCommentaire == that.idCommentaire && idUser == that.idUser && idPublication == that.idPublication && Objects.equals(contenuCommentaire, that.contenuCommentaire) && Objects.equals(dateAjoutCommentaire, that.dateAjoutCommentaire);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idCommentaire, contenuCommentaire, dateAjoutCommentaire, idUser, idPublication);
+    public void setPublication(Publication publication) {
+        this.publication = publication;
     }
 
     @Override
@@ -87,10 +73,27 @@ public class Commentaire {
         return "Commentaire{" +
                 "contenuCommentaire='" + contenuCommentaire + '\'' +
                 ", dateAjoutCommentaire=" + dateAjoutCommentaire +
-                ", idUser=" + idUser +
-                ", idPublication=" + idPublication +
+                ", user=" + user +
+                ", publication=" + publication +
                 '}';
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.idCommentaire;
+        hash = 97 * hash + Objects.hashCode(this.contenuCommentaire);
+        hash = 97 * hash + Objects.hashCode(this.dateAjoutCommentaire);
+        hash = 97 * hash + Objects.hashCode(this.user);
+        hash = 97 * hash + Objects.hashCode(this.publication);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Commentaire that = (Commentaire) o;
+        return idCommentaire == that.idCommentaire && Objects.equals(contenuCommentaire, that.contenuCommentaire) && Objects.equals(dateAjoutCommentaire, that.dateAjoutCommentaire) && Objects.equals(user, that.user) && Objects.equals(publication, that.publication);
+    }
 }
