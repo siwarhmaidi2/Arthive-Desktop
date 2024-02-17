@@ -10,17 +10,26 @@ import java.util.Set;
 public class ServiceReactionCommentaire implements IServiceReactionCommentaire<ReactionCommentaire> {
 
     Connection cnx = DataSource.getInstance().getCnx();
+    private ServiceUser serviceUser = new ServiceUser();
+    private ServicePublication servicePublication = new ServicePublication();
+    private ServiceCommentaire serviceCommentaire = new ServiceCommentaire();
 
     @Override
     public void add(ReactionCommentaire reactionCommentaire) {
         String req = "INSERT INTO reactions_commentaires (id_user, id_publication, id_commentaire, d_ajout_reaction_commentaire) VALUES (?, ?, ?, ?)";
         try {
-            PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, reactionCommentaire.getIdUser());
-            ps.setInt(2, reactionCommentaire.getIdPublication());
-            ps.setInt(3, reactionCommentaire.getIdCommentaire());
-            ps.setTimestamp(4, reactionCommentaire.getDateAjoutReactionCommentaire()); // Assuming you have this attribute in your ReactionCommentaire class
+            PreparedStatement ps = cnx.prepareStatement(req, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, reactionCommentaire.getUser().getId_user());
+            ps.setInt(2, reactionCommentaire.getPublication().getId_publication());
+            ps.setInt(3, reactionCommentaire.getCommentaire().getIdCommentaire());
+            ps.setTimestamp(4, reactionCommentaire.getDateAjoutReactionCommentaire());
             ps.executeUpdate();
+
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                reactionCommentaire.setIdReactionCommentaire(generatedKeys.getInt(1));
+            }
+
             System.out.println("ReactionCommentaire added!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -55,7 +64,10 @@ public class ServiceReactionCommentaire implements IServiceReactionCommentaire<R
                 int idPublication = resultSet.getInt("id_publication");
                 int idCommentaire = resultSet.getInt("id_commentaire");
                 Timestamp dateAjoutReactionCommentaire = resultSet.getTimestamp("d_ajout_reaction_commentaire");
-                ReactionCommentaire reactionCommentaire = new ReactionCommentaire(idRC, idUser, idPublication, idCommentaire, dateAjoutReactionCommentaire);
+
+                ReactionCommentaire reactionCommentaire = new ReactionCommentaire(idRC,  serviceCommentaire.getOneByID(idCommentaire),serviceUser.getOneByID(idUser),
+                        servicePublication.getOneByID(idPublication), dateAjoutReactionCommentaire);
+
                 rc.add(reactionCommentaire);
             }
 
@@ -64,6 +76,5 @@ public class ServiceReactionCommentaire implements IServiceReactionCommentaire<R
         }
 
         return rc;
-
     }
 }

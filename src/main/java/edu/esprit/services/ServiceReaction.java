@@ -9,16 +9,24 @@ import java.util.Set;
 
 public class ServiceReaction implements IServiceReaction<Reaction> {
     Connection cnx = DataSource.getInstance().getCnx();
+    private ServiceUser serviceUser = new ServiceUser();
+    private ServicePublication servicePublication = new ServicePublication();
 
     @Override
     public void add(Reaction reaction) {
         String req = "INSERT INTO reactions (id_user, id_publication, d_ajout_reaction) VALUES (?, ?, ?)";
         try {
-            PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, reaction.getIdUser());
-            ps.setInt(2, reaction.getIdPublication());
+            PreparedStatement ps = cnx.prepareStatement(req, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, reaction.getUser().getId_user());
+            ps.setInt(2, reaction.getPublication().getId_publication());
             ps.setTimestamp(3, reaction.getDateAjoutReaction());
+
             ps.executeUpdate();
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                reaction.setIdReaction(generatedKeys.getInt(1));
+            }
+
             System.out.println("Reaction added!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -30,8 +38,8 @@ public class ServiceReaction implements IServiceReaction<Reaction> {
         String req = "UPDATE reactions SET id_user = ?, id_publication = ?, d_ajout_reaction = ? WHERE id_reaction = ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, reaction.getIdUser());
-            ps.setInt(2, reaction.getIdPublication());
+            ps.setInt(1, reaction.getUser().getId_user());
+            ps.setInt(2, reaction.getPublication().getId_publication());
             ps.setTimestamp(3, reaction.getDateAjoutReaction());
             ps.setInt(4, reaction.getIdReaction());
             ps.executeUpdate();
@@ -66,7 +74,11 @@ public class ServiceReaction implements IServiceReaction<Reaction> {
                 int idUser = resultSet.getInt("id_user");
                 int idPublication = resultSet.getInt("id_publication");
                 Timestamp dateAjoutReaction = resultSet.getTimestamp("d_ajout_reaction");
-                return new Reaction(idReaction, idUser, idPublication, dateAjoutReaction);
+
+                Reaction reaction = new Reaction(idReaction, serviceUser.getOneByID(idUser),
+                        servicePublication.getOneByID(idPublication), dateAjoutReaction);
+
+                return reaction;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -88,7 +100,9 @@ public class ServiceReaction implements IServiceReaction<Reaction> {
                 int idUser = resultSet.getInt("id_user");
                 int idPublication = resultSet.getInt("id_publication");
                 Timestamp dateAjoutReaction = resultSet.getTimestamp("d_ajout_reaction");
-                Reaction reaction = new Reaction(idReaction, idUser, idPublication, dateAjoutReaction);
+
+                Reaction reaction = new Reaction(idReaction, serviceUser.getOneByID(idUser), servicePublication.getOneByID(idPublication), dateAjoutReaction);
+
                 reactions.add(reaction);
             }
 
@@ -99,4 +113,3 @@ public class ServiceReaction implements IServiceReaction<Reaction> {
         return reactions;
     }
 }
-
