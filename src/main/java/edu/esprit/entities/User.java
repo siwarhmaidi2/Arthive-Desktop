@@ -144,4 +144,8 @@ public class User {
     public int hashCode() {
         return Objects.hash(id_user, nom_user, prenom_user, email, mdp_user, d_naissance_user, ville, num_tel_user);
     }
+
+    public String getPhoto_user() {
+        return null;
+    }
 }

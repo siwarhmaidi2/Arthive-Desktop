@@ -128,4 +128,58 @@ public class ServiceUser implements IServiceUser<User> {
             System.out.println(e.getMessage());
         }
     }
+
+    private static User loggedInUser;
+
+    // Other methods...
+
+    // Method to authenticate user based on email and password
+    public User authenticateUser(String email, String password) {
+        // Perform authentication logic here (query the database, check credentials, etc.)
+        // If authentication is successful, set the loggedInUser
+        // Otherwise, return null or handle authentication failure as needed
+
+        // Example authentication logic (modify as per your database schema and authentication flow)
+        String query = "SELECT * FROM users WHERE email = ? AND mdp_user = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(query);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int userId = rs.getInt("id_user");
+                String nom = rs.getString("nom_user");
+                String prenom = rs.getString("prenom_user");
+                String emailUser = rs.getString("email");
+                String passwordUser = rs.getString("mdp_user");
+                Date dateNaiss = rs.getDate("d_naissance_user");
+                String ville = rs.getString("ville");
+                int numtel = rs.getInt("num_tel_user");
+                loggedInUser = new User(userId, nom, prenom, emailUser, passwordUser, dateNaiss, ville, numtel);
+
+
+                return loggedInUser;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // Authentication failed
+        return null;
+    }
+
+    // Method to get the logged-in user
+    public static User getLoggedInUser() {
+        return loggedInUser;
+    }
+    public static void logInUser(User user) {
+        loggedInUser = user;
+    }
+
+    public static void logOutUser() {
+        loggedInUser = null;
+    }
+
+
 }

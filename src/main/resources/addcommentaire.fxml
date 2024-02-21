@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+<?import edu.esprit.entities.UserCommentCellFactory?>
+
+<?import javafx.scene.control.Button?>
+<?import edu.esprit.entities.UserCommentCellFactory?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="edu.esprit.Controllers.ajouterCommentaireController">
+      <ListView fx:id="commentsListView" VBox.vgrow="ALWAYS" prefHeight="300">
+
+   <cellFactory>
+
+
+      <!--<UserCommentCellFactory/>-->
+   </cellFactory>
+</ListView>
+
+
+   <TextArea fx:id="commentTextArea" promptText="Add your comment..." VBox.vgrow="NEVER"/>
+   <Button text="Add Comment" onAction="#addComment" styleClass="add-comment-button"/>
+
+</VBox>

@@ -3,6 +3,7 @@ package edu.esprit.entities;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Set;
 
 public class Publication {
 
@@ -13,10 +14,23 @@ public class Publication {
 
     private Timestamp d_creation_publication;
     private User user ;
-
+    private Set<Reaction> likes;
     public Publication() {
     }
 
+    public Publication(String contenu_publication, String url_file, Timestamp d_creation_publication, User user, Set<Reaction> likes) {
+        this.contenu_publication = contenu_publication;
+        this.url_file = url_file;
+        this.d_creation_publication = d_creation_publication;
+        this.user = user;
+        this.likes = likes;
+    }
+
+    public Publication(String contenu_publication, String url_file, User user) {
+        this.contenu_publication = contenu_publication;
+        this.url_file = url_file;
+        this.user = user;
+    }
     public Publication(int id_publication, String contenu_publication, String url_file, Timestamp d_creation_publication, User user) {
         this.id_publication = id_publication;
         this.contenu_publication = contenu_publication;
@@ -32,7 +46,13 @@ public class Publication {
         this.user = user;
     }
 
-    public Publication(String testContent, String file, Timestamp dCreationPublication, int idUser) {
+    public Publication(String testContent, String file, Timestamp dCreationPublication, int idUsercontenu) {
+    }
+
+    public Publication(String contenu) {
+    }
+
+    public Publication(String contenu, String string) {
     }
 
     public int getId_publication() {
@@ -75,6 +95,18 @@ public class Publication {
         this.user = user;
     }
 
+    public Set<Reaction> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<Reaction> likes) {
+        this.likes = likes;
+    }
+
+
+
+
+
     @Override
     public String toString() {
         return "Publication{" +
@@ -97,5 +129,6 @@ public class Publication {
     public int hashCode() {
         return Objects.hash(id_publication, contenu_publication, url_file, d_creation_publication, user);
     }
+
 
 }

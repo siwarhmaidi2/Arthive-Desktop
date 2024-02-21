@@ -76,7 +76,7 @@ public class Main {
 
 
         // Create a comment
-Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalDateTime.now()), userService.getOneByID(30), publicationService.getOneByID(17));
+Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalDateTime.now()), userService.getOneByID(44), publicationService.getOneByID(28));
       ServiceCommentaire commentaireService = new ServiceCommentaire();
 
         // Add a comment
@@ -104,8 +104,8 @@ Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalD
 
         // Create a reaction
 
-     Reaction reaction = new Reaction(userService.getOneByID(30), publicationService.getOneByID(17), Timestamp.valueOf(LocalDateTime.now()));
-     ServiceReaction reactionService = new ServiceReaction();
+   //  Reaction reaction = new Reaction(userService.getOneByID(30), publicationService.getOneByID(17), Timestamp.valueOf(LocalDateTime.now()));
+     //ServiceReaction reactionService = new ServiceReaction();
 
         // Add a reaction
      // reactionService.add(reaction);
@@ -157,10 +157,11 @@ Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalD
         Set<ReactionCommentaire> reactionsForComment = reactionCommentaireService.getAll();
 
         // Print the reactions
-        System.out.println("List of Reactions:");
+      /*  System.out.println("List of Reactions:");
         for (ReactionCommentaire r : reactionsForComment) {
             System.out.println(r);
         }
+        */
 
 
         // update a reaction
