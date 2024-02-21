@@ -8,9 +8,12 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
+
+
 public class ServiceUser implements IServiceUser<User> {
 
     Connection cnx = DataSource.getInstance().getCnx();
+    private static User loggedInUser;
     @Override
     public void add(User user) {
          /*String req = "INSERT INTO `personne`(`nom`, `prenom`) VALUES ('"+personne.getNom()+"','"+personne.getPrenom()+"')";
@@ -130,5 +133,41 @@ public class ServiceUser implements IServiceUser<User> {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public User authenticateUser(String email, String password) {
+        // Perform authentication logic here (query the database, check credentials, etc.)
+        // If authentication is successful, set the loggedInUser
+        // Otherwise, return null or handle authentication failure as needed
+
+        // Example authentication logic (modify as per your database schema and authentication flow)
+        String query = "SELECT * FROM users WHERE email = ? AND mdp_user = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(query);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int userId = rs.getInt("id_user");
+                String nom = rs.getString("nom_user");
+                String prenom = rs.getString("prenom_user");
+                String emailUser = rs.getString("email");
+                String passwordUser = rs.getString("mdp_user");
+                Date dateNaiss = rs.getDate("d_naissance_user");
+                String ville = rs.getString("ville");
+                int numtel = rs.getInt("num_tel_user");
+                String role = rs.getString("role");
+                loggedInUser = new User(userId, nom, prenom, emailUser, passwordUser, dateNaiss, ville, numtel, role);
+
+
+                return loggedInUser;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // Authentication failed
+        return null;
     }
 }

@@ -44,6 +44,7 @@ public class User {
         this.role = role;
     }
 
+
     public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user, String role) {
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;

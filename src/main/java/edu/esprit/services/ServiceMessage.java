@@ -1,11 +1,13 @@
 package edu.esprit.services;
 
 import edu.esprit.entities.Message;
+
 import edu.esprit.utils.DataSource;
 
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
+
 
 public class ServiceMessage implements IServiceMessages<Message> {
     Connection cnx = DataSource.getInstance().getCnx();
