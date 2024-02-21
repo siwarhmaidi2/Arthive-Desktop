@@ -28,12 +28,6 @@ public class Commentaire {
         this.publication = publication;
     }
 
-    public Commentaire(String commentContent, Timestamp timestamp) {
-    }
-
-    public Commentaire(String commentContent) {
-    }
-
     public int getIdCommentaire() {
         return idCommentaire;
     }
@@ -58,7 +52,7 @@ public class Commentaire {
         this.dateAjoutCommentaire = dateAjoutCommentaire;
     }
 
-    public  User getUser() {
+    public User getUser() {
         return user;
     }
 

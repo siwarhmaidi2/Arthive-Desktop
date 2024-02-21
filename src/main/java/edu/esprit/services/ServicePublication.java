@@ -132,56 +132,6 @@ public class ServicePublication implements IServicePublication<Publication> {
     }
 
 
-    public int addLike(int publicationId, int userId) {
-        // Retrieve the current likes count for the publication
-        int currentLikes = getCurrentLikesCount(publicationId);
 
-        // Add a like for the user to the publication
-        String query = "INSERT INTO reactions (id_user, id_publication, d_ajout_reaction) VALUES (?, ?, CURRENT_TIMESTAMP)";
-        try {
-            PreparedStatement ps = cnx.prepareStatement(query);
-            ps.setInt(1, userId);
-            ps.setInt(2, publicationId);
-            ps.executeUpdate();
-
-            // Return the updated likes count
-            return currentLikes + 1;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return currentLikes;
-    }
-
-    // Helper method to get the current likes count for a publication
-    private int getCurrentLikesCount(int publicationId) {
-        String likesQuery = "SELECT COUNT(*) FROM reactions WHERE id_publication = ?";
-        try {
-            PreparedStatement likesStatement = cnx.prepareStatement(likesQuery);
-            likesStatement.setInt(1, publicationId);
-            ResultSet likesResult = likesStatement.executeQuery();
-
-            if (likesResult.next()) {
-                return likesResult.getInt(1);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return 0; // Default to 0 if there's an error or no likes found
-    }
-
-    public static int addLikeForTesting(int publicationId) {
-        // Simulate adding a like for testing purposes
-        // You can replace this with your actual logic to add a like to the publication in the database
-        int currentLikes = getlikesfornow(publicationId);
-        return currentLikes + 1;
-    }
-    private static int getlikesfornow(int publicationId) {
-        // Simulate getting the current likes count for testing purposes
-        // You can replace this with your actual logic to retrieve likes count from the database
-        // This is just a placeholder, and it always returns 10 for testing
-        return 10;
-    }
 
 }
