@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.Button?>
+<VBox fx:id="comment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.getAllComments">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0">
+         <children>
+            <Pane prefHeight="100.0" prefWidth="88.0">
+               <children>
+                  <ImageView fx:id="profileImage" fitHeight="50.0" fitWidth="44.0" layoutX="24.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Users/MSI/Downloads/profile-pic%20(1).png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <VBox prefHeight="100.0" prefWidth="511.0" spacing="5.0">
+               <!-- Adjusted spacing here -->
+               <children>
+                  <Label fx:id="username" prefHeight="18.0" prefWidth="130.0" style="-fx-font-weight: bold;" text="Username">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="0.7727272853706822">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.13658544421195984" green="0.036452241241931915" blue="0.8947368264198303" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="date" prefHeight="18.0" prefWidth="130.0" text="datetime" />
+                  <TextArea fx:id="content" prefHeight="50.0" prefWidth="515.0" VBox.vgrow="ALWAYS" editable="false">
+                     <VBox.margin>
+                        <Insets right="10.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <HBox spacing="10">
+                     <Button text="Edit" onAction="#handleEditComment"/>
+                     <Button text="Delete" onAction="#handleDeleteComment"/>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets top="5.0" />
+      <!-- Adjusted top padding here -->
+   </padding>
+</VBox>
