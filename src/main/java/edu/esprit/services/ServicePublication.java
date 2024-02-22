@@ -133,5 +133,76 @@ public class ServicePublication implements IServicePublication<Publication> {
 
 
 
+    // Helper method to get the current likes count for a publication
+    public int getCurrentLikesCount(int publicationId) {
+        String likesQuery = "SELECT COUNT(*) FROM reactions WHERE id_publication = ?";
+        try {
+            PreparedStatement likesStatement = cnx.prepareStatement(likesQuery);
+            likesStatement.setInt(1, publicationId);
+            ResultSet likesResult = likesStatement.executeQuery();
+
+            if (likesResult.next()) {
+                return likesResult.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return 0; // Default to 0 if there's an error or no likes found
+    }
+
+
+
+    public int addLike(int publicationId, int userId) {
+        if (!hasUserLiked(publicationId, userId)) {
+            String query = "INSERT INTO reactions (id_user, id_publication, d_ajout_reaction) VALUES (?, ?, CURRENT_TIMESTAMP)";
+            try {
+                PreparedStatement ps = cnx.prepareStatement(query);
+                ps.setInt(1, userId);
+                ps.setInt(2, publicationId);
+                ps.executeUpdate();
+                return 1; // Indicate success
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return 0; // Indicate failure or that the user has already liked
+    }
+
+    public int removeLike(int publicationId, int userId) {
+        if (hasUserLiked(publicationId, userId)) {
+            String query = "DELETE FROM reactions WHERE id_user = ? AND id_publication = ?";
+            try {
+                PreparedStatement ps = cnx.prepareStatement(query);
+                ps.setInt(1, userId);
+                ps.setInt(2, publicationId);
+                ps.executeUpdate();
+                return 1; // Indicate success
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return 0; // Indicate failure or that the user hasn't liked
+    }
+
+    private boolean hasUserLiked(int publicationId, int userId) {
+        String query = "SELECT COUNT(*) FROM reactions WHERE id_user = ? AND id_publication = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(query);
+            ps.setInt(1, userId);
+            ps.setInt(2, publicationId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+
 
 }
