@@ -19,7 +19,7 @@ public class User {
 
     private String ville;
 
-    private int num_tel_user;
+    private String num_tel_user;
 
     private String role;
 
@@ -32,7 +32,7 @@ public class User {
         this.id_user = id_user;
     }
 
-    public User(int id_user, String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user, String role) {
+    public User(int id_user, String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, String num_tel_user, String role) {
         this.id_user = id_user;
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
@@ -45,7 +45,7 @@ public class User {
     }
 
 
-    public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user, String role) {
+    public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, String num_tel_user, String role) {
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
         this.email = email;
@@ -115,11 +115,11 @@ public class User {
         this.ville = ville;
     }
 
-    public int getNum_tel_user() {
+    public String getNum_tel_user() {
         return num_tel_user;
     }
 
-    public void setNum_tel_user(int num_tel_user) {
+    public void setNum_tel_user(String num_tel_user) {
         this.num_tel_user = num_tel_user;
     }
 

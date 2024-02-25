@@ -27,9 +27,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
         primaryStage.setResizable(false);
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
         primaryStage.setTitle("Arthive Login");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }
 
@@ -45,12 +45,7 @@ public class Main extends Application {
 
 
         LocalDate birthDate = LocalDate.of(1990, 5, 15);
-        User u1 = new User("zhiri", "zied", "ziedzhiri@gmail.com", "1234", java.sql.Date.valueOf(birthDate), "tunis", 87654321, "ROLE_USER");
-        User u2 = new User("toujeni", "ayoub", "toujeniayoub@gmail.com", "4321", java.sql.Date.valueOf(birthDate), "tunis", 12345678, "ROLE_USER");
 
-
-        su.add(u1);
-        su.add(u2);
         System.out.println(su.getAll());
 
         long currentMillis = System.currentTimeMillis();

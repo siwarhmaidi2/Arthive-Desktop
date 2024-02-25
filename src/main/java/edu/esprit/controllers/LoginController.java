@@ -3,9 +3,11 @@ package edu.esprit.controllers;
 import edu.esprit.tests.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
+
+import javafx.event.ActionEvent;
 import java.io.IOError;
 import java.io.IOException;
 
@@ -33,11 +35,16 @@ public class LoginController {
         if (loggedInUser != null) {
             System.out.println("Login successful");
             //redirect to home page, replace with actual Home page
-             m.changeScene("Home.fxml");
+             m.changeScene("/Home.fxml");
 
         } else {
             System.out.println("Login failed");
             //show error message
         }
+    }
+
+    public void handleHyperlinkAction(ActionEvent event) throws IOException{
+        Main m = new Main();
+        m.changeScene("/Signup.fxml");
     }
 }

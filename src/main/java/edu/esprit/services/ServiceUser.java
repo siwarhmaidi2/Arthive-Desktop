@@ -34,7 +34,7 @@ public class ServiceUser implements IServiceUser<User> {
             ps.setString(4, user.getMdp_user());
             ps.setDate(5, user.getD_naissance_user());
             ps.setString(6, user.getVille());
-            ps.setInt(7, user.getNum_tel_user());
+            ps.setString(7, user.getNum_tel_user());
             ps.setString(8, user.getRole());
             ps.executeUpdate();
             System.out.println("User added !");
@@ -58,7 +58,7 @@ public class ServiceUser implements IServiceUser<User> {
                 String password = rs.getString("mdp_user");
                 Date dateNaiss = rs.getDate("d_naissance_user");
                 String ville = rs.getString("ville");
-                Integer numtel = rs.getInt("num_tel_user");
+                String numtel = rs.getString("num_tel_user");
                 String role = rs.getString("role");
                 User u = new User(id,nom,prenom,email,password,dateNaiss,ville,numtel, role);
                 users.add(u);
@@ -91,7 +91,7 @@ public class ServiceUser implements IServiceUser<User> {
                 String password = rs.getString("mdp_user");
                 Date dateNaiss = rs.getDate("d_naissance_user");
                 String ville = rs.getString("ville");
-                Integer numtel = rs.getInt("num_tel_user");
+                String numtel = rs.getString("num_tel_user");
                 String role = rs.getString("role");
                 user = new User(userId, nom, prenom, email, password, dateNaiss, ville, numtel, role);
             }
@@ -100,6 +100,21 @@ public class ServiceUser implements IServiceUser<User> {
         }
 
         return user;
+    }
+
+    public boolean checkEmail(String email) {
+        String req = "SELECT * FROM users WHERE email = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 
     @Override
@@ -113,7 +128,7 @@ public class ServiceUser implements IServiceUser<User> {
             ps.setString(4, user.getMdp_user());
             ps.setDate(5, user.getD_naissance_user());
             ps.setString(6, user.getVille());
-            ps.setInt(7, user.getNum_tel_user());
+            ps.setString(7, user.getNum_tel_user());
             ps.setInt(8, user.getId_user());
             ps.executeUpdate();
             System.out.println("User updated !");
@@ -156,7 +171,7 @@ public class ServiceUser implements IServiceUser<User> {
                 String passwordUser = rs.getString("mdp_user");
                 Date dateNaiss = rs.getDate("d_naissance_user");
                 String ville = rs.getString("ville");
-                int numtel = rs.getInt("num_tel_user");
+                String numtel = rs.getString("num_tel_user");
                 String role = rs.getString("role");
                 loggedInUser = new User(userId, nom, prenom, emailUser, passwordUser, dateNaiss, ville, numtel, role);
 
