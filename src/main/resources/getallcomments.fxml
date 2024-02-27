@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,10 +16,10 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Button?>
-<VBox fx:id="comment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.getAllComments">
+
+<VBox fx:id="comment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.getAllComments">
    <children>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0">
+      <HBox alignment="CENTER" prefHeight="203.0" prefWidth="690.0">
          <children>
             <Pane prefHeight="100.0" prefWidth="88.0">
                <children>
@@ -27,7 +30,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <VBox prefHeight="100.0" prefWidth="511.0" spacing="5.0">
+            <VBox prefHeight="233.0" prefWidth="518.0" spacing="5.0">
                <!-- Adjusted spacing here -->
                <children>
                   <Label fx:id="username" prefHeight="18.0" prefWidth="130.0" style="-fx-font-weight: bold;" text="Username">
@@ -52,14 +55,50 @@
                      </font>
                   </Label>
                   <Label fx:id="date" prefHeight="18.0" prefWidth="130.0" text="datetime" />
-                  <TextArea fx:id="content" prefHeight="50.0" prefWidth="515.0" VBox.vgrow="ALWAYS" editable="false">
+                  <HBox prefHeight="13.0" prefWidth="518.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <MenuButton mnemonicParsing="false">
+                          <items>
+                             <MenuItem fx:id="updateComment" mnemonicParsing="false" onAction="#handleEditComment" text="Modifier" />
+
+                             <MenuItem fx:id="deleteComment" mnemonicParsing="false" text="Supprimer" onAction="#handleDeleteComment"/>
+                          </items>
+                           <HBox.margin>
+                              <Insets left="450.0" />
+                           </HBox.margin>
+                        </MenuButton>
+                     </children>
+                  </HBox>
+                  <TextArea fx:id="content" editable="false" prefHeight="58.0" prefWidth="508.0" VBox.vgrow="ALWAYS" />
+                  <Button fx:id="saveCommentButton" onAction="#saveEditedComment" text="Save" visible="false">
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
                      <VBox.margin>
-                        <Insets right="10.0" />
+                        <Insets left="400.0" />
                      </VBox.margin>
-                  </TextArea>
-                  <HBox spacing="10">
-                     <Button text="Edit" onAction="#handleEditComment"/>
-                     <Button text="Delete" onAction="#handleDeleteComment"/>
+                  </Button>
+                  <HBox prefHeight="61.0" prefWidth="518.0">
+                     <children>
+                        <Button fx:id="likeComment" minHeight="17.0" onAction="#handleLikeComment" prefHeight="31.0" prefWidth="90.0" text="j'aime" />
+                        <Button fx:id="replayComment" prefHeight="32.0" prefWidth="106.0" text="répondre" />
+                        <ImageView fx:id="iconLikes" fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="200.0" />
+                           </HBox.margin>
+                           <image>
+                              <Image url="@../../../../../../Users/MSI/Desktop/25451.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="nbLikesComments">
+                           <HBox.margin>
+                              <Insets left="4.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                     </padding>
                   </HBox>
                </children>
             </VBox>
@@ -70,4 +109,5 @@
       <Insets top="5.0" />
       <!-- Adjusted top padding here -->
    </padding>
+
 </VBox>
