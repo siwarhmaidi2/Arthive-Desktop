@@ -25,7 +25,7 @@ public class Main extends Application {
     private static Stage stage;
     @Override
     public void start(Stage primaryStage) throws Exception {
-        stage = primaryStage;
+        Main.stage = primaryStage;
         primaryStage.setResizable(false);
         Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
         primaryStage.setTitle("Arthive Login");
@@ -33,8 +33,8 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public void changeScene(String fxml) throws IOException {
-        Parent pane = FXMLLoader.load(getClass().getResource(fxml));
+    public static void changeScene(String fxml) throws IOException {
+        Parent pane = FXMLLoader.load(Main.class.getResource(fxml));
         stage.getScene().setRoot(pane);
     }
 

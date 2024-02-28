@@ -59,8 +59,9 @@ public class ServiceUser implements IServiceUser<User> {
                 Date dateNaiss = rs.getDate("d_naissance_user");
                 String ville = rs.getString("ville");
                 String numtel = rs.getString("num_tel_user");
+                String bio = rs.getString("bio");
                 String role = rs.getString("role");
-                User u = new User(id,nom,prenom,email,password,dateNaiss,ville,numtel, role);
+                User u = new User(id,nom,prenom,email,password,dateNaiss,ville,numtel,bio, role);
                 users.add(u);
             }
         } catch (SQLException e) {
@@ -92,8 +93,9 @@ public class ServiceUser implements IServiceUser<User> {
                 Date dateNaiss = rs.getDate("d_naissance_user");
                 String ville = rs.getString("ville");
                 String numtel = rs.getString("num_tel_user");
+                String bio = rs.getString("bio");
                 String role = rs.getString("role");
-                user = new User(userId, nom, prenom, email, password, dateNaiss, ville, numtel, role);
+                user = new User(userId, nom, prenom, email, password, dateNaiss, ville, numtel, bio, role);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -119,7 +121,7 @@ public class ServiceUser implements IServiceUser<User> {
 
     @Override
     public void update(User user) {
-        String req = "UPDATE users SET nom_user = ?, prenom_user = ?, email = ?, mdp_user = ?, d_naissance_user = ?, ville = ?, num_tel_user = ? WHERE id_user = ?";
+        String req = "UPDATE users SET nom_user = ?, prenom_user = ?, email = ?, mdp_user = ?, d_naissance_user = ?, ville = ?, num_tel_user = ?, bio = ? WHERE id_user = ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, user.getNom_user());
@@ -129,9 +131,28 @@ public class ServiceUser implements IServiceUser<User> {
             ps.setDate(5, user.getD_naissance_user());
             ps.setString(6, user.getVille());
             ps.setString(7, user.getNum_tel_user());
+            ps.setString(8, user.getBio());
             ps.setInt(8, user.getId_user());
             ps.executeUpdate();
             System.out.println("User updated !");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateProfile(User user) {
+        String req = "UPDATE users SET nom_user = ?, prenom_user = ?, d_naissance_user = ?, ville = ?, num_tel_user = ?, bio = ? WHERE id_user = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, user.getNom_user());
+            ps.setString(2, user.getPrenom_user());
+            ps.setDate(3, user.getD_naissance_user());
+            ps.setString(4, user.getVille());
+            ps.setString(5, user.getNum_tel_user());
+            ps.setString(6, user.getBio());
+            ps.setInt(7, user.getId_user());
+            ps.executeUpdate();
+            System.out.println("User Profile updated !");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -172,8 +193,9 @@ public class ServiceUser implements IServiceUser<User> {
                 Date dateNaiss = rs.getDate("d_naissance_user");
                 String ville = rs.getString("ville");
                 String numtel = rs.getString("num_tel_user");
+                String bio = rs.getString("bio");
                 String role = rs.getString("role");
-                loggedInUser = new User(userId, nom, prenom, emailUser, passwordUser, dateNaiss, ville, numtel, role);
+                loggedInUser = new User(userId, nom, prenom, emailUser, passwordUser, dateNaiss, ville, numtel, bio, role);
 
 
                 return loggedInUser;

@@ -21,6 +21,8 @@ public class User {
 
     private String num_tel_user;
 
+    private String bio;
+
     private String role;
 
 
@@ -32,7 +34,7 @@ public class User {
         this.id_user = id_user;
     }
 
-    public User(int id_user, String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, String num_tel_user, String role) {
+    public User(int id_user, String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, String num_tel_user, String bio, String role) {
         this.id_user = id_user;
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
@@ -41,11 +43,12 @@ public class User {
         this.d_naissance_user = d_naissance_user;
         this.ville = ville;
         this.num_tel_user = num_tel_user;
+        this.bio = bio;
         this.role = role;
     }
 
 
-    public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, String num_tel_user, String role) {
+    public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, String num_tel_user, String bio, String role) {
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
         this.email = email;
@@ -53,6 +56,7 @@ public class User {
         this.d_naissance_user = d_naissance_user;
         this.ville = ville;
         this.num_tel_user = num_tel_user;
+        this.bio = bio;
         this.role = role;
     }
 
@@ -123,6 +127,14 @@ public class User {
         this.num_tel_user = num_tel_user;
     }
 
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
     public void setRole(String role) {this.role = role; }
 
     public String getRole() { return role; }
@@ -136,7 +148,8 @@ public class User {
                 ", mdp_user='" + mdp_user + '\'' +
                 ", d_naissance_user=" + d_naissance_user +
                 ", ville='" + ville + '\'' +
-                ", num_tel_user=" + num_tel_user +
+                ", num_tel_user=" + num_tel_user + '\'' +
+                ", bio='" + bio + '\'' +
                 '}';
     }
 
