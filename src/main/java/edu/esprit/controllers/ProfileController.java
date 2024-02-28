@@ -46,7 +46,10 @@ public class ProfileController {
 
     public void openEditProfileWindow(ActionEvent event){
         try{
-            Parent editProfileRoot = FXMLLoader.load(getClass().getResource("/EditProfile.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditProfile.fxml"));
+            Parent editProfileRoot = loader.load();
+            ProfileEditController profileEditController = loader.getController();
+            profileEditController.setProfileController(this);
             Stage newStage = new Stage();
             Scene newScene = new Scene(editProfileRoot, 600, 400);
             newStage.setScene(newScene);

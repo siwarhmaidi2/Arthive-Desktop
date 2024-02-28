@@ -23,6 +23,8 @@ public class User {
 
     private String bio;
 
+    private String photo;
+
     private String role;
 
 
@@ -34,7 +36,7 @@ public class User {
         this.id_user = id_user;
     }
 
-    public User(int id_user, String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, String num_tel_user, String bio, String role) {
+    public User(int id_user, String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, String num_tel_user, String bio, String photo, String role) {
         this.id_user = id_user;
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
@@ -44,11 +46,12 @@ public class User {
         this.ville = ville;
         this.num_tel_user = num_tel_user;
         this.bio = bio;
+        this.photo = photo;
         this.role = role;
     }
 
 
-    public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, String num_tel_user, String bio, String role) {
+    public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, String num_tel_user, String bio, String photo, String role) {
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
         this.email = email;
@@ -57,6 +60,7 @@ public class User {
         this.ville = ville;
         this.num_tel_user = num_tel_user;
         this.bio = bio;
+        this.photo = photo;
         this.role = role;
     }
 
@@ -135,6 +139,14 @@ public class User {
         this.bio = bio;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     public void setRole(String role) {this.role = role; }
 
     public String getRole() { return role; }
@@ -150,6 +162,7 @@ public class User {
                 ", ville='" + ville + '\'' +
                 ", num_tel_user=" + num_tel_user + '\'' +
                 ", bio='" + bio + '\'' +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 
@@ -163,6 +176,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_user, nom_user, prenom_user, email, mdp_user, d_naissance_user, ville, num_tel_user);
+        return Objects.hash(id_user, nom_user, prenom_user, email, mdp_user, d_naissance_user, ville, num_tel_user, bio, photo, role);
     }
 }
