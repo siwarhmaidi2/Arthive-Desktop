@@ -1,5 +1,6 @@
 package edu.esprit.Controllers;
 
+import edu.esprit.entities.Publication;
 import edu.esprit.entities.ReactionCommentaire;
 import edu.esprit.entities.User;
 import edu.esprit.services.ServiceCommentaire;
@@ -52,7 +53,7 @@ public class getAllComments {
 
     @FXML
     private Button saveCommentButton;
-//    @FXML
+    //    @FXML
 //    private VBox repliesContainer;
 //
 //    @FXML
@@ -67,15 +68,17 @@ public class getAllComments {
 
     private ServicePublication servicePublication = new ServicePublication();
 
-
+    Publication publication;
     private ServiceUser serviceUser = new ServiceUser();
+    private boolean isLiked = false;
 
-    int currentPublicationId = 37;
 
     @FXML
     void initialize() {
-
+        isLiked = hasUserLikedComment(serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563"));
+        updateLikeButtonStyle();
     }
+
     public void setData(Commentaire commentaire) {
         try {
             this.commentaire = commentaire;
@@ -93,13 +96,17 @@ public class getAllComments {
             e.printStackTrace();
         }
     }
-// add a like on a comment and remove it if it's already liked
+
+    // add a like on a comment and remove it if it's already liked
     @FXML
     void handleLikeComment(ActionEvent event) {
-
         // Assuming you have a method to get the logged-in user
         User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
+        // Toggle the like state
+        isLiked = !isLiked;
 
+        // Update the like button style
+        updateLikeButtonStyle();
         // Check if the user has already liked this comment
         if (!hasUserLikedComment(loggedInUser)) {
             // Create a new ReactionCommentaire representing the like
@@ -107,11 +114,17 @@ public class getAllComments {
             like.setCommentaire(serviceCommentaire.getOneByID(commentaire.getIdCommentaire()));
             like.setUser(loggedInUser);
 
-
-            like.setPublication(servicePublication.getOneByID(currentPublicationId));
+            // Retrieve the publication directly from the comment
+            Publication publication = commentaire.getPublication();
+            if (publication != null) {
+                like.setPublication(publication);
+            } else {
+                // Handle the case where the publication is null
+                System.out.println("Publication not found!");
+                return; // Exit the method if the publication is null
+            }
 
             like.setDateAjoutReactionCommentaire(new java.sql.Timestamp(System.currentTimeMillis()));
-
 
             // Add the like using the ServiceReactionCommentaire
             serviceReactionCommentaire.add(like);
@@ -125,6 +138,8 @@ public class getAllComments {
             updateLikeCountLabel();
         }
     }
+
+
     private void removeLike(User user) {
         // Find and remove the like from the database
         ReactionCommentaire likeToRemove = null;
@@ -140,6 +155,7 @@ public class getAllComments {
             serviceReactionCommentaire.delete(likeToRemove.getIdReactionCommentaire());
         }
     }
+
     private boolean hasUserLikedComment(User user) {
         // Check if the user has already liked this comment
         for (ReactionCommentaire reaction : serviceReactionCommentaire.getAll()) {
@@ -214,11 +230,13 @@ public class getAllComments {
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 // Delete the comment from the database
                 serviceCommentaire.delete(commentaire.getIdCommentaire());
+                // Update comment count label
+                updateCommentCountLabel();
 
                 // Remove the comment from the UI
                 removeCommentNode();
 
-                updateCommentCountLabel(); // Update comment count label
+
             }
         } else {
             showAlert("You don't have permission to delete this comment.");
@@ -248,6 +266,15 @@ public class getAllComments {
         // Assuming you have a label to display the comment count
         Label commentsLabel = new Label("(" + commentsCount + ")");
         commentsLabel.setId("commentsLabel");
+    }
+
+    private void updateLikeButtonStyle() {
+        if (isLiked) {
+            likeComment.getStyleClass().add("liked");
+        } else {
+            likeComment.getStyleClass().remove("liked");
+        }
+
     }
 }
 

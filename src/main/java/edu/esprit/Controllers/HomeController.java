@@ -10,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,18 +27,26 @@ public class HomeController implements Initializable {
     private GridPane postGrid;
 
     private List<Publication> posts;
-    private Stage stage;
-    private Scene scene;
 
-    private Parent root;
     private ServicePublication servicePublication = new ServicePublication(); // Initialize the servicePublication
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         posts = new ArrayList<>(data());
+        refreshGrid();
+    }
+
+    public void refreshContent() {
+        posts = new ArrayList<>(data());
+        refreshGrid();
+
+    }
+
+    private void refreshGrid() {
+        postGrid.getChildren().clear();
 
         int columns = 0;
-        int rows = 1; // Start with 0 rows
+        int rows = 1; // Start at 1 to avoid the header
 
         for (int i = 0; i < posts.size(); i++) {
             try {
@@ -53,7 +62,6 @@ public class HomeController implements Initializable {
                 }
                 postGrid.add(postBox, columns++, rows);
                 GridPane.setMargin(postBox, new Insets(10));
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -78,5 +86,18 @@ public class HomeController implements Initializable {
         }
     }
 
+    public void SwitchToProfile(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profile.fxml"));
+            Parent root = loader.load();
+            //dont open new window
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
 
+
+        }
+    }
 }

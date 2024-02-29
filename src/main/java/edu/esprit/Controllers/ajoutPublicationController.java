@@ -4,27 +4,27 @@ import edu.esprit.entities.Publication;
 import edu.esprit.entities.User;
 import edu.esprit.services.ServicePublication;
 import edu.esprit.services.ServiceUser;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.control.TextArea;
 
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Optional;
+
 import javafx.scene.control.Alert.AlertType;
 
 public class ajoutPublicationController {
@@ -53,7 +53,18 @@ public class ajoutPublicationController {
     private Parent root;
     private final ServicePublication servicePublication = new ServicePublication();
     private final ServiceUser serviceUser = new ServiceUser();
+    private HomeController homeController;
 
+
+
+    public void setHomeController(HomeController homeController) {
+        this.homeController = homeController;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+    private boolean isPhotoSelected = false;
     @FXML
     void uploadArt(MouseEvent event) {
         // Créer un sélecteur de fichiers pour les images
@@ -80,13 +91,22 @@ public class ajoutPublicationController {
             }
 
         }
-
+        isPhotoSelected = true;
     }
+
     @FXML
     void addPublication(ActionEvent event) {
-
+        if (selectedFile == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner une photo.");
+            alert.showAndWait();
+            return;
+        }
         String contenu = contentPost.getText();
-       String url_file = selectedFile.toURI().toString();
+        String url_file = selectedFile.toURI().toString();
+
         // Assuming your ServiceUser class has a method like: User authenticateUser(String email, String password)
         User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
 
@@ -103,28 +123,67 @@ public class ajoutPublicationController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setHeaderText(null);
-            alert.setContentText("Publication added successfully!");
+            alert.setContentText("Publication ajoutée avec succée!");
             alert.showAndWait();
 
-            // Close the current stage
-            Stage stage = (Stage) imagePost.getScene().getWindow();
-            stage.close();
+            Stage currentStage = (Stage) addPost.getScene().getWindow();
+            currentStage.close();
+
+
         } else {
             System.out.println("Error: User not found.");
         }
-    }
 
-    public void switchToHomePage(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Home.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (homeController != null) {
+            homeController.refreshContent();
         }
     }
+
+    @FXML
+    void cancelPublication(ActionEvent event) {
+        if (isPhotoSelected) {
+            // Ask for confirmation before closing
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Êtes-vous sûr de vouloir fermer la fenêtre ?");
+            alert.setContentText("Si vous fermez la fenêtre maintenant, les modifications non sauvegardées seront perdues.");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // User clicked OK, close the window
+                Stage currentStage = (Stage) cancelPost.getScene().getWindow();
+                currentStage.close();
+            }
+        } else {
+            // No photo selected, close the window without confirmation
+            Stage currentStage = (Stage) cancelPost.getScene().getWindow();
+            currentStage.close();
+        }
+    }
+
+    @FXML
+    void initialize() {
+        Platform.runLater(() -> {
+            // Set up window close request handler
+            Stage stage = (Stage) addPost.getScene().getWindow();
+            stage.setOnCloseRequest(event -> {
+                if (isPhotoSelected) {
+                    // Ask for confirmation before closing
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation");
+                    alert.setHeaderText("Êtes-vous sûr de vouloir fermer la fenêtre ?");
+                    alert.setContentText("Si vous fermez la fenêtre maintenant, les modifications non sauvegardées seront perdues.");
+
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.CANCEL) {
+                        // Cancel the close request
+                        event.consume();
+                    }
+                }
+            });
+        });
+    }
+
 
 }
 

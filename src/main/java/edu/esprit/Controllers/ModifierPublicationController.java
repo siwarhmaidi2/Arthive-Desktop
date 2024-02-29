@@ -1,7 +1,9 @@
 package edu.esprit.Controllers;
 
 import edu.esprit.entities.Publication;
+import edu.esprit.entities.User;
 import edu.esprit.services.ServicePublication;
+import edu.esprit.services.ServiceUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,6 +50,7 @@ public class ModifierPublicationController implements Initializable {
     private Publication publication;
 
     private ServicePublication servicePublication = new ServicePublication();
+    private ServiceUser serviceUser = new ServiceUser();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (publication != null) {
@@ -73,6 +76,26 @@ public class ModifierPublicationController implements Initializable {
     }
     public void setPublication(Publication publication) {
         this.publication = publication;
+        if (postTextTextField != null) {
+            postTextTextField.setText(publication.getContenu_publication());
+        }
+        User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
+        if (loggedInUser != null) {
+            // Step 3: User is authenticated, proceed to retrieve photo
+            String userPhotoUrl = loggedInUser.getPhoto_user();
+            // Step 4: Check if the user has a valid photo URL
+            if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
+                // Step 5: Load and display the user's photo
+                Image userPhoto = new Image(userPhotoUrl);
+                this.profileImage.setImage(userPhoto);
+            } else {
+                // Step 6: User does not have a valid photo URL
+                System.out.println("User does not have a valid photo URL.");
+                // Consider using a default photo or displaying a placeholder image
+            }//
+//
+
+        }
         postImage.setImage(new Image(publication.getUrl_file()));
 
         // Set other UI elements as needed
@@ -105,6 +128,8 @@ public class ModifierPublicationController implements Initializable {
             updated = true;
             Stage currentStage = (Stage) saveUpdate.getScene().getWindow();
             currentStage.close();
+
+
 
         }
     }

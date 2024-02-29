@@ -1,6 +1,7 @@
 package edu.esprit.Controllers;
 
 import edu.esprit.entities.Commentaire;
+import edu.esprit.entities.Publication;
 import edu.esprit.entities.User;
 import edu.esprit.services.ServiceCommentaire;
 import edu.esprit.services.ServicePublication;
@@ -46,16 +47,19 @@ public class AddCommentaireController implements Initializable {
     private final ServicePublication servicePublication = new ServicePublication();
 
     private List<Commentaire> comments;
-    private int currentPublicationId = 37;
+    private Publication currentPublication;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        updateCommentList();
+        if (currentPublication != null) {
+            updateCommentList();
+        }
     }
-    public void setPublicationId(int publicationId) {
-        this.currentPublicationId = publicationId;
+    public void setPublication(Publication publication) {
+        this.currentPublication = publication;
+        if (commentContainer != null) {
+            updateCommentList();
+        }
     }
-
     private void updateCommentList() {
 
         comments = new ArrayList<>(data());
@@ -64,7 +68,7 @@ public class AddCommentaireController implements Initializable {
 
         // Filter comments based on the current publication ID
         List<Commentaire> publicationComments = comments.stream()
-                .filter(comment -> comment.getPublication().getId_publication() == currentPublicationId)
+                .filter(comment -> comment.getPublication().getId_publication() == currentPublication.getId_publication())
                 .collect(Collectors.toList());
 
         // Sort comments by the most recent ones
@@ -93,23 +97,39 @@ public class AddCommentaireController implements Initializable {
 
     @FXML
     void handleAddComment() {
-        String commentContent = contentComment.getText();
+
+        try {
+            if (currentPublication == null) {
+                showAlert("Please select a publication before adding a comment.");
+                return;
+            }
+
+        String commentContent = contentComment.getText().trim(); // Trim to remove leading/trailing whitespaces
+
+        if (commentContent.isEmpty()) {
+            showAlert("Please enter a comment before adding.");
+            return; // Do not proceed with adding the comment if it's empty
+        }
 
         // Assuming the publication ID is set before calling this method
-        int currentPublicationId = 37;
 
-        Commentaire newComment = new Commentaire(commentContent);
+        Commentaire newComment = new Commentaire();
         newComment.setContenuCommentaire(commentContent);
         newComment.setDateAjoutCommentaire(new java.sql.Timestamp(System.currentTimeMillis()));
-        newComment.setPublication(servicePublication.getOneByID(currentPublicationId));
+        newComment.setPublication(currentPublication);
         User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
         newComment.setUser(loggedInUser); // Assuming you have a method to get the logged-in user
         serviceCommentaire.add(newComment);
 
         contentComment.clear();
         updateCommentList(); // Update the UI after adding a new comment
-        showAlert("Commentaire ajouté !");
+
+    }  catch (Exception e) {
+            e.printStackTrace();
+            showAlert("An error occurred while adding the comment.");
+        }
     }
+
     private void showAlert(String message) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Information");
@@ -122,7 +142,7 @@ public class AddCommentaireController implements Initializable {
     }
 
     private void updateCommentCountLabel() {
-        int commentsCount = serviceCommentaire.getCommentsCountForPublication(currentPublicationId);
+        int commentsCount = serviceCommentaire.getCommentsCountForPublication(currentPublication.getId_publication());
         nbOfComments.setText("(" + commentsCount + ")");
     }
 
