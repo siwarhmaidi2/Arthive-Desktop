@@ -12,12 +12,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="365.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.MyPublicationsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="365.0" styleClass="Event-view" stylesheets="@Event.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.MyPublicationsController">
    <children>
-      <MenuButton mnemonicParsing="false" prefHeight="26.0" prefWidth="319.0">
+      <MenuButton mnemonicParsing="false" prefHeight="26.0" prefWidth="0.0" styleClass="search-box" stylesheets="@style.css">
         <items>
-          <MenuItem fx:id="updatePost" mnemonicParsing="false" text="Modifier" onAction="#switchToUpdatePost" />
-          <MenuItem fx:id="deletePost" mnemonicParsing="false" text="Supprimer" onAction="#deletePublication" />
+          <MenuItem fx:id="updatePost" mnemonicParsing="false" onAction="#switchToUpdatePost" text="Modifier" />
+          <MenuItem fx:id="deletePost" mnemonicParsing="false" onAction="#deletePublication" text="Supprimer" />
         </items>
          <VBox.margin>
             <Insets left="23.0" />
@@ -27,7 +27,7 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="postImage" fitHeight="319.0" fitWidth="344.0" layoutX="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="postImage" fitHeight="295.0" fitWidth="264.0" layoutX="40.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../Users/MSI/Desktop/png-transparent-plastic-arts-art-institute-of-chicago-culture-the-arts-floresta-encantada-culture-pin-painting-thumbnail.png" />
                      </image>
@@ -48,9 +48,9 @@
                   <Image url="@../../../../../../Users/MSI/Desktop/png-transparent-plastic-arts-art-institute-of-chicago-culture-the-arts-floresta-encantada-culture-pin-painting-thumbnail.png" />
                </image>
             </ImageView>
-            <VBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="112.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="323.0">
                <children>
-                  <Label fx:id="usernameLabel" prefHeight="25.0" prefWidth="112.0" text="Ayoub Toujani">
+                  <Label fx:id="usernameLabel" prefHeight="35.0" prefWidth="162.0" text="Ayoub Toujani">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -69,7 +69,7 @@
                      <children>
                         <ImageView fx:id="heartIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#likeButtonClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../Users/MSI/Desktop/25451.png" />
+                              <Image url="@Image/emptyHeart.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="likesLabel" prefHeight="25.0" prefWidth="112.0">
@@ -81,7 +81,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="70.0" prefWidth="55.0" spacing="5.0">
                      <children>
-                        <ImageView fx:id="commentIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#switchToCommentAdd">
+                        <ImageView fx:id="commentIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#switchToCommentAdd" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../../Users/MSI/Desktop/5338282.png" />
                            </image>
