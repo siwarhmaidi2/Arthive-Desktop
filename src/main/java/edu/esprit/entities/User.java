@@ -20,18 +20,15 @@ public class User {
     private String ville;
 
     private int num_tel_user;
-
-
+ private String photo_user;
+ private String role;
+ private String bio;
 
 
     public User() {
     }
 
-    public User (int id_user){
-        this.id_user = id_user;
-    }
-
-    public User(int id_user, String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user) {
+    public User(int id_user, String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user, String photo_user, String role, String bio) {
         this.id_user = id_user;
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
@@ -40,9 +37,12 @@ public class User {
         this.d_naissance_user = d_naissance_user;
         this.ville = ville;
         this.num_tel_user = num_tel_user;
+        this.photo_user = photo_user;
+        this.role = role;
+        this.bio = bio;
     }
 
-    public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user) {
+    public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user, String photo_user, String role, String bio) {
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
         this.email = email;
@@ -50,10 +50,33 @@ public class User {
         this.d_naissance_user = d_naissance_user;
         this.ville = ville;
         this.num_tel_user = num_tel_user;
+        this.photo_user = photo_user;
+        this.role = role;
+        this.bio = bio;
     }
 
+    public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user, String photo_user, String role) {
+        this.nom_user = nom_user;
+        this.prenom_user = prenom_user;
+        this.email = email;
+        this.mdp_user = mdp_user;
+        this.d_naissance_user = d_naissance_user;
+        this.ville = ville;
+        this.num_tel_user = num_tel_user;
+        this.photo_user = photo_user;
+        this.role = role;
+    }
 
-
+    public User(String nom_user, String prenom_user, String email, String mdp_user, Date d_naissance_user, String ville, int num_tel_user, String photo_user) {
+        this.nom_user = nom_user;
+        this.prenom_user = prenom_user;
+        this.email = email;
+        this.mdp_user = mdp_user;
+        this.d_naissance_user = d_naissance_user;
+        this.ville = ville;
+        this.num_tel_user = num_tel_user;
+        this.photo_user = photo_user;
+    }
 
     public int getId_user() {
         return id_user;
@@ -119,6 +142,43 @@ public class User {
         this.num_tel_user = num_tel_user;
     }
 
+    public String getPhoto_user() {
+        return photo_user;
+    }
+
+    public void setPhoto_user(String photo_user) {
+        this.photo_user = photo_user;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id_user == user.id_user && num_tel_user == user.num_tel_user && Objects.equals(nom_user, user.nom_user) && Objects.equals(prenom_user, user.prenom_user) && Objects.equals(email, user.email) && Objects.equals(mdp_user, user.mdp_user) && Objects.equals(d_naissance_user, user.d_naissance_user) && Objects.equals(ville, user.ville) && Objects.equals(photo_user, user.photo_user) && Objects.equals(role, user.role) && Objects.equals(bio, user.bio);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_user, nom_user, prenom_user, email, mdp_user, d_naissance_user, ville, num_tel_user, photo_user, role, bio);
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -129,19 +189,9 @@ public class User {
                 ", d_naissance_user=" + d_naissance_user +
                 ", ville='" + ville + '\'' +
                 ", num_tel_user=" + num_tel_user +
+                ", photo_user='" + photo_user + '\'' +
+                ", role='" + role + '\'' +
+                ", bio='" + bio + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id_user == user.id_user && num_tel_user == user.num_tel_user && Objects.equals(nom_user, user.nom_user) && Objects.equals(prenom_user, user.prenom_user) && Objects.equals(email, user.email) && Objects.equals(mdp_user, user.mdp_user) && Objects.equals(d_naissance_user, user.d_naissance_user) && Objects.equals(ville, user.ville);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id_user, nom_user, prenom_user, email, mdp_user, d_naissance_user, ville, num_tel_user);
     }
 }

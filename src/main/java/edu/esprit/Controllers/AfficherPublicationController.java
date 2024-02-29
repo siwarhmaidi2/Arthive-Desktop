@@ -166,6 +166,17 @@ public class AfficherPublicationController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        int publicationId = publication.getId_publication();
+        userLiked = serviceReaction.hasUserLiked(publicationId, 44);
+
+        // Update the heartIcon based on the like status
+        if (userLiked) {
+            // User has liked the publication
+            heartIcon.setImage(new Image("/Image/fullheart.png"));
+        } else {
+            // User has not liked the publication
+            heartIcon.setImage(new Image("/Image/emptyHeart.png"));
+        }
     }
     private void applyLuminosityEffect(boolean onHover) {
         ColorAdjust colorAdjust = new ColorAdjust();

@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ServiceReactionCommentaire implements IServiceReactionCommentaire<ReactionCommentaire> {
+public class ServiceReactionCommentaire implements IService<ReactionCommentaire> {
 
     Connection cnx = DataSource.getInstance().getCnx();
     private ServiceUser serviceUser = new ServiceUser();
@@ -37,6 +37,11 @@ public class ServiceReactionCommentaire implements IServiceReactionCommentaire<R
     }
 
     @Override
+    public void update(ReactionCommentaire reactionCommentaire) {
+
+    }
+
+    @Override
     public void delete(int id) {
         String req = "DELETE FROM reactions_commentaires WHERE id_reaction_commentaire = ?";
         try {
@@ -47,6 +52,11 @@ public class ServiceReactionCommentaire implements IServiceReactionCommentaire<R
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public ReactionCommentaire getOneByID(int id) {
+        return null;
     }
 
     @Override

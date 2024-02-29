@@ -62,6 +62,7 @@ public class ajoutPublicationController {
     }
 
     public void setStage(Stage stage) {
+
         this.stage = stage;
     }
     private boolean isPhotoSelected = false;
@@ -109,6 +110,7 @@ public class ajoutPublicationController {
 
         // Assuming your ServiceUser class has a method like: User authenticateUser(String email, String password)
         User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
+        //User loggedInUser = serviceUser.authenticateUser("ziedzhiri@gmail.com", "1234");
 
         if (loggedInUser != null) {
             // Assuming your Publication class has a constructor like: Publication(String contenu, String url_file, User user)
@@ -128,15 +130,15 @@ public class ajoutPublicationController {
 
             Stage currentStage = (Stage) addPost.getScene().getWindow();
             currentStage.close();
-
+            if (homeController != null) {
+                homeController.refreshContent();
+            }
 
         } else {
             System.out.println("Error: User not found.");
         }
 
-        if (homeController != null) {
-            homeController.refreshContent();
-        }
+
     }
 
     @FXML

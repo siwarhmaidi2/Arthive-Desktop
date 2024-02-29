@@ -65,13 +65,17 @@ public class ModifierPublicationController implements Initializable {
         Duration duration = Duration.between(publicationDateTime, currentDateTime);
 
         if (duration.toDays() > 0) {
-            return duration.toDays() + " days ago";
+            // Si la durée est supérieure à un jour
+            return duration.toDays() + " jours";
         } else if (duration.toHours() > 0) {
-            return duration.toHours() + " hours ago";
+            // Si la durée est supérieure à une heure
+            return duration.toHours() + " heures";
         } else if (duration.toMinutes() > 0) {
-            return duration.toMinutes() + " minutes ago";
+            // Si la durée est supérieure à une minute
+            return duration.toMinutes() + " minutes";
         } else {
-            return "just now";
+            // Si la durée est inférieure à une minute
+            return "à l'instant";
         }
     }
     public void setPublication(Publication publication) {
@@ -90,7 +94,7 @@ public class ModifierPublicationController implements Initializable {
                 this.profileImage.setImage(userPhoto);
             } else {
                 // Step 6: User does not have a valid photo URL
-                System.out.println("User does not have a valid photo URL.");
+                System.out.println("L'utilisateur n'a pas d'URL de photo valide.");
                 // Consider using a default photo or displaying a placeholder image
             }//
 //
@@ -144,7 +148,7 @@ public class ModifierPublicationController implements Initializable {
 
             // Get the user's response
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() != ButtonType.OK) {
+            if (result.isPresent() && result.get() == ButtonType.CANCEL) {
                 // If the user cancels, consume the event
                 event.consume();
             }

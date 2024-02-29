@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ServiceReaction implements IServiceReaction<Reaction> {
+public class ServiceReaction implements IService<Reaction> {
     Connection cnx = DataSource.getInstance().getCnx();
     private ServiceUser serviceUser = new ServiceUser();
     private ServicePublication servicePublication = new ServicePublication();
@@ -145,7 +145,7 @@ public class ServiceReaction implements IServiceReaction<Reaction> {
         return 0; // Indicate failure or that the user hasn't liked
     }
 
-    private boolean hasUserLiked(int publicationId, int userId) {
+    public boolean hasUserLiked(int publicationId, int userId) {
         String query = "SELECT COUNT(*) FROM reactions WHERE id_user = ? AND id_publication = ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(query);

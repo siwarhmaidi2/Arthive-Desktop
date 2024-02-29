@@ -15,6 +15,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -27,6 +29,10 @@ import javafx.stage.Stage;
 
 public class AddCommentaireController implements Initializable {
 
+    @FXML
+    private ImageView postImage;
+    @FXML
+    private ImageView profileImage;
     @FXML
     private Button addComment;
 
@@ -48,16 +54,48 @@ public class AddCommentaireController implements Initializable {
 
     private List<Commentaire> comments;
     private Publication currentPublication;
+
+    public void setCurrentPublication(Publication publication) {
+        this.currentPublication = publication;
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (currentPublication != null) {
             updateCommentList();
+        }
+
+        //get the user photo
+       User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
+       // User loggedInUser = serviceUser.authenticateUser("ziedzhiri@gmail.com", "1234");
+        if (loggedInUser != null) {
+            // Step 3: User is authenticated, proceed to retrieve photo
+            String userPhotoUrl = loggedInUser.getPhoto_user();
+            // Step 4: Check if the user has a valid photo URL
+            if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
+                // Step 5: Load and display the user's photo
+                Image userPhoto = new Image(userPhotoUrl);
+                this.profileImage.setImage(userPhoto);
+            } else {
+                // Step 6: User does not have a valid photo URL
+                System.out.println("L'utilisateur n'a pas d'URL de photo valide.");
+                // Consider using a default photo or displaying a placeholder image
+            }//
+//
+
         }
     }
     public void setPublication(Publication publication) {
         this.currentPublication = publication;
         if (commentContainer != null) {
             updateCommentList();
+
+            String postImageUrl = currentPublication.getUrl_file();
+            if (postImageUrl != null && !postImageUrl.isEmpty()) {
+                Image publicationImage = new Image(postImageUrl);
+                this.postImage.setImage(publicationImage);
+            } else {
+                System.out.println("Post Image URL is null or empty.");
+            }
         }
     }
     private void updateCommentList() {
@@ -100,14 +138,14 @@ public class AddCommentaireController implements Initializable {
 
         try {
             if (currentPublication == null) {
-                showAlert("Please select a publication before adding a comment.");
+                showAlert("Veuillez sélectionner une publication avant d'ajouter un commentaire.");
                 return;
             }
 
         String commentContent = contentComment.getText().trim(); // Trim to remove leading/trailing whitespaces
 
         if (commentContent.isEmpty()) {
-            showAlert("Please enter a comment before adding.");
+            showAlert("Veuillez saisir un commentaire avant d'ajouter.");
             return; // Do not proceed with adding the comment if it's empty
         }
 
@@ -117,8 +155,9 @@ public class AddCommentaireController implements Initializable {
         newComment.setContenuCommentaire(commentContent);
         newComment.setDateAjoutCommentaire(new java.sql.Timestamp(System.currentTimeMillis()));
         newComment.setPublication(currentPublication);
-        User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
-        newComment.setUser(loggedInUser); // Assuming you have a method to get the logged-in user
+      User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
+          //  User loggedInUser = serviceUser.authenticateUser("ziedzhiri@gmail.com", "1234");
+            newComment.setUser(loggedInUser); // Assuming you have a method to get the logged-in user
         serviceCommentaire.add(newComment);
 
         contentComment.clear();
@@ -126,7 +165,7 @@ public class AddCommentaireController implements Initializable {
 
     }  catch (Exception e) {
             e.printStackTrace();
-            showAlert("An error occurred while adding the comment.");
+            showAlert("Une erreur s'est produite lors de l'ajout du commentaire.");
         }
     }
 

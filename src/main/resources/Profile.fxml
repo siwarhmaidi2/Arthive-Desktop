@@ -32,17 +32,17 @@
             <Image url="@Image/839888.png" />
          </image>
       </ImageView>
-      <Hyperlink layoutX="84.0" layoutY="443.0" text="Groupes" textFill="#070000" wrapText="true" />
-      <Hyperlink layoutX="85.0" layoutY="493.0" text="Messages" textFill="#070000" wrapText="true" />
+      <Hyperlink layoutX="86.0" layoutY="443.0" text="Groupes" textFill="#070000" wrapText="true" />
+      <Hyperlink layoutX="84.0" layoutY="493.0" text="Messages" textFill="#070000" wrapText="true" />
       <Hyperlink layoutX="82.0" layoutY="597.0" text="Evènements" textFill="#070000" />
-      <Hyperlink layoutX="74.0" layoutY="314.0" text="Nom" textFill="#000000fb">
+      <Hyperlink layoutX="46.0" layoutY="309.0" text="Ayoub Toujani" textFill="#000000fb">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Hyperlink>
       <ImageView fitHeight="126.0" fitWidth="161.0" layoutX="47.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Image/avatar.png" />
+            <Image url="@../../../../../../Users/MSI/Downloads/profile-pic%20(1).png" />
          </image>
       </ImageView>
       <ImageView fitHeight="250.0" fitWidth="241.0" layoutX="3.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true">
@@ -50,7 +50,7 @@
             <Image url="@Image/hive__2_-removebg-preview.png" />
          </image>
       </ImageView>
-      <Button fx:id="addPost" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="26.0" layoutY="688.0" mnemonicParsing="true"  prefHeight="29.0" prefWidth="189.0" scaleShape="false" stylesheets="@Event.css" text="Créer">
+      <Button fx:id="addPost" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="26.0" layoutY="688.0" mnemonicParsing="true" prefHeight="29.0" prefWidth="189.0" scaleShape="false" stylesheets="@Event.css" text="Créer">
          <effect>
             <Blend />
          </effect>
@@ -61,12 +61,12 @@
             <String fx:value="create-post-button" />
             <String fx:value="search-button" />
          </styleClass></Button>
-      <ImageView fitHeight="21.0" fitWidth="32.0" layoutX="53.0" layoutY="699.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="21.0" fitWidth="32.0" layoutX="58.0" layoutY="701.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/add-50.png" />
          </image>
       </ImageView>
-      <Hyperlink fx:id="home" layoutX="85.0" layoutY="392.0" text="Fil d'actualité" textFill="#070000" wrapText="true" onAction="#SwitchToHomePage"/>
+      <Hyperlink fx:id="home" layoutX="88.0" layoutY="392.0" onAction="#SwitchToHomePage" text="Fil d'actualité" textFill="#070000" wrapText="true" />
       <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="32.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/home.png" />
@@ -77,7 +77,7 @@
             <Image url="@Image/marketplace.png" />
          </image>
       </ImageView>
-      <Hyperlink layoutX="84.0" layoutY="545.0" text="Marketplace" textFill="#070000" />
+      <Hyperlink layoutX="83.0" layoutY="545.0" text="Marketplace" textFill="#070000" />
       <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="1176.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/logout.png" />

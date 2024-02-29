@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -82,6 +83,24 @@ public class getAllComments {
     public void setData(Commentaire commentaire) {
         try {
             this.commentaire = commentaire;
+           // User loggedInUser = serviceUser.authenticateUser("ziedzhiri@gmail.com", "1234");
+            User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
+            if (loggedInUser != null) {
+                // Step 3: User is authenticated, proceed to retrieve photo
+                String userPhotoUrl = loggedInUser.getPhoto_user();
+                // Step 4: Check if the user has a valid photo URL
+                if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
+                    // Step 5: Load and display the user's photo
+                    Image userPhoto = new Image(userPhotoUrl);
+                    this.profileImage.setImage(userPhoto);
+                } else {
+                    // Step 6: User does not have a valid photo URL
+                    System.out.println("L'utilisateur n'a pas d'URL de photo valide.");
+                    // Consider using a default photo or displaying a placeholder image
+                }//
+//
+
+            }
             this.content.setText(commentaire.getContenuCommentaire());
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String formattedDate = dateFormat.format(commentaire.getDateAjoutCommentaire());
@@ -120,7 +139,7 @@ public class getAllComments {
                 like.setPublication(publication);
             } else {
                 // Handle the case where the publication is null
-                System.out.println("Publication not found!");
+                System.out.println("Publication non trouvée!");
                 return; // Exit the method if the publication is null
             }
 
@@ -224,7 +243,7 @@ public class getAllComments {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setHeaderText(null);
-            alert.setContentText("Are you sure you want to delete this comment?");
+            alert.setContentText("Êtes-vous sûr de vouloir supprimer ce commentaire ?");
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -239,7 +258,7 @@ public class getAllComments {
 
             }
         } else {
-            showAlert("You don't have permission to delete this comment.");
+            showAlert("Vous n'avez pas la permission de supprimer ce commentaire.");
         }
     }
 

@@ -108,7 +108,7 @@
     -fx-background-color: #e0e0e0; /* Couleur de fond des cellules lorsqu'elles sont pressées */
 }
 .search-box{
-    -fx-background-color:#FFFFFF;
+    -fx-background-color:#e4e4e4;
     -fx-background-radius: 100;
 }
 .transparent{
