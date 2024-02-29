@@ -68,7 +68,7 @@
                 <Image url="@Image/add-50.png" />
             </image>
         </ImageView>
-        <Hyperlink fx:id="home" layoutX="88.0" layoutY="392.0" onAction="#switchToHomePage" text="Fil d'actualité" textFill="#070000" wrapText="true" />
+        <Hyperlink fx:id="home" layoutX="88.0" layoutY="392.0" text="Fil d'actualité" textFill="#070000" wrapText="true" />
         <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="32.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Image/home.png" />

@@ -42,6 +42,20 @@ public class ServiceUser implements IServiceUser<User> {
             System.out.println(e.getMessage());
         }
     }
+
+    public void reportPublication(int idUser, int idPub) {
+        String req = "INSERT INTO `signaler`(`id_user`, `id_pub`) VALUES (?,?)";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, idUser);
+            ps.setInt(2, idPub);
+            ps.executeUpdate();
+            System.out.println("Publication reported !");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     @Override
     public Set<User> getAll() {
         Set<User> users = new HashSet<>();
