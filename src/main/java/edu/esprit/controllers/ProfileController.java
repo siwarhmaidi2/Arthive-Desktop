@@ -9,11 +9,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ProfileController {
@@ -30,17 +32,28 @@ public class ProfileController {
     Text bio;
     @FXML
     Button editBtn;
+    @FXML
+    Button editPfpBtn;
+    @FXML
+    ImageView image2;
+
+    private File selectedFile;
+
+    private String pfpPath;
 
 
 
 
     public void initialize(){
         User loggedInUser = UserData.getInstance().getLoggedInUser();
+        File file = new File(loggedInUser.getPhoto());
+        Image imgUser = new Image(file.toURI().toString());
 
         name.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
         region.setText(loggedInUser.getVille());
         email.setText(loggedInUser.getEmail());
         bio.setText(loggedInUser.getBio());
+        image.setImage(imgUser);
     }
 
 
@@ -59,6 +72,33 @@ public class ProfileController {
             e.printStackTrace();
         }
 
+    }
+
+    public void changePfp(ActionEvent event){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+
+        // Filtrer les fichiers pour afficher uniquement les images
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif");
+        fileChooser.getExtensionFilters().add(filter);
+
+        // Afficher la boîte de dialogue de sélection de fichier
+        selectedFile = fileChooser.showOpenDialog(new Stage());
+        // Charger l'image sélectionnée dans l'interface utilisateur
+        if (selectedFile != null) {
+            // Vous pouvez implémenter le chargement de l'image dans un ImageView
+            try {
+                Image selectedImage = new Image(selectedFile.toURI().toString());
+                System.out.println("Chemin de l'image sélectionnée : " + selectedFile.toURI().toString()); // Imprimer le chemin de l'image
+
+                image.setImage(selectedImage);
+                image2.setImage(selectedImage);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error loading image: " + e.getMessage());
+            }
+
+        }
     }
 
 }

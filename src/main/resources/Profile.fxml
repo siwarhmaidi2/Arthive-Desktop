@@ -47,7 +47,7 @@
                 <Image url="@img/arthive.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="87.0" fitWidth="108.0" layoutX="36.0" layoutY="126.0">
+        <ImageView fx:id="image2" fitHeight="87.0" fitWidth="108.0" layoutX="36.0" layoutY="126.0">
             <image>
                 <Image url="@img/profil.png" />
             </image>
@@ -164,7 +164,7 @@
         </ScrollPane>
         <Pane layoutX="190.0" layoutY="49.0" prefHeight="241.0" prefWidth="1186.0" style="-fx-border-width: 1px; -fx-border-color: black;">
             <children>
-                <ImageView fx:id="image" fitHeight="172.0" fitWidth="191.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="image" fitHeight="169.0" fitWidth="166.0" layoutX="14.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@img/profil.png" />
                     </image>
@@ -182,6 +182,15 @@
                 </Button>
                 <Text fx:id="region" layoutX="198.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country" wrappingWidth="117.0" />
                 <Text fx:id="email" layoutX="315.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email" wrappingWidth="191.0" />
+            <Button fx:id="editPfpBtn" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#changePfp" prefHeight="24.0" prefWidth="24.0">
+               <graphic>
+                  <ImageView fx:id="editButton1" fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/pencil.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
         </Pane>
     </children>
