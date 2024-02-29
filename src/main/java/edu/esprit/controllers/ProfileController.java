@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -54,7 +55,11 @@ public class ProfileController {
         email.setText(loggedInUser.getEmail());
         bio.setText(loggedInUser.getBio());
         image.setImage(imgUser);
+        image2.setImage(imgUser);
     }
+
+    public void switchToHomePage(Action event){}
+
 
 
     public void openEditProfileWindow(ActionEvent event){

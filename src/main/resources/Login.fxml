@@ -11,26 +11,32 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.LoginController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="768.0" fitWidth="1366.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/background.jpg" />
+            <Image url="@Image/background.jpg" />
          </image>
       </ImageView>
-      <Pane layoutX="320.0" layoutY="48.0" opacity="0.8" prefHeight="317.0" prefWidth="259.0" style="-fx-background-color: white;">
+      <Pane layoutX="320.0" layoutY="48.0" opacity="0.8" prefHeight="411.0" prefWidth="353.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="93.0" layoutY="14.0" text="Login">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label layoutX="26.0" layoutY="99.0" prefHeight="18.0" prefWidth="60.0" text="Email" />
-            <TextField fx:id="email" layoutX="26.0" layoutY="127.0" prefHeight="25.0" prefWidth="176.0" />
-            <Label layoutX="26.0" layoutY="159.0" prefHeight="18.0" prefWidth="60.0" text="Password" />
-            <PasswordField fx:id="password" layoutX="26.0" layoutY="190.0" prefHeight="25.0" prefWidth="176.0" />
+            <Label layoutX="24.0" layoutY="78.0" prefHeight="40.0" prefWidth="75.0" text="Email">
+               <font>
+                  <Font size="28.0" />
+               </font></Label>
+            <TextField fx:id="email" layoutX="26.0" layoutY="127.0" prefHeight="25.0" prefWidth="287.0" />
+            <Label layoutX="26.0" layoutY="159.0" prefHeight="40.0" prefWidth="132.0" text="Password">
+               <font>
+                  <Font size="28.0" />
+               </font></Label>
+            <PasswordField fx:id="password" layoutX="33.0" layoutY="194.0" prefHeight="25.0" prefWidth="277.0" />
             <Button fx:id="submitbtn" layoutX="97.0" layoutY="233.0" mnemonicParsing="false" onAction="#submit" text="Login" />
-            <Hyperlink layoutX="32.0" layoutY="271.0" text="Don't have an account? Sign up" onAction="#handleHyperlinkAction"/>
+            <Hyperlink layoutX="32.0" layoutY="271.0" onAction="#handleHyperlinkAction" text="Don't have an account? Sign up" />
          </children>
       </Pane>
    </children>
