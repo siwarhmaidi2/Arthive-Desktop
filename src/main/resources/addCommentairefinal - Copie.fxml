@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -26,7 +27,7 @@
                             <items>
                                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="35.0" prefWidth="597.0">
                                     <children>
-                                        <Text layoutX="28.0" layoutY="21.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comments" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <Text layoutX="28.0" layoutY="21.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comments" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <font>
                                                 <Font name="System Bold" size="12.0" />
                                             </font>
@@ -40,14 +41,14 @@
                                           </Stop>
                                           <Stop offset="1.0">
                                              <color>
-                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                                <Color red="0.0117647061124444" green="0.05098039284348488" blue="0.7411764860153198" />
                                              </color>
                                           </Stop>
                                        </stops>
                                     </LinearGradient>
                                  </fill>
                                         </Text>
-                                        <Label fx:id="nbOfComments" layoutX="64.2" layoutY="11.0" text="(5)" AnchorPane.leftAnchor="64.2">
+                                        <Label fx:id="nbOfComments" layoutX="64.2" layoutY="11.0" stylesheets="@publicationCSS.css" text="(5)" AnchorPane.leftAnchor="64.2">
                                  <textFill>
                                     <LinearGradient endX="1.0" endY="1.0" startX="0.9166666504108545" startY="0.0643939682931611">
                                        <stops>
@@ -58,7 +59,7 @@
                                           </Stop>
                                           <Stop offset="1.0">
                                              <color>
-                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                                <Color red="0.0117647061124444" green="0.05098039284348488" blue="0.7411764860153198" />
                                              </color>
                                           </Stop>
                                        </stops>
@@ -76,10 +77,10 @@
                                                 <Image url="@../../../../../../Users/MSI/Downloads/profile-pic%20(1).png" />
                                             </image>
                                         </ImageView>
-                                        <TextArea fx:id="contentComment" layoutX="127.2" layoutY="8.8" prefHeight="81.0" prefWidth="470.0" promptText="Ecrire un commentaire ici" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="9.0" />
-                                        <Button fx:id="addComment" layoutX="458.0" layoutY="122.0" mnemonicParsing="false" onAction="#handleAddComment" stylesheets="@bouton_pub.css" text="Ajouter Commentaire" AnchorPane.rightAnchor="30.799999999999955">
+                                        <TextArea fx:id="contentComment" layoutX="127.2" layoutY="8.8" prefHeight="81.0" prefWidth="470.0" promptText="Ecrire un commentaire ici" styleClass="add-page-text-field" stylesheets="@publicationCSS.css" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="9.0" />
+                                        <Button fx:id="addComment" layoutX="416.0" layoutY="117.0" mnemonicParsing="false" onAction="#handleAddComment" prefHeight="35.0" prefWidth="166.0" style="-fx-font-size: 12;" styleClass="create-post-button" text="Ajouter Commentaire" AnchorPane.rightAnchor="15.0">
                                             <font>
-                                                <Font name="System Bold" size="14.0" />
+                                                <Font name="System Bold" size="12.0" />
                                             </font>
                                  <textFill>
                                     <LinearGradient endX="1.0" endY="1.0" startX="0.8560606205102169">
@@ -97,6 +98,10 @@
                                        </stops>
                                     </LinearGradient>
                                  </textFill>
+                                 <stylesheets>
+                                    <URL value="@style.css" />
+                                    <URL value="@publicationCSS.css" />
+                                 </stylesheets>
                                         </Button>
                                     </children>
                                 </AnchorPane>

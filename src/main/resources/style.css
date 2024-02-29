@@ -1,0 +1,98 @@
+/* styles.css */
+/* styles.css */
+
+#likeComment {
+    -fx-background-color: #4866e7e9; /* Background color */
+    -fx-text-fill: #ffffff; /* Text color */
+    -fx-font-size: 12px; /* Font size */
+    -fx-padding: 8px 16px; /* Padding */
+    -fx-border-radius: 5px; /* Border radius */
+    -fx-cursor: hand; /* Cursor style */
+
+}
+
+#likeComment .text {
+    -fx-font-size: 14px; /* Font size for the text inside the button */
+}
+
+#likeComment:hover {
+    -fx-background-color: #3074a1; /* Hover background color */
+}
+
+#likeComment:pressed,
+#likeComment.liked {
+    -fx-background-color: #027af3; /* Pressed/Liked background color */
+}
+
+
+/* styles.css */
+
+#replayComment {
+    -fx-background-color: #4a4d56; /* Background color */
+    -fx-text-fill: #ffffff; /* Text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 8px 16px; /* Padding */
+    -fx-border-radius: 0 5px 5px 0; /* Border radius for overall rectangle with rounded right corners */
+    -fx-background-radius: 0 5px 5px 0; /* Background radius for rounded right corners */
+    -fx-cursor: hand; /* Cursor style */
+}
+
+#replayComment:hover {
+    -fx-background-color: #4b4b4b; /* Hover background color */
+}
+
+#replayComment:pressed {
+    -fx-background-color: #2c3e50; /* Pressed background color */
+}
+
+#updateComment:pressed,
+#deleteComment:pressed {
+    -fx-background-color: #cad0d7; /* Pressed background color */
+}
+
+#updateComment
+{
+    -fx-background-color: #4866e7e9; /* Background color */
+    -fx-text-fill: #ffffff; /* Text color */
+    -fx-font-size: 12px; /* Font size */
+    -fx-padding: 8px 16px; /* Padding */
+    -fx-border-radius: 5px; /* Border radius */
+    -fx-cursor: hand; /* Cursor style */
+}
+#deleteComment
+{
+    -fx-background-color: #b30e0e; /* Background color */
+    -fx-text-fill: #ffffff; /* Text color */
+    -fx-font-size: 12px; /* Font size */
+    -fx-padding: 8px 16px; /* Padding */
+    -fx-border-radius: 5px; /* Border radius */
+    -fx-cursor: hand; /* Cursor style */
+}
+
+
+#saveCommentButton
+{
+    -fx-background-color: #0d1e6c; /* Background color */
+    -fx-text-fill: #ffffff; /* Text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 8px 16px; /* Padding */
+    -fx-border-radius: 5px; /* Border radius */
+    -fx-cursor: hand; /* Cursor style */
+}
+
+
+.buttonLike{
+    -fx-background-color: rgba(3, 13, 189, 0.65);
+    -fx-background-radius: 30;
+    -fx-text-fill: #fff;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+
+
+}
+
+.search-box{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
