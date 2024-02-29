@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="365.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.ModifierPublicationController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="365.0" styleClass="Event-view" stylesheets="@Event.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.ModifierPublicationController">
    <children>
       <StackPane prefHeight="365.0" prefWidth="365.0">
          <children>
@@ -21,7 +21,7 @@
                   <Image url="@../../../../../../Users/MSI/Desktop/png-transparent-plastic-arts-art-institute-of-chicago-culture-the-arts-floresta-encantada-culture-pin-painting-thumbnail.png" />
                </image>
             </ImageView>
-            <TextField fx:id="postTextTextField" prefHeight="62.0" prefWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
+            <TextField fx:id="postTextTextField" prefHeight="62.0" prefWidth="200.0" styleClass="text-field" stylesheets="@Event.css" StackPane.alignment="BOTTOM_CENTER">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -52,7 +52,7 @@
             <Pane prefHeight="77.0" prefWidth="0.0" />
             <HBox prefHeight="60.0" prefWidth="145.0">
                <children>
-                  <Button fx:id="saveUpdate" mnemonicParsing="false" onAction="#handleSaveUpdate" prefHeight="45.0" prefWidth="146.0" text="Enregistrer" />
+                  <Button fx:id="saveUpdate" mnemonicParsing="false" onAction="#handleSaveUpdate" prefHeight="45.0" prefWidth="146.0" styleClass="search-button" stylesheets="@style.css" text="Enregistrer" />
                </children>
                <HBox.margin>
                   <Insets top="15.0" />
