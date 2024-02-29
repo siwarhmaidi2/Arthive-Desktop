@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -10,16 +11,16 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox fx:id="comment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.getAllComments">
+<VBox fx:id="comment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="246.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.getAllComments">
    <children>
-      <HBox alignment="CENTER" prefHeight="203.0" prefWidth="690.0">
+      <HBox alignment="CENTER" prefHeight="215.0" prefWidth="674.0">
          <children>
             <Pane prefHeight="100.0" prefWidth="88.0">
                <children>
@@ -28,12 +29,17 @@
                         <Image url="@../../../../../../Users/MSI/Downloads/profile-pic%20(1).png" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="110.0" fitWidth="72.0" layoutX="10.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/hive__2_-removebg-preview.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
-            <VBox prefHeight="233.0" prefWidth="518.0" spacing="5.0">
+            <VBox prefHeight="226.0" prefWidth="532.0">
                <!-- Adjusted spacing here -->
                <children>
-                  <Label fx:id="username" prefHeight="18.0" prefWidth="130.0" style="-fx-font-weight: bold;" text="Username">
+                  <Label fx:id="username" prefHeight="18.0" prefWidth="190.0" style="-fx-font-weight: bold;" text="Username">
                      <textFill>
                         <LinearGradient endX="1.0" endY="1.0" startX="0.7727272853706822">
                            <stops>
@@ -44,60 +50,77 @@
                               </Stop>
                               <Stop offset="1.0">
                                  <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                    <Color red="0.0117647061124444" green="0.05098039284348488" blue="0.7411764860153198" />
                                  </color>
                               </Stop>
                            </stops>
                         </LinearGradient>
                      </textFill>
                      <font>
-                        <Font size="14.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="date" prefHeight="18.0" prefWidth="130.0" text="datetime" />
-                  <HBox prefHeight="13.0" prefWidth="518.0" VBox.vgrow="ALWAYS">
+                  <Label fx:id="date" prefHeight="20.0" prefWidth="271.0" text="datetime">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
+                  <HBox prefHeight="0.0" prefWidth="518.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <MenuButton mnemonicParsing="false">
-                          <items>
-                             <MenuItem fx:id="updateComment" mnemonicParsing="false" onAction="#handleEditComment" text="Modifier" />
+                        <MenuButton mnemonicParsing="false" prefHeight="28.0" prefWidth="20.0" stylesheets="@style.css">
+                           <items>
+                              <MenuItem fx:id="updateComment" mnemonicParsing="false" onAction="#handleEditComment" styleClass="search-button" text="Modifier" />
 
-                             <MenuItem fx:id="deleteComment" mnemonicParsing="false" text="Supprimer" onAction="#handleDeleteComment"/>
-                          </items>
+                              <MenuItem fx:id="deleteComment" mnemonicParsing="false" onAction="#handleDeleteComment" styleClass="search-button" text="Supprimer" />
+                           </items>
                            <HBox.margin>
                               <Insets left="450.0" />
                            </HBox.margin>
                         </MenuButton>
                      </children>
                   </HBox>
-                  <TextArea fx:id="content" editable="false" prefHeight="58.0" prefWidth="508.0" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="saveCommentButton" onAction="#saveEditedComment" text="Save" visible="false">
+                  <TextArea fx:id="content" editable="false" prefHeight="62.0" prefWidth="532.0" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="15.0" />
+                     </font></TextArea>
+                  <Region prefHeight="0.0" prefWidth="518.0" />
+                  <Button fx:id="saveCommentButton" onAction="#saveEditedComment" style="-fx-font-size: 13;" styleClass="create-post-button" text="Save" visible="false">
                      <HBox.margin>
                         <Insets left="10.0" top="5.0" />
                      </HBox.margin>
                      <VBox.margin>
                         <Insets left="400.0" />
                      </VBox.margin>
+                     <stylesheets>
+                        <URL value="@style.css" />
+                        <URL value="@publicationCSS.css" />
+                     </stylesheets>
                   </Button>
-                  <HBox prefHeight="61.0" prefWidth="518.0">
+                  <HBox prefHeight="79.0" prefWidth="533.0" spacing="5.0">
                      <children>
-                        <Button fx:id="likeComment" minHeight="17.0" onAction="#handleLikeComment" prefHeight="31.0" prefWidth="90.0" text="j'aime" />
-                        <Button fx:id="replayComment" prefHeight="32.0" prefWidth="106.0" text="répondre" />
-                        <ImageView fx:id="iconLikes" fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="likeComment" minHeight="17.0" onAction="#handleLikeComment" prefHeight="38.0" prefWidth="78.0" style="-fx-font-size: 13;" styleClass="buttonLike" text="j'aime">
+                           <stylesheets>
+                              <URL value="@publicationCSS.css" />
+                              <URL value="@style.css" />
+                           </stylesheets></Button>
+                        <ImageView fx:id="iconLikes" fitHeight="33.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
-                              <Insets left="200.0" />
+                              <Insets left="300.0" />
                            </HBox.margin>
                            <image>
-                              <Image url="@../../../../../../Users/MSI/Desktop/25451.png" />
+                              <Image url="@../../../../../../Users/MSI/Desktop/fullheart.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="nbLikesComments">
+                        <Label fx:id="nbLikesComments" prefHeight="18.0" prefWidth="18.0" text="1">
                            <HBox.margin>
-                              <Insets left="4.0" />
+                              <Insets bottom="8.0" left="1.0" top="7.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Label>
                      </children>
                      <padding>
-                        <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="15.0" right="11.0" top="10.0" />
                      </padding>
                   </HBox>
                </children>
@@ -109,5 +132,4 @@
       <Insets top="5.0" />
       <!-- Adjusted top padding here -->
    </padding>
-
 </VBox>
