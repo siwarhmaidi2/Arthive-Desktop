@@ -31,6 +31,12 @@ public class ReactionCommentaire {
         this.dateAjoutReactionCommentaire = dateAjoutReactionCommentaire;
     }
 
+    public ReactionCommentaire(Commentaire commentaire, User loggedInUser) {
+    }
+
+    public ReactionCommentaire(Commentaire commentaire) {
+    }
+
     public int getIdReactionCommentaire() {
         return idReactionCommentaire;
     }

@@ -117,4 +117,19 @@ public class ServiceCommentaire implements IServiceCommentaire<Commentaire> {
 
         return commentaires;
     }
+
+    public int getCommentsCountForPublication(int publicationId) {
+        String query = "SELECT COUNT(*) FROM commentaires WHERE id_publication = ?";
+        try (PreparedStatement ps = cnx.prepareStatement(query)) {
+            ps.setInt(1, publicationId);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return 0; // Return 0 in case of an error
+    }
 }

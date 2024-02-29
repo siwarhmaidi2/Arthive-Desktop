@@ -5,7 +5,9 @@ import edu.esprit.entities.User;
 import edu.esprit.utils.DataSource;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ServicePublication implements IServicePublication<Publication> {
@@ -203,6 +205,36 @@ public class ServicePublication implements IServicePublication<Publication> {
         return false;
     }
 
+
+    public List<Publication> getAllPublicationsByIdUser(int userId) {
+        List<Publication> publications = new ArrayList<>();
+        String query = "SELECT * FROM publications WHERE id_user = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(query);
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int idPublication = rs.getInt("id_publication");
+                String contenuPublication = rs.getString("contenu_publication");
+                Timestamp dateCreationPublication = rs.getTimestamp("d_creation_publication");
+                String urlFile = rs.getString("url_file");
+
+                // Check if User retrieval is successful
+                User user = serviceUser.getOneByID(userId);
+
+                if (user != null) {
+                    Publication publication = new Publication(idPublication, contenuPublication, urlFile, dateCreationPublication, user);
+                    publications.add(publication);
+                } else {
+                    System.out.println("User with ID " + userId + " not found.");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return publications;
+    }
 
 
 }

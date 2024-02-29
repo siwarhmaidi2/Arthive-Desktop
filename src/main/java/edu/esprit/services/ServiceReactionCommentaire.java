@@ -77,4 +77,19 @@ public class ServiceReactionCommentaire implements IServiceReactionCommentaire<R
 
         return rc;
     }
+
+    public int getLikesCountForComment(int commentId) {
+        String query = "SELECT COUNT(*) FROM reactions_commentaires WHERE id_commentaire = ?";
+        try (PreparedStatement statement = cnx.prepareStatement(query)) {
+            statement.setInt(1, commentId);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return 0; // Return 0 if there's an issue or no likes found
+    }
 }
