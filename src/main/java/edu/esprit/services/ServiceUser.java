@@ -25,7 +25,7 @@ public class ServiceUser implements IServiceUser<User> {
             System.out.println(e.getMessage());
         }*/
 
-        String req = "INSERT INTO `users`(`nom_user`, `prenom_user`, `email`, `mdp_user`, `d_naissance_user`, `ville`, `num_tel_user`, `role`)  VALUES (?,?,?,?,?,?,?,?)";
+        String req = "INSERT INTO `users`(`nom_user`, `prenom_user`, `email`, `mdp_user`, `d_naissance_user`, `ville`, `num_tel_user`, `bio`, `photo`, `role`)  VALUES (?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, user.getNom_user());
@@ -35,7 +35,9 @@ public class ServiceUser implements IServiceUser<User> {
             ps.setDate(5, user.getD_naissance_user());
             ps.setString(6, user.getVille());
             ps.setString(7, user.getNum_tel_user());
-            ps.setString(8, user.getRole());
+            ps.setString(8, user.getBio());
+            ps.setString(9, user.getPhoto());
+            ps.setString(10, user.getRole());
             ps.executeUpdate();
             System.out.println("User added !");
         } catch (SQLException e) {
@@ -51,6 +53,19 @@ public class ServiceUser implements IServiceUser<User> {
             ps.setInt(2, idPub);
             ps.executeUpdate();
             System.out.println("Publication reported !");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updatePhoto(User user) {
+        String req = "UPDATE users SET photo = ? WHERE id_user = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, user.getPhoto());
+            ps.setInt(2, user.getId_user());
+            ps.executeUpdate();
+            System.out.println("User photo updated !");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

@@ -69,7 +69,12 @@ public class ProfileEditController {
 
     private void closeAndUpdateProfilePage() {
         Stage stage = (Stage) submit.getScene().getWindow();
-        profileController.initialize();
+        try{
+            profileController.initialize();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         stage.close();
     }
 

@@ -3,11 +3,13 @@ package edu.esprit.controllers;
 import edu.esprit.entities.User;
 import edu.esprit.entities.UserData;
 import edu.esprit.services.ServiceUser;
+import edu.esprit.tests.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
@@ -18,6 +20,8 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Paths;
 
 public class ProfileController {
 
@@ -39,17 +43,23 @@ public class ProfileController {
     Button editPfpBtn;
     @FXML
     ImageView image2;
+    @FXML
+    Hyperlink logoutBtn;
 
     private File selectedFile;
 
-    private String pfpPath;
 
 
 
 
-    public void initialize(){
+    public void initialize() throws Exception{
         User loggedInUser = UserData.getInstance().getLoggedInUser();
-        File file = new File(loggedInUser.getPhoto());
+//        File file = new File(loggedInUser.getPhoto());
+//        Image imgUser = new Image(file.toURI().toString());
+        String pfpPath = loggedInUser.getPhoto();
+        URI pfpUri = new URI(pfpPath);
+        String filePath = Paths.get(pfpUri).toString();
+        File file = new File(filePath);
         Image imgUser = new Image(file.toURI().toString());
 
         name.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
@@ -101,12 +111,22 @@ public class ProfileController {
 
                 image.setImage(selectedImage);
                 image2.setImage(selectedImage);
+                User loggedInUser = UserData.getInstance().getLoggedInUser();
+                loggedInUser.setPhoto(selectedFile.toURI().toString());
+                ServiceUser su = new ServiceUser();
+                su.updatePhoto(loggedInUser);
+
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Error loading image: " + e.getMessage());
             }
 
         }
+    }
+
+    public void logout(ActionEvent event) throws IOException {
+        UserData.getInstance().setLoggedInUser(null);
+        Main.changeScene("/Login.fxml");
     }
 
 }

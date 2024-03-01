@@ -37,12 +37,12 @@
         <Hyperlink layoutX="86.0" layoutY="443.0" text="Groupes" textFill="#070000" wrapText="true" />
         <Hyperlink layoutX="84.0" layoutY="493.0" text="Messages" textFill="#070000" wrapText="true" />
         <Hyperlink layoutX="82.0" layoutY="597.0" text="Evènements" textFill="#070000" />
-        <Hyperlink fx:id="name2" layoutX="46.0" layoutY="309.0" text="Ayoub Toujani" textFill="#000000fb">
+        <Text fx:id="name2" layoutX="56.0" layoutY="308.0" text="Ayoub Toujani">
             <font>
                 <Font name="System Bold" size="17.0" />
             </font>
-        </Hyperlink>
-        <ImageView fx:id="image2" fitHeight="126.0" fitWidth="161.0" layoutX="47.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+        </Text>
+        <ImageView fx:id="image2" fitHeight="128.0" fitWidth="181.0" layoutX="49.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Image/profil.png" />
             </image>
@@ -80,12 +80,14 @@
             </image>
         </ImageView>
         <Hyperlink layoutX="83.0" layoutY="545.0" text="Marketplace" textFill="#070000" />
-        <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="1146.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Image/logout.png" />
-            </image>
-        </ImageView>
-        <Hyperlink layoutX="1123.0" layoutY="59.0" text="Déconnexion" textFill="#0f0bfb" />
+        <Hyperlink fx:id="logoutBtn" layoutX="1127.0" layoutY="22.0" onAction="#logout" prefHeight="41.0" prefWidth="114.0" text="Déconnexion" textFill="#0f0bfb" AnchorPane.topAnchor="22.0">
+         <graphic>
+              <ImageView fitHeight="32.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@Image/logout.png" />
+                  </image>
+              </ImageView>
+         </graphic></Hyperlink>
         <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="1000.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Image/panier.png" />
@@ -118,7 +120,7 @@
                </font></Text>
                 <Text fx:id="bio" layoutX="262.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BIO" wrappingWidth="313.13671875">
                <font>
-                  <Font size="20.0" />
+                  <Font size="16.0" />
                </font></Text>
                 <Button fx:id="editBtn" layoutX="1110.0" layoutY="27.0" mnemonicParsing="false" onAction="#openEditProfileWindow">
                <graphic>

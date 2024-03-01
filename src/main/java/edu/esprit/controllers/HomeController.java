@@ -6,6 +6,7 @@ import edu.esprit.entities.Publication;
 
 import edu.esprit.services.ServiceUser;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 public class HomeController {
