@@ -69,7 +69,12 @@ public class SignupController {
     }
 
     private boolean checkForm(){
-        return !name.getText().isEmpty() && !fname.getText().isEmpty() && !email.getText().isEmpty() && email.getText().matches("[^@]+@[^@]+\\.[a-zA-Z]{2,}") && !password.getText().isEmpty() && !region.getText().isEmpty() && !numTel.getText().isEmpty() && numTel.getText().matches("\\d*") && birthDate.getValue() != null;
+        return !name.getText().isEmpty() && !fname.getText().isEmpty()
+                && name.getText().matches("[a-zA-Z]+") && fname.getText().matches("[a-zA-Z]+")
+                && !email.getText().isEmpty() && email.getText().matches("[^@]+@[^@]+\\.[a-zA-Z]{2,}")
+                && !password.getText().isEmpty() && !region.getText().isEmpty()
+                && !numTel.getText().isEmpty() && numTel.getText().matches("\\d*")
+                && birthDate.getValue() != null;
     }
 
     private boolean checkExist(){

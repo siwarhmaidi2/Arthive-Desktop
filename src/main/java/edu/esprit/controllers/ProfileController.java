@@ -26,6 +26,8 @@ public class ProfileController {
     @FXML
     Text name;
     @FXML
+    Text name2;
+    @FXML
     Text region;
     @FXML
     Text email;
@@ -51,6 +53,7 @@ public class ProfileController {
         Image imgUser = new Image(file.toURI().toString());
 
         name.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
+        name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
         region.setText(loggedInUser.getVille());
         email.setText(loggedInUser.getEmail());
         bio.setText(loggedInUser.getBio());
