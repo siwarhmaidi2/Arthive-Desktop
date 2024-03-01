@@ -2,14 +2,12 @@ package edu.esprit.tests;
 
 
 import edu.esprit.services.ServiceUser;
-import edu.esprit.services.ServiceMessage;
 
 import java.io.IOException;
 
 import java.time.LocalDate;
 import java.util.Date;
 
-import edu.esprit.entities.User;
 import edu.esprit.entities.Message;
 
 
@@ -41,7 +39,6 @@ public class Main extends Application {
     public static void main(String[] args) {
 
         ServiceUser su = new ServiceUser() ;
-        ServiceMessage sm = new ServiceMessage() ;
 
 
         LocalDate birthDate = LocalDate.of(1990, 5, 15);
@@ -54,9 +51,10 @@ public class Main extends Application {
 
         Message m1 = new Message(23, 24, "blaset l 3ada?", sqlDate);
 
+        su.reportPublication(69,1);
 
-        sm.send(m1);
-        System.out.println(sm.getAll());
+
+
         launch(args);
 
         

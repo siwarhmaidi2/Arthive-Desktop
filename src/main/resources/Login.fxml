@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1074.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.LoginController">
    <children>
-      <ImageView fitHeight="768.0" fitWidth="1366.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="951.0" fitWidth="1375.0" layoutY="-72.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/background.jpg" />
          </image>
@@ -22,7 +22,7 @@
          <children>
             <Label layoutX="140.0" layoutY="14.0" text="Login">
                <font>
-                  <Font size="30.0" />
+                  <Font name="System Bold" size="30.0" />
                </font>
             </Label>
             <Label layoutX="33.0" layoutY="78.0" prefHeight="40.0" prefWidth="75.0" text="Email">
@@ -35,7 +35,10 @@
                   <Font size="28.0" />
                </font></Label>
             <PasswordField fx:id="password" layoutX="31.0" layoutY="223.0" prefHeight="25.0" prefWidth="277.0" />
-            <Button fx:id="submitbtn" layoutX="87.0" layoutY="286.0" mnemonicParsing="false" onAction="#submit" prefHeight="25.0" prefWidth="166.0" stylesheets="@CSS/button.css" text="Login" />
+            <Button fx:id="submitbtn" layoutX="87.0" layoutY="286.0" mnemonicParsing="false" onAction="#submit" prefHeight="25.0" prefWidth="166.0" stylesheets="@CSS/button.css" text="Login">
+               <font>
+                  <Font size="13.0" />
+               </font></Button>
             <Hyperlink layoutX="77.0" layoutY="363.0" onAction="#handleHyperlinkAction" text="Don't have an account? Sign up" />
          </children>
       </Pane>

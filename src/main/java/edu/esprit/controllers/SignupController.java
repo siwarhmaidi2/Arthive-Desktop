@@ -31,6 +31,26 @@ public class SignupController {
     private Button submitbtn;
 
 
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Label fnameLabel;
+    @FXML
+    private Label regionLabel;
+    @FXML
+    private Label phoneLabel;
+    @FXML
+    private  Label birthDateLabel;
+    @FXML
+    private Label emailLabel;
+    @FXML
+    private Label passwordLabel;
+
+
+    public void initialize(){
+        checkName();
+        checkFname();
+    }
 
     public void submit() throws IOException {
         if(checkForm() && !checkExist()){
@@ -75,6 +95,57 @@ public class SignupController {
                 && !password.getText().isEmpty() && !region.getText().isEmpty()
                 && !numTel.getText().isEmpty() && numTel.getText().matches("\\d*")
                 && birthDate.getValue() != null;
+    }
+
+    private void checkName(){
+        name.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.isEmpty()){
+                nameLabel.setText("Le nom ne doit pas être vide");
+                nameLabel.setVisible(true);
+                System.out.println("empty field");
+            }
+            else if (!newValue.matches("[a-zA-Z]+")) {
+                nameLabel.setText("Le nom ne doit contenir que des lettres");
+                nameLabel.setVisible(true);
+            }
+            else{
+                nameLabel.setVisible(false);
+            }
+        });
+    }
+
+    private void checkFname(){
+        fname.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.isEmpty()){
+                fnameLabel.setText("Le nom ne doit pas être vide");
+                fnameLabel.setVisible(true);
+                System.out.println("empty field");
+            }
+            else if (!newValue.matches("[a-zA-Z]+")) {
+                fnameLabel.setText("Le nom ne doit contenir que des lettres");
+                fnameLabel.setVisible(true);
+            }
+            else{
+                fnameLabel.setVisible(false);
+            }
+        });
+    }
+
+    private void checkNumTel(){
+        numTel.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.isEmpty()){
+                phoneLabel.setText("Le nom ne doit pas être vide");
+                phoneLabel.setVisible(true);
+                System.out.println("empty field");
+            }
+            else if (!newValue.matches("[a-zA-Z]+")) {
+                phoneLabel.setText("Le nom ne doit contenir que des lettres");
+                phoneLabel.setVisible(true);
+            }
+            else{
+                phoneLabel.setVisible(false);
+            }
+        });
     }
 
     private boolean checkExist(){

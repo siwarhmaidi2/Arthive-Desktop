@@ -46,7 +46,7 @@ public class ServiceUser implements IServiceUser<User> {
     }
 
     public void reportPublication(int idUser, int idPub) {
-        String req = "INSERT INTO `signaler`(`id_user`, `id_pub`) VALUES (?,?)";
+        String req =" INSERT INTO `siganler`(`id_user`, `id_publication`) VALUES (?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, idUser);

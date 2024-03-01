@@ -54,8 +54,7 @@ public class ProfileController {
 
     public void initialize() throws Exception{
         User loggedInUser = UserData.getInstance().getLoggedInUser();
-//        File file = new File(loggedInUser.getPhoto());
-//        Image imgUser = new Image(file.toURI().toString());
+
         String pfpPath = loggedInUser.getPhoto();
         URI pfpUri = new URI(pfpPath);
         String filePath = Paths.get(pfpUri).toString();
