@@ -8,6 +8,7 @@ import edu.esprit.services.ServiceUser;
 import edu.esprit.entities.User;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Optional;
 
 
@@ -28,6 +29,8 @@ public class SignupController {
     @FXML
     private PasswordField password;
     @FXML
+    private PasswordField passwordRepeat;
+    @FXML
     private Button submitbtn;
 
 
@@ -45,11 +48,19 @@ public class SignupController {
     private Label emailLabel;
     @FXML
     private Label passwordLabel;
+    @FXML
+    private Label passwordRepeatLabel;
 
 
     public void initialize(){
         checkName();
         checkFname();
+        checkNumTel();
+        checkRegion();
+        checkBirthDate();
+        checkEmail();
+        checkPassword();
+        checkPasswordRepeat();
     }
 
     public void submit() throws IOException {
@@ -94,7 +105,8 @@ public class SignupController {
                 && !email.getText().isEmpty() && email.getText().matches("[^@]+@[^@]+\\.[a-zA-Z]{2,}")
                 && !password.getText().isEmpty() && !region.getText().isEmpty()
                 && !numTel.getText().isEmpty() && numTel.getText().matches("\\d*")
-                && birthDate.getValue() != null;
+                && birthDate.getValue() != null && isAgeValid(birthDate)
+                && password.getText().length() >= 8 && passwordRepeat.getText().equals(password.getText());
     }
 
     private void checkName(){
@@ -134,16 +146,117 @@ public class SignupController {
     private void checkNumTel(){
         numTel.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.isEmpty()){
-                phoneLabel.setText("Le nom ne doit pas être vide");
+                phoneLabel.setText("Le numero de Tel. ne doit pas être vide");
                 phoneLabel.setVisible(true);
                 System.out.println("empty field");
             }
-            else if (!newValue.matches("[a-zA-Z]+")) {
-                phoneLabel.setText("Le nom ne doit contenir que des lettres");
+            else if (!newValue.matches("\\d*")) {
+                phoneLabel.setText("Le numero de Tel ne doit contenir que des chiffres");
                 phoneLabel.setVisible(true);
             }
             else{
                 phoneLabel.setVisible(false);
+            }
+        });
+    }
+
+    private void checkRegion(){
+        region.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.isEmpty()){
+                regionLabel.setText("Le region ne doit pas être vide");
+                regionLabel.setVisible(true);
+                System.out.println("empty field");
+            }
+            else if (!newValue.matches("[a-zA-Z]+")) {
+                regionLabel.setText("Le region ne doit contenir que des lettres");
+                regionLabel.setVisible(true);
+            }
+            else{
+                regionLabel.setVisible(false);
+            }
+        });
+    }
+
+    public static boolean isAgeValid(DatePicker birthDatePicker){
+        LocalDate currentDate = LocalDate.now();
+        LocalDate birthDate = birthDatePicker.getValue();
+        // Calculate age
+        int age = currentDate.getYear() - birthDate.getYear();
+        // Adjust age if birth date hasn't occurred yet this year
+        if (birthDate.getMonthValue() > currentDate.getMonthValue() ||
+                (birthDate.getMonthValue() == currentDate.getMonthValue() &&
+                        birthDate.getDayOfMonth() > currentDate.getDayOfMonth())) {
+            age--;
+        }
+        return age >= 18;
+
+    }
+
+
+    private void checkBirthDate(){
+        birthDate.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue == null){
+                birthDateLabel.setText("Veuillez selectionner votre date de naissance");
+                birthDateLabel.setVisible(true);
+                System.out.println("empty field");
+            }
+            else if(!isAgeValid(birthDate)){
+                birthDateLabel.setText("Votre date de naissance doit etre supérieure à 18 ans");
+                birthDateLabel.setVisible(true);
+            }
+            else{
+                birthDateLabel.setVisible(false);
+            }
+        });
+    }
+
+    private void checkEmail(){
+        email.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.isEmpty()){
+                emailLabel.setText("L'email ne doit pas être vide");
+                emailLabel.setVisible(true);
+                System.out.println("empty field");
+            }
+            else if (!newValue.matches("[^@]+@[^@]+\\.[a-zA-Z]{2,}")) {
+                emailLabel.setText("L'email n'est pas valide");
+                emailLabel.setVisible(true);
+            }
+            else{
+                emailLabel.setVisible(false);
+            }
+        });
+    }
+
+    private void checkPassword(){
+        password.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.isEmpty()){
+                passwordLabel.setText("Le mot de passe ne doit pas être vide");
+                passwordLabel.setVisible(true);
+                System.out.println("empty field");
+            }
+            else if (newValue.length() < 8) {
+                passwordLabel.setText("Le mot de passe doit contenir au moins 8 caractères");
+                passwordLabel.setVisible(true);
+            }
+            else{
+                passwordLabel.setVisible(false);
+            }
+        });
+    }
+
+    private void checkPasswordRepeat(){
+        passwordRepeat.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.isEmpty()){
+                passwordRepeatLabel.setText("Veuillez répéter votre mot de passe");
+                passwordRepeatLabel.setVisible(true);
+                System.out.println("empty field");
+            }
+            else if (!newValue.equals(password.getText())) {
+                passwordRepeatLabel.setText("Les mots de passe ne correspondent pas");
+                passwordRepeatLabel.setVisible(true);
+            }
+            else{
+                passwordRepeatLabel.setVisible(false);
             }
         });
     }
