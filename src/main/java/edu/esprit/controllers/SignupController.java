@@ -1,14 +1,21 @@
 package edu.esprit.controllers;
 
 import edu.esprit.tests.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import edu.esprit.services.ServiceUser;
 import edu.esprit.entities.User;
+import edu.esprit.utils.RestApiClient;
+import edu.esprit.utils.CountriesJsonParser;
+import javafx.scene.control.skin.ComboBoxListViewSkin;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -19,7 +26,7 @@ public class SignupController {
     @FXML
     private TextField fname;
     @FXML
-    private TextField region;
+    private ComboBox<String> countries;
     @FXML
     private TextField numTel;
     @FXML
@@ -53,15 +60,34 @@ public class SignupController {
 
 
     public void initialize(){
+        populateCountriesComboBox(countries);
+        navigateOnPress();
         checkName();
         checkFname();
         checkNumTel();
-        checkRegion();
         checkBirthDate();
         checkEmail();
         checkPassword();
         checkPasswordRepeat();
     }
+
+
+    private void populateCountriesComboBox(ComboBox<String> comboBox){
+        try{
+            RestApiClient client = new RestApiClient();
+            String jsonData = client.fetchDataFromApi("https://restcountries.com/v3.1/all?fields=name");
+
+            CountriesJsonParser parser = new CountriesJsonParser();
+            List<String> countryNames = parser.extractOfficialName(jsonData);
+            Collections.sort(countryNames);
+            ObservableList<String> items = FXCollections.observableArrayList(countryNames);
+            comboBox.setItems(items);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void submit() throws IOException {
         if(checkForm() && !checkExist()){
@@ -95,7 +121,7 @@ public class SignupController {
 
     private void registerUser(){
         ServiceUser su = new ServiceUser();
-        User u = new User(name.getText(), fname.getText(), email.getText(), password.getText(), java.sql.Date.valueOf(birthDate.getValue()), region.getText().toString(), numTel.getText().toString(),"", "file:/C:/Users/ziedz/Downloads/arthive-client/src/main/resources/Image/profil.png", "ROLE_USER");
+        User u = new User(name.getText(), fname.getText(), email.getText(), password.getText(), java.sql.Date.valueOf(birthDate.getValue()), countries.getValue().toString(), numTel.getText().toString(),"", "file:/C:/Users/ziedz/Downloads/arthive-client/src/main/resources/Image/profil.png", "ROLE_USER");
         su.add(u);
     }
 
@@ -103,7 +129,7 @@ public class SignupController {
         return !name.getText().isEmpty() && !fname.getText().isEmpty()
                 && name.getText().matches("[a-zA-Z]+") && fname.getText().matches("[a-zA-Z]+")
                 && !email.getText().isEmpty() && email.getText().matches("[^@]+@[^@]+\\.[a-zA-Z]{2,}")
-                && !password.getText().isEmpty() && !region.getText().isEmpty()
+                && !password.getText().isEmpty() && !countries.getSelectionModel().isEmpty()
                 && !numTel.getText().isEmpty() && numTel.getText().matches("\\d*")
                 && birthDate.getValue() != null && isAgeValid(birthDate)
                 && password.getText().length() >= 8 && passwordRepeat.getText().equals(password.getText());
@@ -143,6 +169,27 @@ public class SignupController {
         });
     }
 
+
+    private void navigateOnPress(){
+        countries.setOnKeyTyped(event -> {
+            String typedText = event.getCharacter();
+            if (typedText != null && !typedText.isEmpty()) {
+                // Find the index of the first item starting with the typed text
+                for (int i = 0; i < countries.getItems().size(); i++) {
+                    String item = countries.getItems().get(i);
+                    if (item.toLowerCase().startsWith(typedText.toLowerCase())) {
+                        // Set the selected index to the found item
+                        countries.getSelectionModel().select(i);
+                        ComboBoxListViewSkin<?> skin = (ComboBoxListViewSkin<?>) countries.getSkin();
+                        ListView<?> list = (ListView<?>) skin.getPopupContent();
+                        list.scrollTo(i);
+                        break;
+                    }
+                }
+            }
+        });
+    }
+
     private void checkNumTel(){
         numTel.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.isEmpty()){
@@ -160,22 +207,6 @@ public class SignupController {
         });
     }
 
-    private void checkRegion(){
-        region.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue.isEmpty()){
-                regionLabel.setText("Le region ne doit pas être vide");
-                regionLabel.setVisible(true);
-                System.out.println("empty field");
-            }
-            else if (!newValue.matches("[a-zA-Z]+")) {
-                regionLabel.setText("Le region ne doit contenir que des lettres");
-                regionLabel.setVisible(true);
-            }
-            else{
-                regionLabel.setVisible(false);
-            }
-        });
-    }
 
     public static boolean isAgeValid(DatePicker birthDatePicker){
         LocalDate currentDate = LocalDate.now();
@@ -265,6 +296,10 @@ public class SignupController {
         ServiceUser su = new ServiceUser();
         return su.checkEmail(email.getText());
     }
+
+
+
+
 
 
 
