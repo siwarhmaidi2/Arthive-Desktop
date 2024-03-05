@@ -1,6 +1,8 @@
 package edu.esprit.tests;
 
 
+import edu.esprit.entities.Admin;
+import edu.esprit.entities.User;
 import edu.esprit.services.ServiceUser;
 
 import java.io.IOException;
@@ -49,9 +51,8 @@ public class Main extends Application {
         Date currentDate = new Date(currentMillis);
         java.sql.Date sqlDate = new java.sql.Date(currentMillis);
 
-        Message m1 = new Message(23, 24, "blaset l 3ada?", sqlDate);
-
-        su.reportPublication(69,1);
+        //User u1 = new Admin("zied","zhiri","zied.zhiri@esprit.tn","123456",sqlDate, "Tunis", "12345678", "bio", "", "ROLE_ADMIN");
+        //su.add(u1);
 
 
 

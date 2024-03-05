@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -44,7 +41,15 @@ public class ProfileEditController {
     }
 
     public void initialize() {
+
         loggedInUser = UserData.getInstance().getLoggedInUser();
+        name.setText(loggedInUser.getNom_user());
+        fname.setText(loggedInUser.getPrenom_user());
+        region.setText(loggedInUser.getVille());
+        numTel.setText(loggedInUser.getNum_tel_user());
+        birthDate.setValue(loggedInUser.getD_naissance_user().toLocalDate());
+        bio.setText(loggedInUser.getBio());
+
     }
 
 
@@ -60,8 +65,15 @@ public class ProfileEditController {
             UserData.getInstance().setLoggedInUser(loggedInUser);
             closeAndUpdateProfilePage();
 
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid information");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill in all the fields correctly");
         }
     }
+
+
 
     private boolean checkForm() {
         return !name.getText().isEmpty() && !fname.getText().isEmpty() && !region.getText().isEmpty() && !numTel.getText().isEmpty() && numTel.getText().matches("\\d*") && birthDate.getValue() != null;

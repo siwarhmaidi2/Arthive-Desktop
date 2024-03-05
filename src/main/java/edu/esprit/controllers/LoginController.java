@@ -35,7 +35,7 @@ public class LoginController {
     private void checkLogin() throws IOException {
         loggedInUser = su.authenticateUser(email.getText(), password.getText());
         Main m = new Main();
-        if (loggedInUser != null) {
+        if (loggedInUser != null && loggedInUser.getRole().equals("ROLE_USER")) {
             System.out.println("Login successful");
             UserData.getInstance().setLoggedInUser(loggedInUser);
 
@@ -51,12 +51,17 @@ public class LoginController {
             ProfileController profileController = profileLoder.getController();
 
             //redirect to home page, replace with actual Home page
-             Main.changeScene("/Profile.fxml");
+            Main.changeScene("/Profile.fxml");
+        }
+        else{
+            if(loggedInUser != null && loggedInUser.getRole().equals("ROLE_ADMIN")){
+                //Navigate to admin page
+            }
+            else {
+                System.out.println("Login failed");
+                //show error message
+            }
 
-
-        } else {
-            System.out.println("Login failed");
-            //show error message
         }
     }
 
