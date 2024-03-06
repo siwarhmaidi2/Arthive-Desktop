@@ -3,6 +3,7 @@ package edu.esprit.Controllers;
 import edu.esprit.entities.Publication;
 import edu.esprit.entities.Reaction;
 import edu.esprit.entities.User;
+import edu.esprit.entities.UserData;
 import edu.esprit.services.ServiceCommentaire;
 import edu.esprit.services.ServicePublication;
 import edu.esprit.services.ServiceReaction;
@@ -79,6 +80,7 @@ public class MyPublicationsController {
     private ServiceReaction serviceReaction = new ServiceReaction();
     private boolean userLiked = false; // Flag to track whether the user has already liked the publication
 
+private static final  User loggedInUser = UserData.getInstance().getLoggedInUser();
 
 
     private String calculateTimeElapsed(LocalDateTime publicationDateTime) {
@@ -102,10 +104,10 @@ public class MyPublicationsController {
 
     public void setData(Publication publication) {
         try {
-            User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
+
             if (loggedInUser != null) {
                 // Step 3: User is authenticated, proceed to retrieve photo
-                String userPhotoUrl = loggedInUser.getPhoto_user();
+                String userPhotoUrl = loggedInUser.getPhoto();
                 // Step 4: Check if the user has a valid photo URL
                 if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
                     // Step 5: Load and display the user's photo
@@ -246,6 +248,10 @@ public class MyPublicationsController {
         this.profilePublicationsController = profilePublicationsController;
     }
 
+    private ProfileController profileController;
+    public void setProfileController(ProfileController profileController) {
+        this.profileController = profileController;
+    }
 
     @FXML
     private void deletePublication(ActionEvent event) {

@@ -288,9 +288,7 @@ public class PublicationAdminController {
             removePostFromUI();
 
             // Check if profilePublicationsController is not null before calling refreshPosts
-            if (profileController != null) {
-                profileController.refreshPosts();
-            }
+
         }
     }
 
@@ -304,24 +302,7 @@ public class PublicationAdminController {
     }
 
 
-    @FXML
-    public void switchToCommentAdd(MouseEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/addCommentairefinal - Copie.fxml"));
-            root = loader.load();
 
-            // Pass the publication to the Commentaire Controller
-            AddCommentaireController addCommentaireController = loader.getController();
-            addCommentaireController.setPublication(publication);
-
-            Stage stage = new Stage();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     private HomeAdminController homeAdminPublication;
 
     public void setHomeAdminController(HomeAdminController homeAdminController) {

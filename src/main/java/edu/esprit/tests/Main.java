@@ -21,7 +21,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -144,7 +143,7 @@ Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalD
 
         LocalDate birthDate = LocalDate.of(1990, 5, 15);
 
-        System.out.println(su.getAll());
+      //  System.out.println(su.getAll());
 
         long currentMillis = System.currentTimeMillis();
         Date currentDate = new Date(currentMillis);
