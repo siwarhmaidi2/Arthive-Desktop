@@ -7,26 +7,32 @@ import java.util.Objects;
 public class Publication {
 
     private int id_publication;
-    private String  contenu_publication ;
+    private String contenu_publication;
+
+    private String url_file;
 
     private Timestamp d_creation_publication;
-
-    private int id_user;
+    private User user ;
 
     public Publication() {
     }
 
-    public Publication(int id_publication, String contenu_publication, Timestamp d_creation_publication, int id_user) {
+    public Publication(int id_publication, String contenu_publication, String url_file, Timestamp d_creation_publication, User user) {
         this.id_publication = id_publication;
         this.contenu_publication = contenu_publication;
+        this.url_file = url_file;
         this.d_creation_publication = d_creation_publication;
-        this.id_user = id_user;
+        this.user = user;
     }
 
-    public Publication(String contenu_publication, Timestamp d_creation_publication, int id_user) {
+    public Publication(String contenu_publication, String url_file, Timestamp d_creation_publication, User user) {
         this.contenu_publication = contenu_publication;
+        this.url_file = url_file;
         this.d_creation_publication = d_creation_publication;
-        this.id_user = id_user;
+        this.user = user;
+    }
+
+    public Publication(String testContent, String file, Timestamp dCreationPublication, int idUser) {
     }
 
     public int getId_publication() {
@@ -45,6 +51,14 @@ public class Publication {
         this.contenu_publication = contenu_publication;
     }
 
+    public String getUrl_file() {
+        return url_file;
+    }
+
+    public void setUrl_file(String url_file) {
+        this.url_file = url_file;
+    }
+
     public Timestamp getD_creation_publication() {
         return d_creation_publication;
     }
@@ -53,12 +67,22 @@ public class Publication {
         this.d_creation_publication = d_creation_publication;
     }
 
-    public int getId_user() {
-        return id_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Publication{" +
+                "contenu_publication='" + contenu_publication + '\'' +
+                ", url_file='" + url_file + '\'' +
+                ", d_creation_publication=" + d_creation_publication +
+                ", user=" + user +
+                '}';
     }
 
     @Override
@@ -66,21 +90,12 @@ public class Publication {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Publication that = (Publication) o;
-        return id_publication == that.id_publication && Objects.equals(contenu_publication, that.contenu_publication) && Objects.equals(d_creation_publication, that.d_creation_publication) && Objects.equals(id_user, that.id_user);
+        return id_publication == that.id_publication && Objects.equals(contenu_publication, that.contenu_publication) && Objects.equals(url_file, that.url_file) && Objects.equals(d_creation_publication, that.d_creation_publication) && Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_publication, contenu_publication, d_creation_publication, id_user);
+        return Objects.hash(id_publication, contenu_publication, url_file, d_creation_publication, user);
     }
 
-    @Override
-    public String toString() {
-        return "Publication{" +
-                "id_publication=" + id_publication +
-                ", contenu_publication='" + contenu_publication + '\'' +
-                ", d_creation_publication=" + d_creation_publication +
-                ", id_user=" + id_user +
-                '}';
-    }
 }
