@@ -1,0 +1,14 @@
+.button {
+    -fx-background-color: #0A3667; /* Couleur de fond bleue */
+    -fx-text-fill: white; /* Couleur du texte en blanc */
+    -fx-border-color: #0A3667; /* Couleur de la bordure en bleu */
+    -fx-border-width: 2px; /* Largeur de la bordure */
+    -fx-border-radius: 2px; /* Rayon de la bordure pour arrondir les coins */
+    -fx-padding: 8px 8px; /* Espacement interne du contenu du bouton */
+
+}
+
+.button:hover {
+    -fx-background-color: #002B4F; /* Couleur de fond bleue plus foncée au survol */
+    -fx-border-color: #002B4F; /* Couleur de la bordure plus foncée au survol */
+}

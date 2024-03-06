@@ -1,7 +1,5 @@
 package edu.esprit.services;
 
-import edu.esprit.entities.User;
-
 import java.util.Set;
 
 public interface IServiceUser <T> {

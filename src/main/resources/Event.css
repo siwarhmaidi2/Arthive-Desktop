@@ -1,0 +1,196 @@
+
+
+/* Style de fond pour l'interface */
+.root {
+    background-color: #6e8de1;
+}
+
+/* Style pour la zone d'en-tête */
+.header {
+    -fx-background-color: rgba(28, 40, 180, 0.96); /* Couleur de fond de l'en-tête */
+    -fx-padding: 10;
+}
+
+.header-label {
+    -fx-text-fill: rgb(255, 255, 255); /* Couleur du texte de l'en-tête */
+    -fx-font-size: 20;
+}
+
+/* Style pour le conteneur principal */
+.container {
+    -fx-padding: 20;
+}
+
+/* Style pour les champs de saisie */
+.text-field {
+    -fx-padding: 8;
+    -fx-font-size: 14;
+    -fx-pref-width: 200;
+    -fx-background-radius: 5;
+}
+
+/* Style pour un bouton */
+
+
+/* Style pour les messages d'erreur */
+.error-message {
+    -fx-text-fill: red; /* Couleur du texte d'erreur */
+}
+
+/* Style pour les étiquettes */
+.label {
+    -fx-padding: 5;
+}
+
+/* Style pour la liste déroulante */
+.choice-box {
+    -fx-padding: 8;
+    -fx-pref-width: 200;
+}
+
+/* Style pour le sélecteur de date */
+.date-picker {
+    -fx-padding: 0;
+    -fx-pref-width: 200;
+}
+
+
+.date-picker > .arrow-button:hover {
+    -fx-background-color: #45a049; /* Couleur du bouton au survol */
+}
+
+.date-picker > .arrow-button:pressed {
+    -fx-background-color: rgba(3, 13, 189, 0.65); /* Couleur du bouton lorsqu'il est enfoncé */
+}
+.date-picker > .text-field {
+    -fx-font-size: 14;
+    -fx-background-color: rgb(255, 255, 255); /* Couleur du fond du champ de texte */
+    -fx-background-radius: 5; /* Coins arrondis */
+    -fx-border-color: #bdbdbd; /* Couleur de la bordure */
+    -fx-border-radius: 5; /* Coins arrondis de la bordure */
+}
+.date-picker > .popup > .content > .month-year-pane {
+    -fx-background-color: rgba(3, 13, 189, 0.65); /* Couleur de l'arrière-plan du sélecteur de mois/année */
+}
+.date-picker > .popup > .content > .calendar-pane > .calendar-day-cell {
+    -fx-background-color: #ffffff; /* Couleur de fond des cellules du calendrier */
+    -fx-background-radius: 0; /* Pas de coins arrondis */
+}
+/* Style pour la zone de texte de description */
+.text-area {
+    -fx-padding: 0;
+    -fx-font-size: 14;
+    -fx-pref-width: 300;
+    -fx-pref-height: 100;
+}
+.image-view {
+    -fx-fit-width: 300; /* Largeur de l'image */
+    -fx-fit-height: 150; /* Hauteur de l'image */
+    -fx-border-color: #ccc; /* Couleur de la bordure de l'image */
+    -fx-border-width: 2; /* Largeur de la bordure de l'image */
+    -fx-border-radius: 5; /* Coins arrondis de la bordure de l'image */
+}
+/* Style pour chaque cellule du GridPane */
+.grid-pane > .label {
+    -fx-padding: 10; /* Marge intérieure des cellules */
+    -fx-border-color: #ccc; /* Couleur de la bordure des cellules */
+    -fx-border-width: 1; /* Largeur de la bordure des cellules */
+    -fx-border-radius: 5; /* Coins arrondis de la bordure des cellules */
+}
+
+/* Style pour chaque cellule du GridPane au survol */
+.grid-pane > .label:hover {
+    -fx-background-color: #f0f0f0; /* Couleur de fond des cellules au survol */
+}
+
+/* Style pour chaque cellule du GridPane lorsqu'elles sont pressées */
+.grid-pane > .label:pressed {
+    -fx-background-color: #e0e0e0; /* Couleur de fond des cellules lorsqu'elles sont pressées */
+}
+.search-box{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+.search-button{
+    -fx-background-color: rgba(4, 13, 187, 0.65);
+    -fx-background-radius: 30;
+    -fx-text-fill: #fff;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+
+
+}
+.body {
+    background-color: #f0f0f0; /* You can use color names, hex codes, RGB values, etc. */
+}
+.Event-view{
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-radius: 30;
+    -fx-padding: 10px; /* Adjust padding as needed */
+
+    -fx-border-color: #ddd; /* Add a border color */
+    -fx-border-width: 1px;
+    -fx-border-radius: 30;
+    -fx-cursor: pointer; /* Change cursor on hover */
+    -fx-transition: all 0.3s ease; /* Add a smooth transition effect */
+
+}
+.Event-view-ImageView {
+    -fx-pref-width: 10;  /* Set your preferred width for the image */
+    -fx-pref-height: 10; /* Set your preferred height for the image */
+}
+.image-container1 {
+    -fx-border-color: #000000; /* Couleur de la bordure (noir dans cet exemple) */
+    -fx-border-width: 10; /* Largeur de la bordure */
+}
+.borderPane {
+    -fx-border-color: #000000; /* Couleur de la bordure (noir dans cet exemple) */
+    -fx-border-width: 2; /* Largeur de la bordure */
+}
+.image-view {
+    -fx-fit-width: 50; /* Largeur souhaitée */
+    -fx-fit-height: 50; /* Hauteur souhaitée */
+}
+.create-post-button {
+    -fx-background-color: rgba(3, 13, 189, 0.65); /* Instagram blue color */
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand; /* Cursor style on hover */
+}
+.button:hover {
+    -fx-background-color: #0077cc; /* Darker shade on hover */
+}
+.event-view .image-container {
+    -fx-alignment: center; /* Center the image container */
+}
+
+.event-view .avatar {
+    -fx-background-color: #0077cc; /* Color for the circular shape */
+    -fx-background-radius: 50%; /* Make it circular */
+    -fx-min-width: 50px; /* Set width and height for the circular shape */
+    -fx-min-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+    -fx-margin: 0 0 10 0; /* Margin at the bottom of the circular shape */
+}
+
+.buttonLike{
+    -fx-background-color: rgba(3, 13, 189, 0.65); /* Instagram blue color */
+    -fx-text-fill: #fff;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand; 
+
+
+}
