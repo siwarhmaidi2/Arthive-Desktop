@@ -159,10 +159,9 @@ public class User {
                 ", mdp_user='" + mdp_user + '\'' +
                 ", d_naissance_user=" + d_naissance_user +
                 ", ville='" + ville + '\'' +
-                ", num_tel_user='" + num_tel_user + '\'' +
+                ", num_tel_user=" + num_tel_user + '\'' +
                 ", bio='" + bio + '\'' +
                 ", photo='" + photo + '\'' +
-                ", role='" + role + '\'' +
                 '}';
     }
 
@@ -171,7 +170,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id_user == user.id_user && Objects.equals(nom_user, user.nom_user) && Objects.equals(prenom_user, user.prenom_user) && Objects.equals(email, user.email) && Objects.equals(mdp_user, user.mdp_user) && Objects.equals(d_naissance_user, user.d_naissance_user) && Objects.equals(ville, user.ville) && Objects.equals(num_tel_user, user.num_tel_user) && Objects.equals(bio, user.bio) && Objects.equals(photo, user.photo) && Objects.equals(role, user.role);
+        return id_user == user.id_user && num_tel_user == user.num_tel_user && Objects.equals(nom_user, user.nom_user) && Objects.equals(prenom_user, user.prenom_user) && Objects.equals(email, user.email) && Objects.equals(mdp_user, user.mdp_user) && Objects.equals(d_naissance_user, user.d_naissance_user) && Objects.equals(ville, user.ville);
     }
 
     @Override

@@ -11,30 +11,34 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1074.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.LoginController">
    <children>
-      <ImageView fitHeight="768.0" fitWidth="1366.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="951.0" fitWidth="1375.0" layoutY="-72.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/background.jpg" />
-         </image></ImageView>
-      <Pane layoutX="399.0" layoutY="141.0" opacity="0.8" prefHeight="411.0" prefWidth="353.0" style="-fx-background-color: white;">
+         </image>
+      </ImageView>
+      <Pane layoutX="399.0" layoutY="141.0" opacity="0.8" prefHeight="411.0" prefWidth="353.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <children>
-            <Label layoutX="140.0" layoutY="14.0" text="Login">
+            <Label layoutX="140.0" layoutY="14.0" text="Login" textFill="#461483">
                <font>
-                  <Font size="30.0" />
+                  <Font name="Arial Bold Italic" size="30.0" />
                </font>
             </Label>
             <Label layoutX="33.0" layoutY="78.0" prefHeight="40.0" prefWidth="75.0" text="Email">
                <font>
-                  <Font size="28.0" />
+                  <Font size="20.0" />
                </font></Label>
-            <TextField fx:id="email" layoutX="27.0" layoutY="126.0" prefHeight="25.0" prefWidth="287.0" />
+            <TextField fx:id="email" layoutX="27.0" layoutY="126.0" prefHeight="25.0" prefWidth="287.0" stylesheets="@CSS/SignupPage.css" />
             <Label layoutX="33.0" layoutY="172.0" prefHeight="40.0" prefWidth="132.0" text="Password">
                <font>
-                  <Font size="28.0" />
+                  <Font size="20.0" />
                </font></Label>
-            <PasswordField fx:id="password" layoutX="31.0" layoutY="223.0" prefHeight="25.0" prefWidth="277.0" />
-            <Button fx:id="submitbtn" layoutX="87.0" layoutY="286.0" mnemonicParsing="false" onAction="#submit" prefHeight="25.0" prefWidth="166.0" text="Login" />
+            <PasswordField fx:id="password" layoutX="31.0" layoutY="223.0" prefHeight="25.0" prefWidth="277.0" stylesheets="@CSS/SignupPage.css" />
+            <Button fx:id="submitbtn" layoutX="85.0" layoutY="298.0" mnemonicParsing="false" onAction="#submit" prefHeight="25.0" prefWidth="166.0" style="-fx-background-radius: 20px; -fx-border-color: transparent;" stylesheets="@CSS/button.css" text="Login">
+               <font>
+                  <Font size="13.0" />
+               </font></Button>
             <Hyperlink layoutX="77.0" layoutY="363.0" onAction="#handleHyperlinkAction" text="Don't have an account? Sign up" />
          </children>
       </Pane>

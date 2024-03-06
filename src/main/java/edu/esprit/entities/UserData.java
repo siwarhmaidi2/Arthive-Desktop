@@ -1,5 +1,6 @@
 package edu.esprit.entities;
 
+import edu.esprit.entities.User;
 public class UserData {
     private static UserData instance;
     private User loggedInUser;

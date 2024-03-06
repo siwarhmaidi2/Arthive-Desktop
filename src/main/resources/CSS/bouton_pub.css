@@ -1,0 +1,14 @@
+.button {
+    -fx-background-color: rgba(173, 216, 230, 0.8); /* Bleu clair avec transparence */
+    -fx-background-radius: 30;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 20, 0.0, 0.0, 0.0); /* Effet d'ombre plus intense */
+
+}
+
+.button:hover {
+    -fx-background-color: #B0B0B0; /* Gris clair pour le survol */
+}
+
+.button:pressed {
+    -fx-background-color: #C0C0C0; /* Gris clair lorsque le bouton est enfoncé */
+}

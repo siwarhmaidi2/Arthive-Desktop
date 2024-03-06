@@ -10,7 +10,7 @@ import java.util.Set;
 
 
 
-public class ServiceUser implements IService<User> {
+public class ServiceUser implements IServiceUser<User> {
 
     Connection cnx = DataSource.getInstance().getCnx();
     private static User loggedInUser;

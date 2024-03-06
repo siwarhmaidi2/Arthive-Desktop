@@ -1,0 +1,9 @@
+.text-field{
+    -fx-background-radius: 20; /* pour rendre la forme ronde */
+    -fx-background-color: #ffffff; /* couleur de fond */
+    -fx-border-color: #aaaaaa; /* couleur de la bordure */
+    -fx-border-radius: 20; /* pour rendre la bordure ronde */
+    -fx-border-width: 1; /* épaisseur de la bordure */
+    -fx-padding: 5px; /* espace intérieur */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0); /* ombrage */
+}
