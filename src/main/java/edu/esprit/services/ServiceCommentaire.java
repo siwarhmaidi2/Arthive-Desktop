@@ -7,32 +7,13 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ServiceCommentaire implements IServiceCommentaire<Commentaire> {
+public class ServiceCommentaire implements IService<Commentaire> {
     Connection cnx = DataSource.getInstance().getCnx();
     private ServiceUser serviceUser = new ServiceUser();
     private ServicePublication servicePublication = new ServicePublication();
 
-    @Override
-    public void add(Commentaire commentaire) {
-        String req = "INSERT INTO commentaires (contenu_commentaire, d_ajout_commentaire, id_user, id_publication) VALUES (?, ?, ?, ?)";
-        try {
-            PreparedStatement ps = cnx.prepareStatement(req, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, commentaire.getContenuCommentaire());
-            ps.setTimestamp(2, commentaire.getDateAjoutCommentaire());
-            ps.setInt(3, commentaire.getUser().getId_user());
-            ps.setInt(4, commentaire.getPublication().getId_publication());
 
-            ps.executeUpdate();
-            ResultSet generatedKeys = ps.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                commentaire.setIdCommentaire(generatedKeys.getInt(1));
-            }
 
-            System.out.println("Commentaire added!");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     @Override
     public void update(Commentaire commentaire) {
@@ -46,6 +27,29 @@ public class ServiceCommentaire implements IServiceCommentaire<Commentaire> {
             ps.setInt(5, commentaire.getIdCommentaire());
             ps.executeUpdate();
             System.out.println("Commentaire updated!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //lets add a comment
+
+    public void add(Commentaire commentaire) {
+        String req = "INSERT INTO commentaires (contenu_commentaire, d_ajout_commentaire, id_user, id_publication) VALUES (?, ?, ?, ?)";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, commentaire.getContenuCommentaire());
+            ps.setTimestamp(2, commentaire.getDateAjoutCommentaire());
+            ps.setInt(3, commentaire.getUser().getId_user());
+            ps.setInt(4, commentaire.getPublication().getId_publication());
+            ps.executeUpdate();
+
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                commentaire.setIdCommentaire(generatedKeys.getInt(1));
+            }
+
+            System.out.println("Commentaire added!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -116,5 +120,20 @@ public class ServiceCommentaire implements IServiceCommentaire<Commentaire> {
         }
 
         return commentaires;
+    }
+
+    public int getCommentsCountForPublication(int publicationId) {
+        String query = "SELECT COUNT(*) FROM commentaires WHERE id_publication = ?";
+        try (PreparedStatement ps = cnx.prepareStatement(query)) {
+            ps.setInt(1, publicationId);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return 0; // Return 0 in case of an error
     }
 }

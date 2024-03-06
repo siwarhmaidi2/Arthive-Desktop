@@ -1,0 +1,116 @@
+.cancel-button {
+    -fx-background-color: #ed4747; /* Red color for the cancel button */
+    -fx-text-fill: #ffffff; /* White text color */
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand; /* Cursor style on hover */
+}
+
+.cancel-button:hover {
+    -fx-background-color: #c0392b; /* Darker shade of red on hover */
+}
+/* Style for the text field in the add page */
+.add-page-text-field {
+    -fx-padding: 8;
+    -fx-font-size: 16px;
+    -fx-pref-width: 400;
+    -fx-background-radius: 5;
+    -fx-border-color: #ccc; /* Border color */
+    -fx-border-radius: 5; /* Border radius */
+}
+
+.add-page-text-field:focus {
+    -fx-border-color: #0077cc; /* Border color on focus */
+}
+
+.create-post-button {
+    -fx-background-color: #092a6c(3, 13, 189, 0.65); /* Instagram blue color */
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand; /* Cursor style on hover */
+}
+
+.upload-button {
+    -fx-background-color: #3498db; /* Blue color for the upload button */
+    -fx-text-fill: #fff; /* White text color */
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand; /* Cursor style on hover */
+}
+
+.upload-button:hover {
+    -fx-background-color: #2980b9; /* Darker shade of blue on hover */
+}
+
+
+/* Style for the pane with image */
+.image-pane {
+    -fx-padding: 10;
+    -fx-border-color: #3498db; /* Border color */
+    -fx-border-width: 2px; /* Border width */
+}
+
+
+/* Style for the label */
+.custom-label {
+    -fx-background-color: rgba(3, 13, 189, 0.65); /* Instagram blue color */
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px; /* Adjusted font size for the label */
+    -fx-font-weight: bold;
+    -fx-padding: 8px 16px; /* Adjusted padding for the label */
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand; /* Cursor style on hover */
+}
+
+/* Style for the like button */
+.like-button {
+    -fx-background-color: #3498db; /* Blue color for the like button */
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand; /* Cursor style on hover */
+    -fx-transition: all 0.3s ease; /* Add a smooth transition effect */
+}
+
+.like-button:hover {
+    -fx-background-color: #2980b9; /* Darker shade of blue on hover */
+}
+
+.like-button.clicked {
+    -fx-background-color: #2ecc71; /* Green color when clicked */
+}
+
+/* Style for the reply button */
+.reply-button {
+    -fx-background-color: #e74c3c; /* Red color for the reply button */
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand; /* Cursor style on hover */
+    -fx-transition: all 0.3s ease; /* Add a smooth transition effect */
+}
+
+.reply-button:hover {
+    -fx-background-color: #c0392b; /* Darker shade of red on hover */
+}
+
+.reply-button.clicked {
+    -fx-background-color: #f39c12; /* Orange color when clicked */
+}
