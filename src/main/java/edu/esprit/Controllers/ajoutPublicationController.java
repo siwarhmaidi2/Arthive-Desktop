@@ -1,35 +1,42 @@
 package edu.esprit.Controllers;
 
 import edu.esprit.entities.Publication;
+import edu.esprit.entities.PublicationJsonSerializer;
 import edu.esprit.entities.User;
+import edu.esprit.entities.UserData;
 import edu.esprit.services.ServicePublication;
 import edu.esprit.services.ServiceUser;
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Optional;
-
-import javafx.scene.control.Alert.AlertType;
+import java.util.Set;
 
 public class ajoutPublicationController {
 
-
+    @FXML
+    private Button deleteFile;
     @FXML
     private Button addFile;
 
@@ -66,6 +73,40 @@ public class ajoutPublicationController {
         this.stage = stage;
     }
     private boolean isPhotoSelected = false;
+//    @FXML
+//    void uploadArt(MouseEvent event) {
+//        // Créer un sélecteur de fichiers pour les images
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Choisir une image");
+//
+//        // Filtrer les fichiers pour afficher uniquement les images
+//        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif");
+//        fileChooser.getExtensionFilters().add(filter);
+//
+//        // Afficher la boîte de dialogue de sélection de fichier
+//        selectedFile = fileChooser.showOpenDialog(new Stage());
+//        // Charger l'image sélectionnée dans l'interface utilisateur
+//        if (selectedFile != null) {
+//            // Vous pouvez implémenter le chargement de l'image dans un ImageView
+//            try {
+//                Image image = new Image(selectedFile.toURI().toString());
+//                System.out.println("Chemin de l'image sélectionnée : " + selectedFile.toURI().toString()); // Imprimer le chemin de l'image
+//                imagePost.setImage(image);
+//                addFile.setVisible(false);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                System.out.println("Error loading image: " + e.getMessage());
+//            }
+//
+//        }
+//        isPhotoSelected = true;
+//
+//        if (selectedFile != null)
+//            deleteFile.setVisible(true); // Make the deleteFile button visible
+//
+//    }
+//
+
     @FXML
     void uploadArt(MouseEvent event) {
         // Créer un sélecteur de fichiers pour les images
@@ -78,23 +119,39 @@ public class ajoutPublicationController {
 
         // Afficher la boîte de dialogue de sélection de fichier
         selectedFile = fileChooser.showOpenDialog(new Stage());
+
         // Charger l'image sélectionnée dans l'interface utilisateur
         if (selectedFile != null) {
-            // Vous pouvez implémenter le chargement de l'image dans un ImageView
             try {
-                Image image = new Image(selectedFile.toURI().toString());
-                System.out.println("Chemin de l'image sélectionnée : " + selectedFile.toURI().toString()); // Imprimer le chemin de l'image
+                BufferedImage bufferedImage = ImageIO.read(selectedFile);
+
+                int targetWidth = 500;
+                int targetHeight = 500;
+                BufferedImage processedImage = resizeImage(bufferedImage, targetWidth, targetHeight);
+
+                // Convert BufferedImage to JavaFX Image
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+
+                System.out.println("Chemin de l'image sélectionnée : " + selectedFile.toURI().toString());
                 imagePost.setImage(image);
                 addFile.setVisible(false);
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Error loading image: " + e.getMessage());
             }
-
         }
         isPhotoSelected = true;
-    }
 
+        if (selectedFile != null)
+            deleteFile.setVisible(true); // Make the deleteFile button visible
+    }
+    private BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
+        BufferedImage resizedImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = resizedImage.createGraphics();
+        g2d.drawImage(originalImage, 0, 0, targetWidth, targetHeight, null);
+        g2d.dispose();
+        return resizedImage;
+    }
     @FXML
     void addPublication(ActionEvent event) {
         if (selectedFile == null) {
@@ -105,11 +162,14 @@ public class ajoutPublicationController {
             alert.showAndWait();
             return;
         }
+
         String contenu = contentPost.getText();
         String url_file = selectedFile.toURI().toString();
 
         // Assuming your ServiceUser class has a method like: User authenticateUser(String email, String password)
-        User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
+        User loggedInUser = UserData.getInstance().getLoggedInUser();
+        System.out.println(loggedInUser);
+        // User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
         //User loggedInUser = serviceUser.authenticateUser("ziedzhiri@gmail.com", "1234");
 
         if (loggedInUser != null) {
@@ -138,9 +198,30 @@ public class ajoutPublicationController {
             System.out.println("Error: User not found.");
         }
 
+        savePublications();
+
 
     }
 
+    private void savePublications() {
+        Set<Publication> publicationSet = servicePublication.getAll();
+        List<Publication> publications = new ArrayList<>(publicationSet);
+// Get your list of publications
+                PublicationJsonSerializer.savePublications(publications, "publications.json");
+    }
+
+    private void loadPublications() {
+        List<Publication> publications = PublicationJsonSerializer.loadPublications("publications.json");
+        // Process loaded publications as needed
+    }
+    @FXML
+    void deleteArt(ActionEvent event) {
+        // Clear the selected file and reset the image view
+        selectedFile = null;
+        imagePost.setImage(null);
+        addFile.setVisible(true);
+        isPhotoSelected = false;
+    }
     @FXML
     void cancelPublication(ActionEvent event) {
         if (isPhotoSelected) {
@@ -165,6 +246,7 @@ public class ajoutPublicationController {
 
     @FXML
     void initialize() {
+
         Platform.runLater(() -> {
             // Set up window close request handler
             Stage stage = (Stage) addPost.getScene().getWindow();
@@ -183,6 +265,7 @@ public class ajoutPublicationController {
                     }
                 }
             });
+            deleteFile.setVisible(false);
         });
     }
 

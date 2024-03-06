@@ -31,11 +31,12 @@ public class ProfilePublicationsController implements Initializable {
 
     private ServicePublication servicePublication = new ServicePublication();
     private ServiceUser serviceUser = new ServiceUser();
-    User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
+    User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "123");
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
+        User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "123");
         posts = new ArrayList<>(data(loggedInUser));
         refreshPostsUI();
     }

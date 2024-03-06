@@ -12,27 +12,8 @@ public class ServiceCommentaire implements IService<Commentaire> {
     private ServiceUser serviceUser = new ServiceUser();
     private ServicePublication servicePublication = new ServicePublication();
 
-    @Override
-    public void add(Commentaire commentaire) {
-        String req = "INSERT INTO commentaires (contenu_commentaire, d_ajout_commentaire, id_user, id_publication) VALUES (?, ?, ?, ?)";
-        try {
-            PreparedStatement ps = cnx.prepareStatement(req, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, commentaire.getContenuCommentaire());
-            ps.setTimestamp(2, commentaire.getDateAjoutCommentaire());
-            ps.setInt(3, commentaire.getUser().getId_user());
-            ps.setInt(4, commentaire.getPublication().getId_publication());
 
-            ps.executeUpdate();
-            ResultSet generatedKeys = ps.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                commentaire.setIdCommentaire(generatedKeys.getInt(1));
-            }
 
-            System.out.println("Commentaire added!");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     @Override
     public void update(Commentaire commentaire) {
@@ -46,6 +27,29 @@ public class ServiceCommentaire implements IService<Commentaire> {
             ps.setInt(5, commentaire.getIdCommentaire());
             ps.executeUpdate();
             System.out.println("Commentaire updated!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //lets add a comment
+
+    public void add(Commentaire commentaire) {
+        String req = "INSERT INTO commentaires (contenu_commentaire, d_ajout_commentaire, id_user, id_publication) VALUES (?, ?, ?, ?)";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, commentaire.getContenuCommentaire());
+            ps.setTimestamp(2, commentaire.getDateAjoutCommentaire());
+            ps.setInt(3, commentaire.getUser().getId_user());
+            ps.setInt(4, commentaire.getPublication().getId_publication());
+            ps.executeUpdate();
+
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                commentaire.setIdCommentaire(generatedKeys.getInt(1));
+            }
+
+            System.out.println("Commentaire added!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

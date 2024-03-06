@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ServicePublication implements IService<Publication> {
     Connection cnx = DataSource.getInstance().getCnx();
@@ -106,34 +107,64 @@ public class ServicePublication implements IService<Publication> {
     }
 
 
-    @Override
-    public Set<Publication> getAll() {
-       Set<Publication> publications = new HashSet<>();
+//    @Override
+//    public Set<Publication> getAll() {
+//        Set<Publication> publications = new HashSet<>();
+//
+//        String query = "SELECT * FROM publications ORDER BY d_creation_publication DESC";
+//        try (
+//                Statement statement = cnx.createStatement();
+//                ResultSet resultSet = statement.executeQuery(query)
+//        ) {
+//
+//            while (resultSet.next()) {
+//                int idPublication = resultSet.getInt("id_publication");
+//                String contenuPublication = resultSet.getString("contenu_publication");
+//                Timestamp dateCreationPublication = resultSet.getTimestamp("d_creation_publication");
+//                int idUser = resultSet.getInt("id_user");
+//                String urlFile = resultSet.getString("url_file");
+//                Publication publication = new Publication(idPublication, contenuPublication, urlFile, dateCreationPublication, serviceUser.getOneByID(idUser));
+//                publications.add(publication);
+//            }
+//
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//        return publications;
+//    }
+@Override
+public Set<Publication> getAll() {
+    Set<Publication> publications = new HashSet<>();
 
-        String query = "SELECT * FROM publications";
-        try (
-                Statement statement = cnx.createStatement();
-             ResultSet resultSet = statement.executeQuery(query)) {
+    String query = "SELECT * FROM publications";
+    try (
+            Statement statement = cnx.createStatement();
+            ResultSet resultSet = statement.executeQuery(query)
+    ) {
 
-            while (resultSet.next()) {
-                int idPublication = resultSet.getInt("id_publication");
-                String contenuPublication = resultSet.getString("contenu_publication");
-                Timestamp dateCreationPublication = resultSet.getTimestamp("d_creation_publication");
-                int idUser = resultSet.getInt("id_user");
-                String urlFile = resultSet.getString("url_file");
-                Publication publication = new Publication(idPublication, contenuPublication, urlFile,dateCreationPublication, serviceUser.getOneByID(idUser));
-                publications.add(publication);
-            }
-
-        } catch (SQLException e) {
-
-            System.out.println(e.getMessage());
+        while (resultSet.next()) {
+            int idPublication = resultSet.getInt("id_publication");
+            String contenuPublication = resultSet.getString("contenu_publication");
+            Timestamp dateCreationPublication = resultSet.getTimestamp("d_creation_publication");
+            int idUser = resultSet.getInt("id_user");
+            String urlFile = resultSet.getString("url_file");
+            Publication publication = new Publication(idPublication, contenuPublication, urlFile, dateCreationPublication, serviceUser.getOneByID(idUser));
+            publications.add(publication);
         }
 
-        return publications;
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
     }
 
-
+    return publications;
+}
+//use stream to getAll publciation in order by the most recent one
+    public List<Publication> getAllOrderedByDate() {
+        return getAll().stream()
+                .sorted((p1, p2) -> p2.getD_creation_publication().compareTo(p1.getD_creation_publication()))
+                .collect(Collectors.toList());
+    }
 
     // Helper method to get the current likes count for a publication
     public int getCurrentLikesCount(int publicationId) {
@@ -142,7 +173,6 @@ public class ServicePublication implements IService<Publication> {
             PreparedStatement likesStatement = cnx.prepareStatement(likesQuery);
             likesStatement.setInt(1, publicationId);
             ResultSet likesResult = likesStatement.executeQuery();
-
             if (likesResult.next()) {
                 return likesResult.getInt(1);
             }
@@ -236,5 +266,14 @@ public class ServicePublication implements IService<Publication> {
         return publications;
     }
 
+    public List<Publication> searchPublications(String searchText) {
+        String searchTextLowerCase = searchText.toLowerCase();
+
+        return getAll().stream()
+                .filter(publication ->
+                        publication.getContenu_publication().toLowerCase().contains(searchTextLowerCase) ||
+                                (publication.getUser().getNom_user() + " " + publication.getUser().getPrenom_user()).toLowerCase().contains(searchTextLowerCase))
+                .collect(Collectors.toList());
+    }
 
 }

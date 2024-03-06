@@ -32,9 +32,9 @@
                         <Image url="@../../../../../../Users/MSI/Desktop/png-transparent-plastic-arts-art-institute-of-chicago-culture-the-arts-floresta-encantada-culture-pin-painting-thumbnail.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="postTextLabel" layoutX="25.0" layoutY="278.0" prefHeight="62.0" prefWidth="200.0" text="hi hi hi ">
+                  <Label fx:id="postTextLabel" layoutX="64.0" layoutY="172.0" prefHeight="62.0" prefWidth="200.0" text="hi hi hi " textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Times New Roman Bold" size="16.0" />
                      </font>
                   </Label>
                </children>

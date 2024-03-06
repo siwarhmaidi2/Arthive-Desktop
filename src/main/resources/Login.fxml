@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.LoginController">
+   <children>
+      <ImageView fitHeight="768.0" fitWidth="1366.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/background.jpg" />
+         </image></ImageView>
+      <Pane layoutX="399.0" layoutY="141.0" opacity="0.8" prefHeight="411.0" prefWidth="353.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="140.0" layoutY="14.0" text="Login">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="78.0" prefHeight="40.0" prefWidth="75.0" text="Email">
+               <font>
+                  <Font size="28.0" />
+               </font></Label>
+            <TextField fx:id="email" layoutX="27.0" layoutY="126.0" prefHeight="25.0" prefWidth="287.0" />
+            <Label layoutX="33.0" layoutY="172.0" prefHeight="40.0" prefWidth="132.0" text="Password">
+               <font>
+                  <Font size="28.0" />
+               </font></Label>
+            <PasswordField fx:id="password" layoutX="31.0" layoutY="223.0" prefHeight="25.0" prefWidth="277.0" />
+            <Button fx:id="submitbtn" layoutX="87.0" layoutY="286.0" mnemonicParsing="false" onAction="#submit" prefHeight="25.0" prefWidth="166.0" text="Login" />
+            <Hyperlink layoutX="77.0" layoutY="363.0" onAction="#handleHyperlinkAction" text="Don't have an account? Sign up" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

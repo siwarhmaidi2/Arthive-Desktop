@@ -2,6 +2,7 @@ package edu.esprit.Controllers;
 
 import edu.esprit.entities.Publication;
 import edu.esprit.entities.User;
+import edu.esprit.entities.UserData;
 import edu.esprit.services.ServicePublication;
 import edu.esprit.services.ServiceUser;
 import javafx.event.ActionEvent;
@@ -64,29 +65,35 @@ public class ModifierPublicationController implements Initializable {
         LocalDateTime currentDateTime = LocalDateTime.now();
         Duration duration = Duration.between(publicationDateTime, currentDateTime);
 
-        if (duration.toDays() > 0) {
-            // Si la durée est supérieure à un jour
-            return duration.toDays() + " jours";
+        if (duration.toDays() > 365) {
+            // If the duration is greater than a year
+            long years = duration.toDays() / 365;
+            return "il y a " + years + (years > 1 ? " années" : " année");
+        } else if (duration.toDays() > 0) {
+            // If the duration is greater than a day
+            return "il y a " + duration.toDays() + (duration.toDays() > 1 ? " jours" : " jour");
         } else if (duration.toHours() > 0) {
-            // Si la durée est supérieure à une heure
-            return duration.toHours() + " heures";
+            // If the duration is greater than an hour
+            return "il y a " + duration.toHours() + (duration.toHours() > 1 ? " heures" : " heure");
         } else if (duration.toMinutes() > 0) {
-            // Si la durée est supérieure à une minute
-            return duration.toMinutes() + " minutes";
+            // If the duration is greater than a minute
+            return "il y a " + duration.toMinutes() + (duration.toMinutes() > 1 ? " minutes" : " minute");
         } else {
-            // Si la durée est inférieure à une minute
+            // If the duration is less than a minute
             return "à l'instant";
         }
     }
+
     public void setPublication(Publication publication) {
         this.publication = publication;
         if (postTextTextField != null) {
             postTextTextField.setText(publication.getContenu_publication());
         }
-        User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
+      //  User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "123");
+        User loggedInUser = UserData.getInstance().getLoggedInUser();
         if (loggedInUser != null) {
             // Step 3: User is authenticated, proceed to retrieve photo
-            String userPhotoUrl = loggedInUser.getPhoto_user();
+            String userPhotoUrl = loggedInUser.getPhoto();
             // Step 4: Check if the user has a valid photo URL
             if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
                 // Step 5: Load and display the user's photo
@@ -126,7 +133,7 @@ public class ModifierPublicationController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setHeaderText(null);
-            alert.setContentText("Publication updated successfully!");
+            alert.setContentText("La publication a été mise à jour avec succès!");
             alert.showAndWait();
 
             updated = true;

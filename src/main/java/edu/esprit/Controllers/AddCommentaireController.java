@@ -3,15 +3,14 @@ package edu.esprit.Controllers;
 import edu.esprit.entities.Commentaire;
 import edu.esprit.entities.Publication;
 import edu.esprit.entities.User;
+import edu.esprit.entities.UserData;
 import edu.esprit.services.ServiceCommentaire;
 import edu.esprit.services.ServicePublication;
 import edu.esprit.services.ServiceUser;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -26,6 +25,8 @@ import java.util.stream.Collectors;
 
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+
+
 
 public class AddCommentaireController implements Initializable {
 
@@ -58,18 +59,20 @@ public class AddCommentaireController implements Initializable {
     public void setCurrentPublication(Publication publication) {
         this.currentPublication = publication;
     }
+
+    private static final User loggedInUser = UserData.getInstance().getLoggedInUser();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        User loggedInUser = UserData.getInstance().getLoggedInUser();
         if (currentPublication != null) {
             updateCommentList();
         }
 
-        //get the user photo
-       User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
-       // User loggedInUser = serviceUser.authenticateUser("ziedzhiri@gmail.com", "1234");
+
         if (loggedInUser != null) {
             // Step 3: User is authenticated, proceed to retrieve photo
-            String userPhotoUrl = loggedInUser.getPhoto_user();
+            String userPhotoUrl = loggedInUser.getPhoto();
             // Step 4: Check if the user has a valid photo URL
             if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
                 // Step 5: Load and display the user's photo
@@ -135,7 +138,6 @@ public class AddCommentaireController implements Initializable {
 
     @FXML
     void handleAddComment() {
-
         try {
             if (currentPublication == null) {
                 showAlert("Veuillez sélectionner une publication avant d'ajouter un commentaire.");
@@ -151,13 +153,8 @@ public class AddCommentaireController implements Initializable {
 
         // Assuming the publication ID is set before calling this method
 
-        Commentaire newComment = new Commentaire();
-        newComment.setContenuCommentaire(commentContent);
-        newComment.setDateAjoutCommentaire(new java.sql.Timestamp(System.currentTimeMillis()));
-        newComment.setPublication(currentPublication);
-      User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
-          //  User loggedInUser = serviceUser.authenticateUser("ziedzhiri@gmail.com", "1234");
-            newComment.setUser(loggedInUser); // Assuming you have a method to get the logged-in user
+        Commentaire newComment = new Commentaire( commentContent, new java.sql.Timestamp(System.currentTimeMillis()), loggedInUser, currentPublication);
+        // Assuming you have a method to get the logged-in user
         serviceCommentaire.add(newComment);
 
         contentComment.clear();
