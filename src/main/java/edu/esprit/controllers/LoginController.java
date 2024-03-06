@@ -5,6 +5,7 @@ import edu.esprit.tests.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
@@ -58,6 +59,11 @@ public class LoginController {
                 //Navigate to admin page
             }
             else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Login failed");
+                alert.setHeaderText(null);
+                alert.setContentText("Invalid email or password");
+                alert.showAndWait();
                 System.out.println("Login failed");
                 //show error message
             }
