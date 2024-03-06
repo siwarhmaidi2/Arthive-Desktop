@@ -103,6 +103,44 @@ public class ServiceUser implements IServiceUser<User> {
 
     }
 
+    public Set<User> getItems(){
+        Set<User> users = new HashSet<>();
+        String req = "SELECT nom_user, prenom_user, email, d_naissance_user, ville, num_tel_user FROM users";
+        try{
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while(rs.next()){
+                String nom = rs.getString("nom_user");
+                String prenom = rs.getString("prenom_user");
+                String email = rs.getString("email");
+                Date dateNaiss = rs.getDate("d_naissance_user");
+                String ville = rs.getString("ville");
+                String numtel = rs.getString("num_tel_user");
+                User u = new User(nom, prenom, email, dateNaiss, ville, numtel);
+                users.add(u);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return users;
+    }
+
+    public int getTotalUsers(){
+        int total = 0;
+        String req = "SELECT COUNT(*) FROM users";
+        try{
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            if(rs.next()){
+                total = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return total;
+    }
+
 
 
     @Override

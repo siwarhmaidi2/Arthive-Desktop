@@ -56,7 +56,12 @@ public class LoginController {
         }
         else{
             if(loggedInUser != null && loggedInUser.getRole().equals("ROLE_ADMIN")){
-                //Navigate to admin page
+                UserData.getInstance().setLoggedInUser(loggedInUser);
+                System.out.println(UserData.getInstance().getLoggedInUser());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeAdmin.fxml"));
+                Parent homeRoot = loader.load();
+                HomeAdminController homeAdminController = loader.getController();
+                Main.changeScene("/HomeAdmin.fxml");
             }
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
