@@ -31,15 +31,21 @@ public class HomeAdminController implements Initializable {
     private ServiceUser serviceUser = new ServiceUser();
 
 
-    User loggedInUser = serviceUser.authenticateUser("ayoubtoujani@gmail.com", "123");
+    private User loggedInUser = UserData.getInstance().getLoggedInUser();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loggedInUser = UserData.getInstance().getLoggedInUser();
 
-        posts = new ArrayList<>(data(loggedInUser));
-        refreshContent();
-
+        if (loggedInUser != null) {
+            posts = new ArrayList<>(data(loggedInUser));
+            refreshContent();
+        } else {
+            // Handle the case when loggedInUser is null
+            System.out.println("Error: loggedInUser is null");
+            // You might want to show an error message to the user or redirect to the login screen.
+        }
     }
 
     public void refreshContent() {

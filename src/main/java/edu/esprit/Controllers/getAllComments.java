@@ -1,8 +1,6 @@
 package edu.esprit.Controllers;
 
-import edu.esprit.entities.Publication;
-import edu.esprit.entities.ReactionCommentaire;
-import edu.esprit.entities.User;
+import edu.esprit.entities.*;
 import edu.esprit.services.ServiceCommentaire;
 import edu.esprit.services.ServicePublication;
 import edu.esprit.services.ServiceReactionCommentaire;
@@ -15,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import edu.esprit.entities.Commentaire;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -72,11 +69,12 @@ public class getAllComments {
     Publication publication;
     private ServiceUser serviceUser = new ServiceUser();
     private boolean isLiked = false;
+    private static final  User loggedInUser = UserData.getInstance().getLoggedInUser();
 
 
     @FXML
     void initialize() {
-        isLiked = hasUserLikedComment(serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563"));
+        isLiked = hasUserLikedComment(loggedInUser);
         updateLikeButtonStyle();
     }
 
@@ -84,10 +82,9 @@ public class getAllComments {
         try {
             this.commentaire = commentaire;
            // User loggedInUser = serviceUser.authenticateUser("ziedzhiri@gmail.com", "1234");
-            User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
             if (loggedInUser != null) {
                 // Step 3: User is authenticated, proceed to retrieve photo
-                String userPhotoUrl = loggedInUser.getPhoto_user();
+                String userPhotoUrl = loggedInUser.getPhoto();
                 // Step 4: Check if the user has a valid photo URL
                 if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
                     // Step 5: Load and display the user's photo
@@ -120,7 +117,6 @@ public class getAllComments {
     @FXML
     void handleLikeComment(ActionEvent event) {
         // Assuming you have a method to get the logged-in user
-        User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
         // Toggle the like state
         isLiked = !isLiked;
 
@@ -202,7 +198,6 @@ public class getAllComments {
     void handleEditComment(ActionEvent event) {
         // Enable editing in the TextArea
 
-        User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
         if (commentaire.getUser().equals(loggedInUser)) {
             content.setEditable(true);
 
@@ -235,7 +230,6 @@ public class getAllComments {
     @FXML
     void handleDeleteComment(ActionEvent event) {
         // Assuming you have a method to get the logged-in user
-        User loggedInUser = serviceUser.authenticateUser("ayoubtoujani808@gmail.com", "1234563");
 
         // Check if the logged-in user is the owner of the comment
         if (commentaire.getUser().equals(loggedInUser)) {
