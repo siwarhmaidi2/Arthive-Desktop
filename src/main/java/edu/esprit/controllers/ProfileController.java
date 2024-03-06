@@ -36,6 +36,8 @@ public class ProfileController {
     @FXML
     Text email;
     @FXML
+    Text birthDate;
+    @FXML
     Text bio;
     @FXML
     Button editBtn;
@@ -65,6 +67,7 @@ public class ProfileController {
         name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
         region.setText(loggedInUser.getVille());
         email.setText(loggedInUser.getEmail());
+        birthDate.setText(loggedInUser.getD_naissance_user().toString());
         bio.setText(loggedInUser.getBio());
         image.setImage(imgUser);
         image2.setImage(imgUser);

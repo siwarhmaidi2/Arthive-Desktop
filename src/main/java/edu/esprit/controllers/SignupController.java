@@ -1,21 +1,19 @@
 package edu.esprit.controllers;
 
 import edu.esprit.tests.Main;
+import edu.esprit.utils.CountryComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import edu.esprit.services.ServiceUser;
 import edu.esprit.entities.User;
-import edu.esprit.utils.RestApiClient;
-import edu.esprit.utils.CountriesJsonParser;
 import javafx.scene.control.skin.ComboBoxListViewSkin;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -60,7 +58,7 @@ public class SignupController {
 
 
     public void initialize(){
-        populateCountriesComboBox(countries);
+        CountryComboBox.populateCountriesComboBox(countries);
         navigateOnPress();
         checkName();
         checkFname();
@@ -72,20 +70,7 @@ public class SignupController {
     }
 
 
-    private void populateCountriesComboBox(ComboBox<String> comboBox){
-        try{
-            RestApiClient client = new RestApiClient();
-            String jsonData = client.fetchDataFromApi("https://restcountries.com/v3.1/all?fields=name");
 
-            CountriesJsonParser parser = new CountriesJsonParser();
-            List<String> countryNames = parser.extractOfficialName(jsonData);
-            Collections.sort(countryNames);
-            ObservableList<String> items = FXCollections.observableArrayList(countryNames);
-            comboBox.setItems(items);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
 
 
 
@@ -134,6 +119,7 @@ public class SignupController {
                 && birthDate.getValue() != null && isAgeValid(birthDate)
                 && password.getText().length() >= 8 && passwordRepeat.getText().equals(password.getText());
     }
+
 
     private void checkName(){
         name.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -295,6 +281,10 @@ public class SignupController {
     private boolean checkExist(){
         ServiceUser su = new ServiceUser();
         return su.checkEmail(email.getText());
+    }
+
+    public void handleHyperlinkAction(ActionEvent event) throws IOException{
+        Main.changeScene("/Login.fxml");
     }
 
 
