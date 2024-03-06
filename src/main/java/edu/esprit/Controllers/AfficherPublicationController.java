@@ -12,11 +12,13 @@ import edu.esprit.services.ServiceCommentaire;
 import edu.esprit.services.ServicePublication;
 import edu.esprit.services.ServiceReaction;
 import edu.esprit.services.ServiceUser;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
@@ -28,7 +30,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-
+import javafx.stage.FileChooser;
+import javafx.scene.control.Alert.AlertType;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -38,7 +44,7 @@ import java.util.Map;
 
 public class AfficherPublicationController {
     @FXML
-    private ImageView share;
+    private ImageView download;
     @FXML
     private MenuItem signaler;
     @FXML
@@ -307,6 +313,80 @@ public class AfficherPublicationController {
 
         // Log the post ID to check if the post was successful
         System.out.println("Post ID: " + response.getId());
+    }
+
+
+    @FXML
+    private void onDownloadClicked(MouseEvent event) {
+        try {
+            // Get the URL of the image to be downloaded
+            String imageUrl = publication.getUrl_file();
+
+            // Create a new Image object from the URL
+            Image image = new Image(imageUrl);
+
+            // Create a FileChooser to allow the user to choose the download location
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choisir l'emplacement du téléchargement");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("JPEG Files", "*.jpeg", "*.jpg"),
+                    new FileChooser.ExtensionFilter("PNG Files", "*.png")
+            );
+
+            // Show the file chooser dialog and get the selected file
+            File selectedFile = fileChooser.showSaveDialog(null);
+
+            if (selectedFile != null) {
+                // Check if the selected file has a valid extension
+                String fileExtension = getFileExtension(selectedFile);
+                if ("jpeg".equalsIgnoreCase(fileExtension) || "jpg".equalsIgnoreCase(fileExtension) || "png".equalsIgnoreCase(fileExtension)) {
+                    // Convert the JavaFX Image to a BufferedImage
+                    BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+
+                    // Save the BufferedImage to the selected file
+                    ImageIO.write(bufferedImage, fileExtension, selectedFile);
+
+                    // Display a success alert to the user
+                    showSuccessAlert("L'image a été téléchargée avec succès sur:\n" + selectedFile.getAbsolutePath());
+                } else {
+                    // Display an alert for invalid file extension
+                    showAlert("Invalid File Extension", "Veuillez choisir une extension de fichier valide (JPEG, JPG, ou PNG).");
+                }
+            } else {
+                // User canceled the file chooser dialog
+                System.out.println("Téléchargement d'images annulé par l'utilisateur.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Helper method to get the file extension
+    private String getFileExtension(File file) {
+        String fileName = file.getName();
+        int lastDotIndex = fileName.lastIndexOf('.');
+        if (lastDotIndex > 0) {
+            return fileName.substring(lastDotIndex + 1).toLowerCase();
+        }
+        return ""; // Return empty string if no extension found
+    }
+
+    // Helper method to show a success alert
+    private void showSuccessAlert(String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    // Helper method to show an alert
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 }

@@ -22,7 +22,7 @@
                <children>
                   <ImageView fx:id="profileImage" fitHeight="50.0" fitWidth="44.0" layoutX="27.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Users/MSI/Downloads/profile-pic%20(1).png" />
+                        <Image url="@Image/profile.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="110.0" fitWidth="72.0" layoutX="13.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
@@ -86,10 +86,10 @@
                               <Insets left="300.0" top="4.0" />
                            </HBox.margin>
                            <image>
-                              <Image url="@../../../../../../Users/MSI/Desktop/fullheart.png" />
+                              <Image url="@Image/fullheart.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="nbLikesComments" prefHeight="18.0" prefWidth="18.0" text="1">
+                        <Label fx:id="nbLikesComments" prefHeight="18.0" prefWidth="18.0">
                            <HBox.margin>
                               <Insets bottom="10.0" left="2.0" top="6.0" />
                            </HBox.margin>
