@@ -36,7 +36,7 @@ public class AfficherProduit implements Initializable {
     private ImageView art;
 
     @FXML
-    private ImageView avatar;
+    private ImageView image2;
 
     @FXML
     private Button add;
@@ -62,6 +62,10 @@ public class AfficherProduit implements Initializable {
 
     @FXML
     private AnchorPane messageBox;
+
+    @FXML
+    private Label name2;
+
     private ServiceUser serviceUser = new ServiceUser();
     private ServiceProduit serviceProduit = new ServiceProduit();
 
@@ -82,6 +86,24 @@ public class AfficherProduit implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        User loggedInUser = UserData.getInstance().getLoggedInUser();
+
+        if (loggedInUser != null) {
+            // Step 3: User is authenticated, proceed to retrieve photo
+            String userPhotoUrl = loggedInUser.getPhoto();
+            // Step 4: Check if the user has a valid photo URL
+            if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
+                // Step 5: Load and display the user's photo
+                Image userPhoto = new Image(userPhotoUrl);
+                this.image2.setImage(userPhoto);
+            } else {
+                // Step 6: User does not have a valid photo URL
+                System.out.println("User does not have a valid photo URL.");
+                // Consider using a default photo or displaying a placeholder image
+            }//
+            name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());}
+
         afficherProduitsUtilisateurConnecte();
     }
 
@@ -182,7 +204,6 @@ public class AfficherProduit implements Initializable {
     private boolean productMatchesSearchTerm(Produit produit, String searchTerm) {
         // Modify this method based on how you want to perform the search
         return produit.getNom_produit().toLowerCase().contains(searchTerm)
-                || produit.getDescription_produit().toLowerCase().contains(searchTerm)
                 || produit.getCateg_produit().toString().toLowerCase().contains(searchTerm);
     }
 
@@ -198,7 +219,6 @@ public class AfficherProduit implements Initializable {
                 AnchorPane produitNode = loader.load();
                 ProduitList produitController = loader.getController();
                 produitController.setAfficherProduitController(this);
-
                 produitController.setProduitNom("Nom : " + produit.getNom_produit());
                 produitController.setDescriptionProduit("Description : " + produit.getDescription_produit());
                 produitController.setPrixProduit(String.valueOf("Prix : " + produit.getPrix_produit() + " $"));

@@ -1,6 +1,8 @@
 package edu.esprit.Controllers;
 
 import edu.esprit.entities.Produit;
+import edu.esprit.entities.User;
+import edu.esprit.entities.UserData;
 import edu.esprit.enums.TypeCategorie;
 import edu.esprit.services.ServiceProduit;
 import javafx.collections.FXCollections;
@@ -47,10 +49,10 @@ public class ModifierProduit implements Initializable {
     private ImageView art;
 
     @FXML
-    private Label userName;
+    private Label name2;
 
     @FXML
-    private ImageView avatar;
+    private ImageView image2;
 
     @FXML
     private CheckBox dispoModifier;
@@ -178,6 +180,24 @@ public class ModifierProduit implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        User loggedInUser = UserData.getInstance().getLoggedInUser();
+
+        if (loggedInUser != null) {
+            // Step 3: User is authenticated, proceed to retrieve photo
+            String userPhotoUrl = loggedInUser.getPhoto();
+            // Step 4: Check if the user has a valid photo URL
+            if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
+                // Step 5: Load and display the user's photo
+                Image userPhoto = new Image(userPhotoUrl);
+                this.image2.setImage(userPhoto);
+            } else {
+                // Step 6: User does not have a valid photo URL
+                System.out.println("User does not have a valid photo URL.");
+                // Consider using a default photo or displaying a placeholder image
+            }//
+            name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());}
+
+
         SpinnerValueFactory<Double> priceFactory = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, Double.MAX_VALUE, 0, 0.1);
         SpinnerValueFactory<Integer> stockFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, 0);
 

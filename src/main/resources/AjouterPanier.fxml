@@ -19,8 +19,8 @@
             <Glow level="0.04" />
          </effect>
       </Label>
-      <Button layoutX="67.0" layoutY="495.0" mnemonicParsing="false" onAction="#passerCommande" stylesheets="@CSS/button.css" text="Passer Commande " />
-      <Button layoutX="238.0" layoutY="495.0" mnemonicParsing="false" onAction="#supprimerPanier" prefHeight="25.0" prefWidth="118.0" stylesheets="@CSS/button.css" text="Supprimer" />
+      <Button layoutX="67.0" layoutY="490.0" mnemonicParsing="false" onAction="#passerCommande" prefHeight="30.0" prefWidth="123.0" styleClass="search-button" stylesheets="@Event.css" text="Passer Commande " />
+      <Button layoutX="238.0" layoutY="490.0" mnemonicParsing="false" onAction="#supprimerPanier" prefHeight="30.0" prefWidth="118.0" styleClass="search-button" stylesheets="@Event.css" text="Supprimer" />
       <ScrollPane layoutX="22.0" layoutY="61.0" prefHeight="347.0" prefWidth="374.0">
          <content>
             <GridPane fx:id="gridPanier" vgap="10">

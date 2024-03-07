@@ -80,12 +80,12 @@
             <Glow level="0.15" />
          </effect>
       </Label>
-      <Button layoutX="443.0" layoutY="196.0" mnemonicParsing="false" onAction="#btnAddP" opacity="0.65" prefHeight="37.0" prefWidth="200.0" stylesheets="@CSS/button.css" text="Ajouter Produit " textFill="#3333c4">
+      <Button layoutX="443.0" layoutY="196.0" mnemonicParsing="false" onAction="#btnAddP" opacity="0.65" prefHeight="37.0" prefWidth="200.0" styleClass="search-button" stylesheets="@Event.css" text="Ajouter Produit " textFill="#3333c4">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="850.0" layoutY="198.0" mnemonicParsing="false" onAction="#afficherliste" opacity="0.65" prefHeight="33.0" prefWidth="200.0" styleClass="search-button" stylesheets="@Event.css" text="Votre liste Produit " textFill="#3131a8">
+      <Button layoutX="850.0" layoutY="198.0" mnemonicParsing="false" onAction="#afficherliste" opacity="0.65" prefHeight="37.0" prefWidth="200.0" styleClass="search-button" stylesheets="@Event.css" text="Votre liste Produit " textFill="#3131a8">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
@@ -93,16 +93,28 @@
       <ScrollPane layoutX="248.0" layoutY="243.0" prefHeight="456.0" prefWidth="1120.0">
          <content>
             <GridPane fx:id="produitGrid" layoutX="185.0" layoutY="194.0" prefHeight="444.0" prefWidth="1104.0" vgap="20">
-               <columnConstraints>
-                  <ColumnConstraints maxWidth="431.0" minWidth="342.0" prefWidth="363.0" />
-                  <ColumnConstraints maxWidth="424.0" minWidth="268.0" prefWidth="368.0" />
-                  <ColumnConstraints maxWidth="475.0" minWidth="188.0" prefWidth="246.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints prefHeight="500.0" />
-                  <RowConstraints prefHeight="500.0" />
-                  <RowConstraints prefHeight="500.0" />
-               </rowConstraints>
+                <columnConstraints>
+                    <ColumnConstraints maxWidth="431.0" minWidth="342.0" prefWidth="363.0" />
+                    <ColumnConstraints maxWidth="424.0" minWidth="268.0" prefWidth="368.0" />
+                    <ColumnConstraints maxWidth="475.0" minWidth="188.0" prefWidth="246.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints prefHeight="500.0" />
+                    <RowConstraints prefHeight="500.0" />
+                    <RowConstraints prefHeight="500.0" />
+                </rowConstraints>
+               <children>
+                  <VBox prefHeight="177.0" prefWidth="387.0" visible="false" GridPane.columnIndex="1">
+                     <children>
+                        <ImageView fx:id="messageImage" fitHeight="300.0" fitWidth="375.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="messageLabel" alignment="CENTER" prefHeight="35.0" prefWidth="422.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
             </GridPane>
          </content>
       </ScrollPane>
@@ -111,12 +123,12 @@
             <URL value="@CSS/search-button.css" />
             <URL value="@Event.css" />
          </stylesheets></Button>
-      <ImageView fitHeight="43.0" fitWidth="41.0" layoutX="966.0" layoutY="7.0" opacity="0.71">
+      <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="966.0" layoutY="7.0" opacity="0.71">
          <image>
             <Image url="@Images/marketPlace.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="73.0" fitWidth="80.0" layoutX="641.0" layoutY="67.0" opacity="0.71">
+      <ImageView fitHeight="90.0" fitWidth="108.0" layoutX="619.0" layoutY="63.0" opacity="0.71">
          <image>
             <Image url="@Images/marketPlace.png" />
          </image>
@@ -127,14 +139,18 @@
             <TextField fx:id="searchField" maxHeight="100.0" maxWidth="400.0" prefColumnCount="20" prefHeight="53.0" prefWidth="384.0" promptText="Rechercher" styleClass="transparent" stylesheets="@Event.css" />
          </children>
       </HBox>
-      <Hyperlink layoutX="83.0" layoutY="402.0" onAction="#groupe" text="Groupes" textFill="#070000" wrapText="true" />
-      <Hyperlink layoutX="88.0" layoutY="455.0" onAction="#message" text="Messages" textFill="#070000" wrapText="true" />
-      <Hyperlink layoutX="89.0" layoutY="559.0" onAction="#event" text="Evènements" textFill="#070000" />
-      <Hyperlink layoutX="72.0" layoutY="280.0" text="Nom" textFill="#000000fb">
+      <Hyperlink layoutX="83.0" layoutY="402.0" onAction="#groupe" text="Groupes" textFill="#070000" wrapText="true">
          <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Hyperlink>
+            <Font size="16.0" />
+         </font></Hyperlink>
+      <Hyperlink layoutX="82.0" layoutY="455.0" onAction="#message" text="Messages" textFill="#070000" wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font></Hyperlink>
+      <Hyperlink layoutX="79.0" layoutY="574.0" onAction="#event" text="Evènements" textFill="#070000">
+         <font>
+            <Font size="16.0" />
+         </font></Hyperlink>
       <Button cacheShape="false" centerShape="false" focusTraversable="false" layoutX="19.0" layoutY="626.0" mnemonicParsing="true" prefHeight="29.0" prefWidth="189.0" scaleShape="false" stylesheets="@Event.css" text="Créer">
          <effect>
             <Blend />
@@ -147,36 +163,37 @@
             <String fx:value="search-button" />
          </styleClass>
       </Button>
-      <Hyperlink layoutX="83.0" layoutY="350.0" onAction="#home" text="Fil d'actualité" textFill="#070000" wrapText="true" />
-      <Hyperlink fx:id="linkMarket" layoutX="86.0" layoutY="503.0" onAction="#marketPlace" text="Marketplace" textFill="#070000" />
-      <Button layoutX="759.0" layoutY="8.0" maxWidth="589.0" minHeight="31.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="141.0" styleClass="search-button" stylesheets="@Event.css" text="Rechercher" textFill="WHITE" />
-      <Hyperlink layoutX="1230.0" layoutY="44.0" text="Déconnexion" textFill="#0f0bfb" />
-      <ImageView fitHeight="200.0" fitWidth="212.0" layoutX="-5.0" layoutY="-13.0">
+      <Hyperlink layoutX="80.0" layoutY="351.0" onAction="#home" text="Fil d'actualité" textFill="#070000" wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font></Hyperlink>
+      <Hyperlink fx:id="linkMarket" layoutX="78.0" layoutY="514.0" onAction="#marketPlace" text="Marketplace" textFill="#070000">
+         <font>
+            <Font size="16.0" />
+         </font></Hyperlink>
+      <Button layoutX="759.0" layoutY="8.0" maxWidth="589.0" minHeight="31.0" mnemonicParsing="false" onAction="#rechercher" prefHeight="45.0" prefWidth="141.0" styleClass="search-button" stylesheets="@Event.css" text="Rechercher" textFill="WHITE" />
+      <Hyperlink layoutX="1230.0" layoutY="44.0" onAction="#logout" text="Déconnexion" textFill="#0f0bfb" />
+      <ImageView fitHeight="200.0" fitWidth="235.0" layoutX="-4.0" layoutY="-17.0">
          <image>
             <Image url="@Image/hive__2_-removebg-preview.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="94.0" fitWidth="95.0" layoutX="53.0" layoutY="169.0">
-         <image>
-            <Image url="@Image/event.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="23.0" fitWidth="26.0" layoutX="52.0" layoutY="344.0">
+      <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="38.0" layoutY="354.0">
          <image>
             <Image url="@Image/home.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="45.0" layoutY="395.0">
+      <ImageView fitHeight="36.0" fitWidth="41.0" layoutX="34.0" layoutY="402.0">
          <image>
             <Image url="@Image/grp.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="23.0" fitWidth="26.0" layoutX="53.0" layoutY="455.0">
+      <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="38.0" layoutY="457.0">
          <image>
             <Image url="@Image/message-icon-2043x2048-z7d1f8at.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="23.0" fitWidth="26.0" layoutX="54.0" layoutY="502.0">
+      <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="37.0" layoutY="515.0">
          <image>
             <Image url="@Image/marketplace.png" />
          </image>
@@ -196,10 +213,20 @@
             <Image url="@Image/services-parametres-et-icone-d-engrenage-bleue.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="56.0" layoutY="554.0">
+      <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="38.0" layoutY="577.0">
          <image>
             <Image url="@Image/839888.png" />
          </image>
       </ImageView>
+      <VBox layoutX="34.0" layoutY="133.0" prefHeight="188.0" prefWidth="160.0">
+         <children>
+            <ImageView fx:id="image2" fitHeight="149.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" />
+            <Hyperlink fx:id="name2" alignment="CENTER" onAction="#profil" prefHeight="51.0" prefWidth="160.0" text="Nom" textAlignment="CENTER" textFill="#000000fb">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

@@ -11,11 +11,11 @@
 
 <AnchorPane prefHeight="215.0" prefWidth="721.0" styleClass="Event-view" stylesheets="@Event.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.ProduitList">
    <children>
-      <HBox layoutX="36.0" layoutY="22.0" prefHeight="171.0" prefWidth="631.0">
+      <HBox layoutX="17.0" layoutY="19.0" prefHeight="174.0" prefWidth="678.0">
          <children>
-            <ImageView fx:id="produitImage" fitHeight="171.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="produitImage" fitHeight="171.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" />
             <Region prefHeight="155.0" prefWidth="21.0" />
-            <VBox prefHeight="155.0" prefWidth="244.0">
+            <VBox prefHeight="171.0" prefWidth="258.0">
                <children>
                   <Label fx:id="timePublication" contentDisplay="CENTER" prefHeight="17.0" prefWidth="497.0" text="Time" textAlignment="CENTER" textFill="#9a8383" />
                   <Label fx:id="produitNom" prefHeight="17.0" prefWidth="496.0" text="Nom" textFill="#2b21bc">
@@ -40,9 +40,9 @@
                   </Label>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#supprimerProduit" prefHeight="32.0" prefWidth="96.0" stylesheets="@CSS/button.css" text="Supprimer " />
-            <Region prefHeight="155.0" prefWidth="12.0" />
-            <Button mnemonicParsing="false" onAction="#modifierProduit" prefHeight="31.0" prefWidth="96.0" stylesheets="@CSS/button.css" text="Modifier " />
+            <Button mnemonicParsing="false" onAction="#supprimerProduit" prefHeight="32.0" prefWidth="96.0" styleClass="search-button" stylesheets="@Event.css" text="Supprimer " />
+            <Region prefHeight="171.0" prefWidth="6.0" />
+            <Button mnemonicParsing="false" onAction="#modifierProduit" prefHeight="31.0" prefWidth="96.0" styleClass="search-button" stylesheets="@Event.css" text="Modifier " />
          </children>
       </HBox>
    </children>

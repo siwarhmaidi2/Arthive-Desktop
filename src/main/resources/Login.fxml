@@ -34,12 +34,12 @@
                   <Font size="20.0" />
                </font></Label>
             <TextField fx:id="email" layoutX="27.0" layoutY="126.0" prefHeight="25.0" prefWidth="287.0" stylesheets="@CSS/SignupPage.css" />
-            <Label layoutX="33.0" layoutY="172.0" prefHeight="40.0" prefWidth="132.0" text="Password">
+            <Label layoutX="33.0" layoutY="172.0" prefHeight="40.0" prefWidth="132.0" text="Mot de pass">
                <font>
                   <Font size="20.0" />
                </font></Label>
             <PasswordField fx:id="password" layoutX="31.0" layoutY="223.0" prefHeight="25.0" prefWidth="277.0" stylesheets="@CSS/SignupPage.css" />
-            <Button fx:id="submitbtn" layoutX="85.0" layoutY="298.0" mnemonicParsing="false" onAction="#submit" prefHeight="25.0" prefWidth="166.0" style="-fx-background-radius: 10px; -fx-border-color: transparent;" stylesheets="@CSS/button.css" text="Login">
+            <Button fx:id="submitbtn" layoutX="85.0" layoutY="298.0" mnemonicParsing="false" onAction="#submit" prefHeight="25.0" prefWidth="166.0" style="-fx-background-radius: 10px; -fx-border-color: transparent;" stylesheets="@CSS/button.css" text="Se Connecter">
                <font>
                   <Font size="13.0" />
                </font></Button>
@@ -50,12 +50,12 @@
                         <Image url="@Image/hive__2_-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <Text fill="WHITE" layoutX="11.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register with your personal details to use all of site features" textAlignment="CENTER" wrappingWidth="350.9999999999999">
+                  <Text fill="WHITE" layoutX="11.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enregistrez-vous avec vos données personnelles pour utiliser toutes les fonctionnalités du site." textAlignment="CENTER" wrappingWidth="350.9999999999999">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
-                  <Button layoutX="120.0" layoutY="272.0" mnemonicParsing="false" onAction="#handleHyperlinkAction" prefHeight="25.0" prefWidth="166.0" style="-fx-background-radius: 10px; -fx-border-radius: 10; -fx-border-color: white; -fx-background-color: transparent;" stylesheets="@CSS/button.css" text="Sign Up">
+                  <Button layoutX="120.0" layoutY="272.0" mnemonicParsing="false" onAction="#handleHyperlinkAction" prefHeight="25.0" prefWidth="166.0" style="-fx-background-radius: 10px; -fx-border-radius: 10; -fx-border-color: white; -fx-background-color: transparent;" stylesheets="@CSS/button.css" text="S'inscrire">
                      <font>
                         <Font size="13.0" />
                      </font>

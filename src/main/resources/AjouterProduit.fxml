@@ -15,9 +15,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="517.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.AjouterProduit">
+<AnchorPane prefHeight="517.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.AjouterProduit">
    <children>
-      <ImageView fx:id="imageview" fitHeight="194.0" fitWidth="233.0" layoutX="65.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageview" fitHeight="186.0" fitWidth="233.0" layoutX="73.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="add" layoutX="203.0" layoutY="454.0" mnemonicParsing="false" onAction="#AjouterProduit" prefHeight="40.0" prefWidth="133.0" stylesheets="@CSS/button.css" text="Ajouter Produit" AnchorPane.leftAnchor="203.0" AnchorPane.rightAnchor="376.0">
          <effect>
             <Blend>
@@ -31,17 +31,17 @@
          </font></Button>
       <TextField fx:id="addname" layoutX="428.0" layoutY="97.0" opacity="0.76" prefHeight="31.0" prefWidth="196.0" promptText="Écrivez le nom de l'art" />
       <Spinner fx:id="priceSpinner" editable="true" layoutX="428.0" layoutY="161.0" opacity="0.79" prefHeight="31.0" prefWidth="196.0" />
-      <TextArea fx:id="description" layoutX="142.0" layoutY="306.0" prefHeight="65.0" prefWidth="512.0" promptText="Écrivez une description" />
+      <TextArea fx:id="description" layoutX="142.0" layoutY="314.0" prefHeight="65.0" prefWidth="512.0" promptText="Écrivez une description" />
       <Spinner fx:id="stockSpinner" disable="true" editable="true" layoutX="427.0" layoutY="260.0" prefHeight="31.0" prefWidth="196.0" />
-      <AnchorPane prefHeight="58.0" prefWidth="712.0">
+      <AnchorPane prefHeight="47.0" prefWidth="712.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="51.0" layoutX="-2.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="714.0" />
-            <Label fx:id="userName" layoutX="535.0" layoutY="13.0" prefHeight="20.0" prefWidth="140.0" text="chams ben said " textFill="WHITE">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="51.0" layoutX="-2.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="721.0" />
+            <Label fx:id="name2" layoutX="524.0" layoutY="13.0" prefHeight="27.0" prefWidth="133.0" text="chams ben said " textFill="WHITE">
                <font>
                   <Font name="System Italic" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="708.0" text="Ajouter un produit " textAlignment="CENTER" textFill="#030dbd">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="714.0" text="Ajouter un produit " textAlignment="CENTER" textFill="#030dbd">
                <font>
                   <Font name="System Italic" size="27.0" />
                </font>
@@ -49,7 +49,7 @@
                   <Glow level="0.17" />
                </effect>
             </Label>
-            <ImageView fx:id="avatar" fitHeight="39.0" fitWidth="52.0" layoutX="656.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="image2" fitHeight="39.0" fitWidth="52.0" layoutX="656.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/avatar.png" />
                </image>
@@ -85,7 +85,7 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </CheckBox>
-      <ComboBox fx:id="category" layoutX="142.0" layoutY="382.0" prefHeight="47.0" prefWidth="163.0" promptText="Choisir catégorie" styleClass="Event-view" stylesheets="@Event.css" />
+      <ComboBox fx:id="category" layoutX="142.0" layoutY="390.0" prefHeight="47.0" prefWidth="163.0" promptText="Choisir catégorie" styleClass="Event-view" stylesheets="@Event.css" />
       <Label fx:id="nameErrorLabel" layoutX="428.0" layoutY="74.0" prefHeight="17.0" prefWidth="196.0" textFill="#ada7b9" />
       <Label fx:id="descriptionErrorLabel" layoutX="142.0" layoutY="283.0" prefHeight="17.0" prefWidth="512.0" textFill="#ada7b9" />
       <Label layoutX="428.0" layoutY="135.0" prefHeight="20.0" prefWidth="196.0" text="Saisissez uniquement des chiffres" textFill="#ada7b9" />
@@ -105,17 +105,17 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="56.0" layoutY="313.0" prefHeight="19.0" prefWidth="80.0" text="Description" textFill="#2e157f">
+      <Label layoutX="56.0" layoutY="321.0" prefHeight="19.0" prefWidth="80.0" text="Description" textFill="#2e157f">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="395.0" prefHeight="19.0" prefWidth="68.0" text="Catégorie" textFill="#2e157f">
+      <Label layoutX="58.0" layoutY="403.0" prefHeight="19.0" prefWidth="68.0" text="Catégorie" textFill="#2e157f">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="deleteArt" layoutX="132.0" layoutY="254.0" mnemonicParsing="false" onAction="#deleteArt" onMouseClicked="#uploadArt" prefHeight="48.0" prefWidth="98.0" styleClass="Event-view" stylesheets="@Event.css" text="Supprimer" textFill="#3300ff">
+      <Button fx:id="deleteArt" layoutX="143.0" layoutY="251.0" mnemonicParsing="false" onAction="#deleteArt" onMouseClicked="#uploadArt" prefHeight="47.0" prefWidth="97.0" styleClass="Event-view" stylesheets="@Event.css" text="Supprimer" textFill="#3300ff">
          <effect>
             <Blend>
                <topInput>

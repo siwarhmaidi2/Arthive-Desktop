@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="417.0" prefWidth="281.0" styleClass="Event-view" stylesheets="@../Event.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.ProduitAdmin">
+   <children>
+      <VBox alignment="CENTER" layoutX="19.0" layoutY="18.0" prefHeight="377.0" prefWidth="198.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="204.0" prefWidth="245.0">
+               <children>
+                  <ImageView fx:id="produitImage" fitHeight="204.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="65.0" prefWidth="265.0">
+               <children>
+                  <ImageView fx:id="image2" fitHeight="38.0" fitWidth="42.0">
+                     <image>
+                        <Image url="@../Image/avatar.png" />
+                     </image>
+                  </ImageView>
+                  <Region prefHeight="65.0" prefWidth="24.0" />
+                  <VBox prefHeight="65.0" prefWidth="184.0">
+                     <children>
+                        <Label fx:id="name2" prefHeight="35.0" prefWidth="147.0" text="Chams Ben Said " textFill="#73b8bc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="publicationTime" prefHeight="6.0" prefWidth="190.0" text="26-07-2023" textAlignment="CENTER" textFill="#c3b6b6">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Label fx:id="ismproduit" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="252.0" text="Nom" textFill="#2211da">
+               <font>
+                  <Font name="System Italic" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="prixProduit" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="259.0" text="Prix : 1000.50$">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="stockProduit" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="255.0" text="10 en Stock " textFill="#9e3a87">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <MenuButton fx:id="menu" layoutX="241.0" layoutY="7.0" mnemonicParsing="false" styleClass="search-box" stylesheets="@../Event.css">
+        <items>
+           <MenuItem fx:id="modifierMenuItem" mnemonicParsing="false" text="Modifier" onAction="#modifierProduit"/>
+           <MenuItem fx:id="supprimerMenuItem" mnemonicParsing="false" text="Supprimer" onAction="#supprimerProduit"/>
+        </items>
+      </MenuButton>
+   </children>
+</AnchorPane>

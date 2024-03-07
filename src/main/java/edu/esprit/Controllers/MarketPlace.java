@@ -7,6 +7,7 @@ import edu.esprit.entities.User;
 import edu.esprit.entities.UserData;
 import edu.esprit.enums.TypeCategorie;
 import edu.esprit.services.ServiceProduit;
+import edu.esprit.tests.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,6 +30,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class MarketPlace implements Initializable {
+
+    @FXML
+    private Hyperlink name2;
+
+    @FXML
+    private ImageView image2;
+
     @FXML
     private GridPane produitGrid;
 
@@ -47,7 +56,7 @@ public class MarketPlace implements Initializable {
     private Label messageLabel;
 
     @FXML
-    private AnchorPane messageBox;
+    private VBox messageBox;
     @FXML
     private ComboBox<TypeCategorie> categorie;
 
@@ -127,6 +136,23 @@ public class MarketPlace implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         User loggedInUser = UserData.getInstance().getLoggedInUser();
+
+        if (loggedInUser != null) {
+            // Step 3: User is authenticated, proceed to retrieve photo
+            String userPhotoUrl = loggedInUser.getPhoto();
+            // Step 4: Check if the user has a valid photo URL
+            if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
+                // Step 5: Load and display the user's photo
+                Image userPhoto = new Image(userPhotoUrl);
+                this.image2.setImage(userPhoto);
+            } else {
+                // Step 6: User does not have a valid photo URL
+                System.out.println("User does not have a valid photo URL.");
+                // Consider using a default photo or displaying a placeholder image
+            }//
+            name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
+        }
+
         produitsList = new ArrayList<>();
         afficherProduits();
         updatePanierButton();
@@ -192,6 +218,9 @@ public class MarketPlace implements Initializable {
                 produitController.setPrixProduit("Prix :" + produit.getPrix_produit() + "$");
                 produitController.setStockProduit(produit.getStock_produit() + " en Stock");
                 produitController.setDescriptionProduit(produit.getDescription_produit());
+                Image userImage = new Image(produit.getUser().getPhoto());
+                produitController.setAvatarImage(userImage);
+
 
                 produitController.setProduitId(produit.getId_produit());
 
@@ -334,14 +363,17 @@ public class MarketPlace implements Initializable {
         List<Produit> filteredProducts = filterProducts(searchTerm);
         if (filteredProducts.isEmpty()) {
 
-            messageImage.setImage(new Image("/image/ay.png"));
-            messageLabel.setText("Aucun événement trouvé pour le terme de recherche : " + searchTerm);
-            messageBox.setVisible(true);
             produitGrid.getChildren().clear();
-        } else {
+            messageImage.setImage(new Image("/Image/ay.png"));
+            messageLabel.setText("Aucun événement trouvé pour le terme de recherche : " + searchTerm);
+            if (messageBox != null) {
+                messageBox.setVisible(true);
+            }
 
+        } else {
             updateProductView(filteredProducts);
             messageBox.setVisible(false);
+
         }
     }
 
@@ -354,7 +386,6 @@ public class MarketPlace implements Initializable {
     private boolean productMatchesSearchTerm(Produit produit, String searchTerm) {
         // Modify this method based on how you want to perform the search
         return produit.getNom_produit().toLowerCase().contains(searchTerm)
-                || produit.getDescription_produit().toLowerCase().contains(searchTerm)
                 || produit.getCateg_produit().toString().toLowerCase().contains(searchTerm);
     }
 
@@ -532,6 +563,35 @@ public class MarketPlace implements Initializable {
         }
         btnPanier.setStyle(PanierState.getInstance().getButtonColor());
     }
+
+    @FXML
+    public void profil(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profile.fxml"));
+            Parent root = loader.load();
+            ProfileController profileController = loader.getController();
+
+            // Définir le contrôleur MarketPlace dans la fenêtre du profil
+            profileController.setMarketPlaceController(marketPlaceController);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Profil");
+            stage.show();
+
+            // Fermer la fenêtre actuelle (MarketPlace)
+            Stage marketPlaceStage = (Stage) name2.getScene().getWindow();
+            marketPlaceStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void logout(ActionEvent event) throws IOException {
+        UserData.getInstance().setLoggedInUser(null);
+        Main.changeScene("/Login.fxml");
+    }
+
+
 
 }
 

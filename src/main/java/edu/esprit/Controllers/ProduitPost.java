@@ -1,5 +1,7 @@
 package edu.esprit.Controllers;
 
+import edu.esprit.entities.User;
+import edu.esprit.entities.UserData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +28,7 @@ public class ProduitPost extends AnchorPane {
     private ImageView produitImage;
 
     @FXML
-    private ImageView avatarImage;
+    private ImageView image2;
 
     @FXML
     private Label ismproduit;
@@ -41,7 +43,7 @@ public class ProduitPost extends AnchorPane {
     private Label stockProduit;
 
     @FXML
-    private Label nomUser;
+    private Label name2;
 
     @FXML
     private Button acheterButton;
@@ -102,11 +104,11 @@ public class ProduitPost extends AnchorPane {
     }
 
     public ImageView getAvatarImage() {
-        return avatarImage;
+        return image2;
     }
 
     public void setAvatarImage(Image image) {
-        avatarImage.setImage(image);
+        image2.setImage(image);
     }
 
     public Label getIsmproduit() {
@@ -142,11 +144,11 @@ public class ProduitPost extends AnchorPane {
     }
 
     public Label getNomUser() {
-        return nomUser;
+        return name2;
     }
 
     public void setNomUser(String nom) {
-        nomUser.setText(nom);
+        name2.setText(nom);
     }
 
     @Override
@@ -168,7 +170,7 @@ public class ProduitPost extends AnchorPane {
             controller.setMarketPlaceController(marketPlaceController);
 
 
-            controller.initData(produitImage.getImage(), nomUser.getText(), publicationTime.getText(), ismproduit.getText(), prixProduit.getText(), stockProduit.getText(), descriptionProduit , produitId);
+            controller.initData(produitImage.getImage(), name2.getText(), publicationTime.getText(), ismproduit.getText(), prixProduit.getText(), stockProduit.getText(), descriptionProduit , produitId);
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
@@ -182,6 +184,7 @@ public class ProduitPost extends AnchorPane {
     }
 
     public void initialize() {
+
         // Création d'un Tooltip avec la description du produit
         Tooltip tooltip = new Tooltip(descriptionProduit);
         // Définition du délai d'affichage du Tooltip en millisecondes

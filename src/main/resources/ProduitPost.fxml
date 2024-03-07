@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="produitPostAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="334.0" styleClass="Event-view" stylesheets="@Event.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.ProduitPost">
    <children>
-      <VBox alignment="CENTER" layoutX="13.0" layoutY="20.0" prefHeight="385.0" prefWidth="309.0">
+      <VBox alignment="CENTER" layoutX="4.0" layoutY="10.0" prefHeight="410.0" prefWidth="326.0">
          <children>
             <HBox alignment="CENTER" prefHeight="195.0" prefWidth="310.0">
                <children>
@@ -20,14 +20,14 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="48.0" prefWidth="272.0">
                <children>
-                  <ImageView fx:id="avatarImage" fitHeight="47.0" fitWidth="56.0">
+                  <ImageView fx:id="image2" fitHeight="38.0" fitWidth="42.0">
                      <image>
-                        <Image url="@image/avatar.png" />
+                        <Image url="@Image/avatar.png" />
                      </image>
                   </ImageView>
                   <VBox prefHeight="67.0" prefWidth="215.0">
                      <children>
-                        <Label fx:id="nomUser" prefHeight="22.0" prefWidth="191.0" text="Chams Ben Said " textFill="#73b8bc">
+                        <Label fx:id="name2" prefHeight="22.0" prefWidth="191.0" text="Chams Ben Said " textFill="#73b8bc">
                            <font>
                               <Font size="16.0" />
                            </font>

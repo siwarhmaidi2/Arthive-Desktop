@@ -44,7 +44,7 @@
          </font>
       </Label>
       <Spinner fx:id="stockSpinnerMod" editable="true" layoutX="425.0" layoutY="255.0" prefHeight="27.0" prefWidth="196.0" />
-      <Label fx:id="userNameLabel" layoutX="524.0" layoutY="11.0" prefHeight="27.0" prefWidth="137.0" text="chams ben said " textFill="WHITE">
+      <Label fx:id="name2" layoutX="519.0" layoutY="11.0" prefHeight="27.0" prefWidth="136.0" text="chams ben said " textFill="WHITE">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
@@ -87,7 +87,7 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="imag" alignment="CENTER" layoutY="-6.0" prefHeight="60.0" prefWidth="711.0" text="Modifier produit " textFill="#030dbd">
+      <Label fx:id="imag" alignment="CENTER" layoutY="-6.0" prefHeight="51.0" prefWidth="711.0" text="Modifier produit " textFill="#030dbd">
          <font>
             <Font name="Arial Nova Light Italic" size="31.0" />
          </font>
@@ -95,9 +95,9 @@
             <Glow level="0.22" />
          </effect>
       </Label>
-      <ImageView fx:id="avatar" fitHeight="43.0" fitWidth="49.0" layoutX="650.0" layoutY="5.0">
+      <ImageView fx:id="image2" fitHeight="40.0" fitWidth="45.0" layoutX="654.0" layoutY="4.0">
          <image>
-            <Image url="@image/avatar.png" />
+            <Image url="@Image/avatar.png" />
          </image>
       </ImageView>
    </children>

@@ -370,9 +370,12 @@ public class AfficherEvent implements Initializable {
 
             int userId = loggedInUser.getId_user();
             vosEvenementsController.initData(userId);
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+
+           Stage stage = new Stage();
+         stage.setScene(new Scene(root));
+           stage.show();
+            Stage homeStage = (Stage) vosEvenementsButton.getScene().getWindow();
+            homeStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

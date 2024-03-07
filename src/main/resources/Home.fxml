@@ -107,7 +107,7 @@
             <Image url="@Image/marketplace.png" />
          </image>
       </ImageView>
-      <Hyperlink layoutX="84.0" layoutY="545.0" text="Marketplace" textFill="#070000" />
+      <Hyperlink layoutX="84.0" layoutY="545.0" text="Marketplace" textFill="#070000"  fx:id="marketplace" onAction="#switchtomarketplace"/>
       <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="1238.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/logout.png" />

@@ -180,6 +180,29 @@ private Hyperlink nom;
         }
     }
 
+    // switch to market
+
+    @FXML
+    void switchtomarketplace(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MarketPlace.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("MarketPlace");
+            stage.show();
+
+            // Close the current window (Home)
+            Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            homeStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     @FXML
     void switchToEvent(ActionEvent event) {
         try {
