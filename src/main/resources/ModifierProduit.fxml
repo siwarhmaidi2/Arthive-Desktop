@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="507.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.ModifierProduit">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="51.0" layoutX="-1.0" layoutY="-4.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="711.0" />
+      <ImageView fx:id="imageMod" fitHeight="213.0" fitWidth="270.0" layoutX="57.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="227.0" layoutY="441.0" mnemonicParsing="false" onAction="#enregistrer" prefHeight="40.0" prefWidth="124.0" stylesheets="@CSS/button.css" text="Enregistrer ">
+         <effect>
+            <Blend>
+               <topInput>
+                  <Glow />
+               </topInput>
+            </Blend>
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="nomModifier" layoutX="422.0" layoutY="80.0" opacity="0.76" prefHeight="27.0" prefWidth="196.0" />
+      <Label layoutX="363.0" layoutY="92.0" prefHeight="17.0" prefWidth="52.0" text="Nom" textFill="#2e157f">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="descripModifier" layoutX="139.0" layoutY="303.0" prefHeight="60.0" prefWidth="512.0" />
+      <Label layoutX="52.0" layoutY="387.0" prefHeight="19.0" prefWidth="68.0" text="Catégorie" textFill="#2e157f">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Spinner fx:id="stockSpinnerMod" editable="true" layoutX="425.0" layoutY="255.0" prefHeight="27.0" prefWidth="196.0" />
+      <Label fx:id="userNameLabel" layoutX="524.0" layoutY="11.0" prefHeight="27.0" prefWidth="137.0" text="chams ben said " textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="383.0" layoutY="440.0" mnemonicParsing="false" onAction="#annulerMod" prefHeight="40.0" prefWidth="124.0" stylesheets="@CSS/button.css" text="Annuler ">
+         <effect>
+            <Blend>
+               <topInput>
+                  <Glow />
+               </topInput>
+            </Blend>
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <CheckBox fx:id="dispoModifier" alignment="TOP_RIGHT" contentDisplay="BOTTOM" layoutX="357.0" layoutY="202.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#checkdispo" prefHeight="20.0" prefWidth="124.0" text="Disponibilité" textFill="#2e157f">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </CheckBox>
+      <ComboBox fx:id="categoryModifier" layoutX="139.0" layoutY="372.0" prefHeight="51.0" prefWidth="165.0" promptText="Choisir catégorie" styleClass="Event-view" stylesheets="@Event.css" />
+      <Label fx:id="nameErrorLabel" layoutX="425.0" layoutY="56.0" prefHeight="17.0" prefWidth="196.0" textFill="#ada7b9" />
+      <Label fx:id="descriptionErrorLabel" layoutX="139.0" layoutY="279.0" prefHeight="17.0" prefWidth="512.0" textFill="#ada7b9" />
+      <Label layoutX="425.0" layoutY="121.0" prefHeight="20.0" prefWidth="196.0" text="Saisissez uniquement des chiffres" textFill="#ada7b9" />
+      <Label fx:id="stockErrorLabel" layoutX="426.0" layoutY="227.0" prefHeight="20.0" prefWidth="196.0" textAlignment="CENTER" textFill="#ada7b9" />
+      <Spinner fx:id="priceSpinnerMod" editable="true" layoutX="425.0" layoutY="149.0" prefHeight="27.0" prefWidth="196.0" />
+      <Label layoutX="361.0" layoutY="154.0" prefHeight="17.0" prefWidth="52.0" text="Prix $" textFill="#2e157f">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="363.0" layoutY="260.0" prefHeight="17.0" prefWidth="52.0" text="Stock" textFill="#2e157f">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="315.0" prefHeight="19.0" prefWidth="80.0" text="Description" textFill="#2e157f">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="imag" alignment="CENTER" layoutY="-6.0" prefHeight="60.0" prefWidth="711.0" text="Modifier produit " textFill="#030dbd">
+         <font>
+            <Font name="Arial Nova Light Italic" size="31.0" />
+         </font>
+         <effect>
+            <Glow level="0.22" />
+         </effect>
+      </Label>
+      <ImageView fx:id="avatar" fitHeight="43.0" fitWidth="49.0" layoutX="650.0" layoutY="5.0">
+         <image>
+            <Image url="@image/avatar.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

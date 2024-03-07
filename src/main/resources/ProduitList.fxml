@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="215.0" prefWidth="721.0" styleClass="Event-view" stylesheets="@Event.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.ProduitList">
+   <children>
+      <HBox layoutX="36.0" layoutY="22.0" prefHeight="171.0" prefWidth="631.0">
+         <children>
+            <ImageView fx:id="produitImage" fitHeight="171.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" />
+            <Region prefHeight="155.0" prefWidth="21.0" />
+            <VBox prefHeight="155.0" prefWidth="244.0">
+               <children>
+                  <Label fx:id="timePublication" contentDisplay="CENTER" prefHeight="17.0" prefWidth="497.0" text="Time" textAlignment="CENTER" textFill="#9a8383" />
+                  <Label fx:id="produitNom" prefHeight="17.0" prefWidth="496.0" text="Nom" textFill="#2b21bc">
+                     <font>
+                        <Font name="System Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="descriptionProduit" prefHeight="42.0" prefWidth="297.0" text="Description ">
+                     <font>
+                        <Font name="System Italic" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="prixProduit" prefHeight="36.0" prefWidth="297.0" text="Prix : ">
+                     <font>
+                        <Font name="System Italic" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="stockProduit" prefHeight="34.0" prefWidth="297.0" text="Stock : ">
+                     <font>
+                        <Font name="System Italic" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Button mnemonicParsing="false" onAction="#supprimerProduit" prefHeight="32.0" prefWidth="96.0" stylesheets="@CSS/button.css" text="Supprimer " />
+            <Region prefHeight="155.0" prefWidth="12.0" />
+            <Button mnemonicParsing="false" onAction="#modifierProduit" prefHeight="31.0" prefWidth="96.0" stylesheets="@CSS/button.css" text="Modifier " />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

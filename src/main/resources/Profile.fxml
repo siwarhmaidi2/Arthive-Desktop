@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
@@ -68,7 +69,7 @@
                 <Image url="@Image/add-50.png" />
             </image>
         </ImageView>
-        <Hyperlink fx:id="home" layoutX="88.0" layoutY="392.0" text="Fil d'actualité" textFill="#070000" wrapText="true" onAction="#SwitchToHomePage"/>
+        <Hyperlink fx:id="home" layoutX="88.0" layoutY="392.0" onAction="#SwitchToHomePage" text="Fil d'actualité" textFill="#070000" wrapText="true" />
         <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="32.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Image/home.png" />
@@ -79,7 +80,7 @@
                 <Image url="@Image/marketplace.png" />
             </image>
         </ImageView>
-        <Hyperlink layoutX="83.0" layoutY="545.0" text="Marketplace" textFill="#070000" />
+        <Hyperlink fx:id="linkMarket" layoutX="83.0" layoutY="545.0" onAction="#marketPlace" text="Marketplace" textFill="#070000" />
         <Hyperlink fx:id="logoutBtn" layoutX="1127.0" layoutY="22.0" onAction="#logout" prefHeight="41.0" prefWidth="114.0" text="Déconnexion" textFill="#0f0bfb" AnchorPane.topAnchor="22.0">
          <graphic>
               <ImageView fitHeight="32.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
@@ -88,11 +89,6 @@
                   </image>
               </ImageView>
          </graphic></Hyperlink>
-        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="1000.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Image/panier.png" />
-            </image>
-        </ImageView>
         <ImageView fitHeight="41.0" fitWidth="52.0" layoutX="1067.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Image/services-parametres-et-icone-d-engrenage-bleue.png" />
@@ -170,5 +166,12 @@
             </Text>
             </children>
         </Pane>
+      <Button fx:id="btnPanier" layoutX="864.0" layoutY="28.0" mnemonicParsing="false" onAction="#afficherPanier" opacity="0.65" prefHeight="33.0" prefWidth="70.0" styleClass="search-button" stylesheets="@Event.css" textFill="#356fa4" />
+      <ImageView fitHeight="43.0" fitWidth="41.0" layoutX="873.0" layoutY="27.0" opacity="0.71">
+         <image>
+            <Image url="@Images/marketPlace.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="incrementer" layoutX="906.0" layoutY="33.0" prefHeight="24.0" prefWidth="24.0" text="( 0 )" textFill="WHITE" />
     </children>
 </AnchorPane>

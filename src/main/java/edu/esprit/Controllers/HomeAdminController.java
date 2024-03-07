@@ -8,6 +8,9 @@ import edu.esprit.services.ServiceUser;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -22,6 +25,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 public class HomeAdminController implements Initializable {
 
+    @FXML
+    private Button buttonPublication;
     @FXML
     private GridPane postGrid;
 
@@ -38,19 +43,13 @@ public class HomeAdminController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loggedInUser = UserData.getInstance().getLoggedInUser();
 
-        if (loggedInUser != null) {
-            posts = new ArrayList<>(data(loggedInUser));
+            posts = new ArrayList<>(data());
             refreshContent();
-        } else {
-            // Handle the case when loggedInUser is null
-            System.out.println("Error: loggedInUser is null");
-            // You might want to show an error message to the user or redirect to the login screen.
-        }
+
     }
 
     public void refreshContent() {
-        posts = new ArrayList<>(data(loggedInUser));
-        posts.sort(Comparator.comparing(Publication::getD_creation_publication).reversed());
+        posts = new ArrayList<>(data());
 
         refreshGrid();
 
@@ -82,7 +81,17 @@ public class HomeAdminController implements Initializable {
         }
     }
 
-    private List<Publication> data(User user) {
-        return new ArrayList<>(servicePublication.getAllPublicationsByIdUser(user.getId_user()));
+    private List<Publication> data() {
+        return new ArrayList<>(servicePublication.getAll());
     }
+
+
+    //SwitchToFetchAllPublications
+    public void switchToFetchAllPublications() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminResources/HomeAdmin.fxml"));
+        Parent root = loader.load();
+        HomeAdminController controller = loader.getController();
+        buttonPublication.getScene().setRoot(root);
+    }
+
 }

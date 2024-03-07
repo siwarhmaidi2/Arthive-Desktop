@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.AfficherProduit">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="57.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="744.0" />
+      <ImageView fx:id="avatar" fitHeight="43.0" fitWidth="49.0" layoutX="686.0" layoutY="7.0">
+         <image>
+            <Image url="@Image/avatar.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="add" layoutX="195.0" layoutY="505.0" mnemonicParsing="false" onAction="#ajoutProd" prefHeight="40.0" prefWidth="178.0" stylesheets="@CSS/button.css" text="Ajouter un autre Produit">
+         <effect>
+            <Blend>
+               <topInput>
+                  <Glow />
+               </topInput>
+            </Blend>
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="annule" layoutX="410.0" layoutY="505.0" mnemonicParsing="false" onAction="#annuler" prefHeight="40.0" prefWidth="178.0" stylesheets="@CSS/button.css" text="Annuler ">
+         <effect>
+            <Blend>
+               <topInput>
+                  <Glow />
+               </topInput>
+            </Blend>
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="imag" alignment="CENTER" layoutY="8.0" prefHeight="40.0" prefWidth="744.0" text="Votre liste de produit " textFill="#030dbd">
+         <font>
+            <Font name="Arial Nova Light Italic" size="31.0" />
+         </font>
+         <effect>
+            <Glow level="0.39" />
+         </effect>
+      </Label>
+      <TextField layoutX="217.0" layoutY="72.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="313.0" promptText="Rechercher sur votre liste Porduit " styleClass="text-field" stylesheets="@CSS/search-button.css">
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
+      </TextField>
+      <Button layoutX="445.0" layoutY="75.0" mnemonicParsing="false" opacity="0.65" prefHeight="33.0" prefWidth="80.0" styleClass="search-button" stylesheets="@CSS/search-button.css" text="Rechercher" textFill="#6362a8">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <ScrollPane layoutX="24.0" layoutY="137.0" prefHeight="345.0" prefWidth="702.0">
+         <content>
+            <GridPane fx:id="gridList" vgap="10">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <Label fx:id="userNameLabel" layoutX="561.0" layoutY="15.0" prefHeight="20.0" prefWidth="140.0" text="chams ben said " textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

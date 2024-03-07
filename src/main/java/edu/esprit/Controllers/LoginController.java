@@ -6,6 +6,7 @@ import edu.esprit.tests.MainFx;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
@@ -36,7 +37,7 @@ public class LoginController {
     private void checkLogin() throws IOException {
         loggedInUser = su.authenticateUser(email.getText(), password.getText());
         Main m = new Main();
-        if (loggedInUser != null) {
+        if (loggedInUser != null && loggedInUser.getRole().equals("ROLE_USER")) {
             System.out.println("Login successful");
             UserData.getInstance().setLoggedInUser(loggedInUser);
 
@@ -47,22 +48,42 @@ public class LoginController {
             HomeController homeController = loader.getController();
 
             // Pass the logged-in user to the profile page controller
-            FXMLLoader profileLoder = new FXMLLoader(getClass().getResource("/ProfileZied.fxml"));
+            FXMLLoader profileLoder = new FXMLLoader(getClass().getResource("/Profile.fxml"));
             Parent profileRoot = profileLoder.load();
             ProfileController profileController = profileLoder.getController();
 
             //redirect to home page, replace with actual Home page
-             MainFx.changeScene("/Home.fxml");
+            Main.changeScene("/Home.fxml");
+        }
+        else{
+            //redirect to admin home page, replace with actual admin home page
+
+            if(loggedInUser != null && loggedInUser.getRole().equals("ROLE_ADMIN")){
+                UserData.getInstance().setLoggedInUser(loggedInUser);
+                System.out.println(UserData.getInstance().getLoggedInUser());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminResources/HomeAdmin.fxml"));
+                Parent homeRoot = loader.load();
+                HomeAdminController homeAdminController = loader.getController();
+                Main.changeScene("/AdminResources/HomeAdmin.fxml");
+            }
 
 
-        } else {
-            System.out.println("Login failed");
-            //show error message
+
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Login failed");
+                alert.setHeaderText(null);
+                alert.setContentText("Invalid email ou mot de pass");
+                alert.showAndWait();
+                System.out.println("Login failed");
+                //show error message
+            }
+
         }
     }
 
     public void handleHyperlinkAction(ActionEvent event) throws IOException{
-        MainFx m = new MainFx();
+        Main m = new Main ();
         m.changeScene("/Signup.fxml");
     }
 }

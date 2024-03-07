@@ -44,10 +44,10 @@ public class HomeController implements Initializable {
     private Label messageLabel;
     @FXML
     private GridPane postGrid;
-    @FXML
-    private ImageView profileImage;
-    @FXML
-    private Hyperlink nom;
+@FXML
+private ImageView profileImage;
+@FXML
+private Hyperlink nom;
     @FXML
     private Button searchButton;
 
@@ -87,7 +87,7 @@ public class HomeController implements Initializable {
             try {
                 // Load the image resource from the classpath
 
-                messageImage.setImage(messageImage.getImage());
+               messageImage.setImage(messageImage.getImage());
                 messageLabel.setText(messageLabel.getText() + " \"" + searchText + "\"");
                 postGrid.getChildren().clear();
                 messageBox.setVisible(true);
@@ -111,7 +111,7 @@ public class HomeController implements Initializable {
     }
 
 
-    public void refreshContent() {
+        public void refreshContent() {
         posts = new ArrayList<>(data());
         posts.sort(Comparator.comparing(Publication::getD_creation_publication).reversed());
 
@@ -165,7 +165,7 @@ public class HomeController implements Initializable {
 
     public void SwitchToProfile(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProfileZied.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profile.fxml"));
             Parent root = loader.load();
             //dont open new window
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

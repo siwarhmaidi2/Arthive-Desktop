@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="517.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.AjouterProduit">
+   <children>
+      <ImageView fx:id="imageview" fitHeight="194.0" fitWidth="233.0" layoutX="65.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="add" layoutX="203.0" layoutY="454.0" mnemonicParsing="false" onAction="#AjouterProduit" prefHeight="40.0" prefWidth="133.0" stylesheets="@CSS/button.css" text="Ajouter Produit" AnchorPane.leftAnchor="203.0" AnchorPane.rightAnchor="376.0">
+         <effect>
+            <Blend>
+               <topInput>
+                  <Glow />
+               </topInput>
+            </Blend>
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <TextField fx:id="addname" layoutX="428.0" layoutY="97.0" opacity="0.76" prefHeight="31.0" prefWidth="196.0" promptText="Écrivez le nom de l'art" />
+      <Spinner fx:id="priceSpinner" editable="true" layoutX="428.0" layoutY="161.0" opacity="0.79" prefHeight="31.0" prefWidth="196.0" />
+      <TextArea fx:id="description" layoutX="142.0" layoutY="306.0" prefHeight="65.0" prefWidth="512.0" promptText="Écrivez une description" />
+      <Spinner fx:id="stockSpinner" disable="true" editable="true" layoutX="427.0" layoutY="260.0" prefHeight="31.0" prefWidth="196.0" />
+      <AnchorPane prefHeight="58.0" prefWidth="712.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="51.0" layoutX="-2.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="714.0" />
+            <Label fx:id="userName" layoutX="535.0" layoutY="13.0" prefHeight="20.0" prefWidth="140.0" text="chams ben said " textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="708.0" text="Ajouter un produit " textAlignment="CENTER" textFill="#030dbd">
+               <font>
+                  <Font name="System Italic" size="27.0" />
+               </font>
+               <effect>
+                  <Glow level="0.17" />
+               </effect>
+            </Label>
+            <ImageView fx:id="avatar" fitHeight="39.0" fitWidth="52.0" layoutX="656.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/avatar.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Button fx:id="upload" layoutX="73.0" layoutY="154.0" mnemonicParsing="false" onMouseClicked="#uploadArt" prefHeight="51.0" prefWidth="233.0" styleClass="Event-view" stylesheets="@Event.css" text="Veuillez télécharger votre art" textFill="#3300ff">
+         <effect>
+            <Blend>
+               <topInput>
+                  <Glow />
+               </topInput>
+            </Blend>
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="annule" layoutX="398.0" layoutY="454.0" mnemonicParsing="false" onAction="#canceladd" prefHeight="40.0" prefWidth="133.0" stylesheets="@CSS/button.css" text="Annuler ">
+         <effect>
+            <Blend>
+               <topInput>
+                  <Glow />
+               </topInput>
+            </Blend>
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <CheckBox fx:id="dispo" alignment="TOP_RIGHT" contentDisplay="BOTTOM" layoutX="369.0" layoutY="210.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#checkdispo" prefHeight="20.0" prefWidth="124.0" text="Disponibilité" textFill="#2e157f">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </CheckBox>
+      <ComboBox fx:id="category" layoutX="142.0" layoutY="382.0" prefHeight="47.0" prefWidth="163.0" promptText="Choisir catégorie" styleClass="Event-view" stylesheets="@Event.css" />
+      <Label fx:id="nameErrorLabel" layoutX="428.0" layoutY="74.0" prefHeight="17.0" prefWidth="196.0" textFill="#ada7b9" />
+      <Label fx:id="descriptionErrorLabel" layoutX="142.0" layoutY="283.0" prefHeight="17.0" prefWidth="512.0" textFill="#ada7b9" />
+      <Label layoutX="428.0" layoutY="135.0" prefHeight="20.0" prefWidth="196.0" text="Saisissez uniquement des chiffres" textFill="#ada7b9" />
+      <Label fx:id="stockErrorLabel" layoutX="429.0" layoutY="234.0" prefHeight="20.0" prefWidth="196.0" textAlignment="CENTER" textFill="#ada7b9" />
+      <Label layoutX="371.0" layoutY="101.0" prefHeight="17.0" prefWidth="52.0" text="Nom" textFill="#2e157f">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="373.0" layoutY="169.0" prefHeight="17.0" prefWidth="52.0" text="Prix $" textFill="#2e157f">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="372.0" layoutY="268.0" prefHeight="17.0" prefWidth="52.0" text="Stock" textFill="#2e157f">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="313.0" prefHeight="19.0" prefWidth="80.0" text="Description" textFill="#2e157f">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="395.0" prefHeight="19.0" prefWidth="68.0" text="Catégorie" textFill="#2e157f">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="deleteArt" layoutX="132.0" layoutY="254.0" mnemonicParsing="false" onAction="#deleteArt" onMouseClicked="#uploadArt" prefHeight="48.0" prefWidth="98.0" styleClass="Event-view" stylesheets="@Event.css" text="Supprimer" textFill="#3300ff">
+         <effect>
+            <Blend>
+               <topInput>
+                  <Glow />
+               </topInput>
+            </Blend>
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

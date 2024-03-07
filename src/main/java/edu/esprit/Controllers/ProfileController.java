@@ -1,5 +1,6 @@
 package edu.esprit.Controllers;
 
+import edu.esprit.entities.PanierState;
 import edu.esprit.entities.Publication;
 import edu.esprit.entities.User;
 import edu.esprit.entities.UserData;
@@ -13,6 +14,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
@@ -32,6 +34,14 @@ import java.util.List;
 
 public class ProfileController {
 
+
+    @FXML
+    private Hyperlink linkMarket;
+    @FXML
+    private Label incrementer;
+
+    @FXML
+    private Button btnPanier;
     @FXML
     ImageView image;
     @FXML
@@ -63,6 +73,18 @@ public class ProfileController {
 
     private ServicePublication servicePublication = new ServicePublication();
 
+    private PanierState panierState = PanierState.getInstance();
+    public void setPanierState(PanierState panierState) {
+        this.panierState = panierState;
+    }
+
+    private MarketPlace marketPlaceController;
+
+
+    public void setMarketPlaceController(MarketPlace marketPlaceController) {
+        this.marketPlaceController = marketPlaceController;
+    }
+
     public void initialize() throws Exception{
         User loggedInUser = UserData.getInstance().getLoggedInUser();
 
@@ -80,18 +102,18 @@ public class ProfileController {
                 System.out.println("User does not have a valid photo URL.");
                 // Consider using a default photo or displaying a placeholder image
             }//
-            name.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
-            name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
-            region.setText(loggedInUser.getVille());
-            email.setText(loggedInUser.getEmail());
-            birthDate.setText(loggedInUser.getD_naissance_user().toString());
-            bio.setText(loggedInUser.getBio());
+        name.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
+        name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
+        region.setText(loggedInUser.getVille());
+        email.setText(loggedInUser.getEmail());
+        birthDate.setText(loggedInUser.getD_naissance_user().toString());
+        bio.setText(loggedInUser.getBio());
 //        image.setImage(imgUser);
 //        image2.setImage(imgUser);
 
-            posts = new ArrayList<>(data(loggedInUser));
-            refreshPosts();
-        }
+        posts = new ArrayList<>(data(loggedInUser));
+        refreshPosts();
+    }
     }
     private void refreshPostsUI() {
         postGrid.getChildren().clear(); // Clear existing posts in the GridPane
@@ -190,6 +212,53 @@ public class ProfileController {
     public void logout(ActionEvent event) throws IOException {
         UserData.getInstance().setLoggedInUser(null);
         Main.changeScene("/Login.fxml");
+    }
+
+    @FXML
+    void marketPlace(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MarketPlace.fxml"));
+            Parent root = loader.load();
+            MarketPlace marketPlaceController = loader.getController();
+
+            // Définir le contrôleur MarketPlace dans la fenêtre Home
+            setMarketPlaceController(marketPlaceController);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("MarketPlace");
+            stage.show();
+
+            // Fermer la fenêtre actuelle (Home)
+            Stage homeStage = (Stage) linkMarket.getScene().getWindow();
+            homeStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void afficherPanier(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterPanier.fxml"));
+            Parent root = loader.load();
+            AjouterPanier ajouterPanierController = loader.getController();
+
+            ajouterPanierController.setPanierState(panierState);
+            // Passer la référence du contrôleur MarketPlace à AjouterPanier
+            ajouterPanierController.setMarketPlaceController(marketPlaceController);
+
+            if (marketPlaceController != null) {
+                marketPlaceController.decrementCounter();
+            }
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 }
