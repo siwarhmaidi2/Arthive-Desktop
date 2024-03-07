@@ -1,4 +1,4 @@
-package edu.esprit.controllers;
+package edu.esprit.Controllers;
 
 import edu.esprit.entities.User;
 

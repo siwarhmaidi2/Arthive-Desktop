@@ -1,4 +1,4 @@
-package edu.esprit.controllers;
+package edu.esprit.Controllers;
 
 import edu.esprit.entities.User;
 
@@ -17,7 +17,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;

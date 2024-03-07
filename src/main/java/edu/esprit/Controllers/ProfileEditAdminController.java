@@ -1,7 +1,6 @@
-package edu.esprit.controllers;
+package edu.esprit.Controllers;
 
 import edu.esprit.entities.User;
-import edu.esprit.entities.UserData;
 import edu.esprit.services.ServiceUser;
 import edu.esprit.utils.CountryComboBox;
 import javafx.event.ActionEvent;

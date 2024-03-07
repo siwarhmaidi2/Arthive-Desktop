@@ -1,8 +1,7 @@
-package edu.esprit.controllers;
+package edu.esprit.Controllers;
 
 import edu.esprit.entities.User;
 import edu.esprit.services.ServiceUser;
-import edu.esprit.tests.Main;
 import edu.esprit.utils.CountryComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +11,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Optional;
 
 public class ProfileAddController {
     @FXML

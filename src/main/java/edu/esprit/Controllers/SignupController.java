@@ -1,9 +1,7 @@
-package edu.esprit.controllers;
+package edu.esprit.Controllers;
 
 import edu.esprit.tests.Main;
 import edu.esprit.utils.CountryComboBox;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

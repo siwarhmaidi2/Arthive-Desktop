@@ -12,15 +12,35 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1074.0" stylesheets="@CSS/SignupPage.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.SignupController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="808.0" prefWidth="1214.0" stylesheets="@CSS/SignupPage.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.SignupController">
     <children>
-        <ImageView fitHeight="768.0" fitWidth="1366.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="807.0" fitWidth="1257.0" layoutY="-13.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Image/background.jpg" />
             </image>
         </ImageView>
-        <Pane layoutX="330.0" layoutY="188.0" opacity="0.8" prefHeight="472.0" prefWidth="549.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
+      <Pane layoutX="29.0" layoutY="191.0" prefHeight="466.0" prefWidth="399.0" style="-fx-background-color: #5647B5; -fx-background-radius: 20px;">
+         <children>
+            <ImageView fitHeight="205.0" fitWidth="222.0" layoutX="79.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/hive__2_-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="18.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register with your personal details to use all of site features" textAlignment="CENTER" wrappingWidth="368.33331298828114">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <Button layoutX="100.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleHyperlinkAction" prefHeight="25.0" prefWidth="166.0" style="-fx-background-radius: 10px; -fx-border-radius: 10; -fx-border-color: white; -fx-background-color: transparent;" stylesheets="@CSS/button.css" text="Login">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+        <Pane layoutX="426.0" layoutY="186.0" opacity="0.8" prefHeight="472.0" prefWidth="590.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
             <children>
                 <Label layoutX="224.0" layoutY="8.0" text="Signup" textFill="#461483">
                     <font>

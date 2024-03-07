@@ -1,4 +1,4 @@
-package edu.esprit.controllers;
+package edu.esprit.Controllers;
 
 import edu.esprit.entities.User;
 import edu.esprit.entities.UserData;
@@ -6,9 +6,6 @@ import edu.esprit.services.ServiceUser;
 import edu.esprit.utils.CountryComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.skin.ComboBoxListViewSkin;
 import javafx.stage.Stage;

@@ -11,7 +11,7 @@
 <BorderPane prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/javafx"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="edu.esprit.controllers.UserMessagesController"
+            fx:controller="edu.esprit.Controllers.UserMessagesController"
 >
    <left>
       <ListView prefHeight="400.0" prefWidth="247.0"
