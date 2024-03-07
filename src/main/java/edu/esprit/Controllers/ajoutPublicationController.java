@@ -73,39 +73,6 @@ public class ajoutPublicationController {
         this.stage = stage;
     }
     private boolean isPhotoSelected = false;
-//    @FXML
-//    void uploadArt(MouseEvent event) {
-//        // Créer un sélecteur de fichiers pour les images
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Choisir une image");
-//
-//        // Filtrer les fichiers pour afficher uniquement les images
-//        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif");
-//        fileChooser.getExtensionFilters().add(filter);
-//
-//        // Afficher la boîte de dialogue de sélection de fichier
-//        selectedFile = fileChooser.showOpenDialog(new Stage());
-//        // Charger l'image sélectionnée dans l'interface utilisateur
-//        if (selectedFile != null) {
-//            // Vous pouvez implémenter le chargement de l'image dans un ImageView
-//            try {
-//                Image image = new Image(selectedFile.toURI().toString());
-//                System.out.println("Chemin de l'image sélectionnée : " + selectedFile.toURI().toString()); // Imprimer le chemin de l'image
-//                imagePost.setImage(image);
-//                addFile.setVisible(false);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                System.out.println("Error loading image: " + e.getMessage());
-//            }
-//
-//        }
-//        isPhotoSelected = true;
-//
-//        if (selectedFile != null)
-//            deleteFile.setVisible(true); // Make the deleteFile button visible
-//
-//    }
-//
 
     @FXML
     void uploadArt(MouseEvent event) {
@@ -206,7 +173,7 @@ public class ajoutPublicationController {
     private void savePublications() {
         Set<Publication> publicationSet = servicePublication.getAll();
         List<Publication> publications = new ArrayList<>(publicationSet);
-// Get your list of publications
+      // Get your list of publications
                 PublicationJsonSerializer.savePublications(publications, "publications.json");
     }
 

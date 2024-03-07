@@ -282,42 +282,55 @@ public class AfficherPublicationController {
 
             // Display a confirmation message or update UI as needed
             System.out.println("Publication reported by user: " + loggedInUser.getId_user());
+
+            // Show an alert box with a confirmation message
+            showConfirmationAlert("Publication signalée", "La publication a été signalée et sera examinée par l'administrateur..");
         } else {
             // Handle the case where the user is not logged in
             System.out.println("User not logged in. Cannot report publication.");
         }
     }
 
-    @FXML
-    void onShareClicked(MouseEvent event) {
-        // Your Facebook page access token
-        String accessToken = "EAAaRcAqBaygBO7bKLhHoFUpmfFLOZBqgkJT4YFqVPKTbFnK9lgo1ZBPqYkabrz8wx5OmZCh41ajF95LF0Fn9acgOQvdKIm3HF6OoMOyMh0OpfgJBZAmoZB6OykKhZAFG03zf4o3RZCSNkzY4ZBrs2Srps57WCS7NlJ2YFShTn3miSZCIPifZBec1mQLU6pgNOZCvZBZCMh6IVnZCCxMdP4WElmB0xlv0NM67BVeD5RXkUUpZBOjyZAWVcKD6gKvMsyPRVn94ZAh4ZD";
-
-        // Create a Facebook client
-        FacebookClient facebookClient = new DefaultFacebookClient(accessToken, Version.VERSION_11_0);
-
-        // Message to be posted on Facebook
-        String message = "Check out this publication on my JavaFX project!";
-
-        // URL of the image to be shared (replace with your image URL)
-        //i want to share the image of the publication
-        String imageUrl = publication.getUrl_file();
-
-
-//        String imageUrl = "URL_OF_YOUR_IMAGE";
-
-        // Create a FacebookType object to represent the result of the post
-        FacebookType response = facebookClient.publish("me/feed", FacebookType.class,
-                com.restfb.Parameter.with("message", message),
-                com.restfb.Parameter.with("link", imageUrl));
-
-        // Log the post ID to check if the post was successful
-        System.out.println("Post ID: " + response.getId());
+    // Helper method to show a confirmation alert
+    private void showConfirmationAlert(String title, String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
+//
+//    @FXML
+//    void onShareClicked(MouseEvent event) {
+//        // Your Facebook page access token
+//        String accessToken = "EAAaRcAqBaygBO7bKLhHoFUpmfFLOZBqgkJT4YFqVPKTbFnK9lgo1ZBPqYkabrz8wx5OmZCh41ajF95LF0Fn9acgOQvdKIm3HF6OoMOyMh0OpfgJBZAmoZB6OykKhZAFG03zf4o3RZCSNkzY4ZBrs2Srps57WCS7NlJ2YFShTn3miSZCIPifZBec1mQLU6pgNOZCvZBZCMh6IVnZCCxMdP4WElmB0xlv0NM67BVeD5RXkUUpZBOjyZAWVcKD6gKvMsyPRVn94ZAh4ZD";
+//
+//        // Create a Facebook client
+//        FacebookClient facebookClient = new DefaultFacebookClient(accessToken, Version.VERSION_11_0);
+//
+//        // Message to be posted on Facebook
+//        String message = "Check out this publication on my JavaFX project!";
+//
+//        // URL of the image to be shared (replace with your image URL)
+//        //i want to share the image of the publication
+//        String imageUrl = publication.getUrl_file();
+//
+//
+////        String imageUrl = "URL_OF_YOUR_IMAGE";
+//
+//        // Create a FacebookType object to represent the result of the post
+//        FacebookType response = facebookClient.publish("me/feed", FacebookType.class,
+//                com.restfb.Parameter.with("message", message),
+//                com.restfb.Parameter.with("link", imageUrl));
+//
+//        // Log the post ID to check if the post was successful
+//        System.out.println("Post ID: " + response.getId());
+//    }
 
 
     @FXML
-    private void onDownloadClicked(MouseEvent event) {
+    private void onDownloadClicked(ActionEvent event) {
+        System.out.println("Download clicked!");
         try {
             // Get the URL of the image to be downloaded
             String imageUrl = publication.getUrl_file();

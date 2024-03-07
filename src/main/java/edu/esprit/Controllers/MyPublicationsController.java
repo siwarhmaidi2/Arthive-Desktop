@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -138,11 +139,14 @@ private static final  User loggedInUser = UserData.getInstance().getLoggedInUser
             // Add a mouse entered event to update and show the text on mouse hover
             postTextLabel.setOnMouseEntered(event -> {
                 postTextLabel.setText(publication.getContenu_publication());
+                applyLuminosityEffect(true);
+
             });
 
             // Add a mouse exited event to hide the text when the mouse leaves
             postTextLabel.setOnMouseExited(event -> {
                 postTextLabel.setText("");
+                applyLuminosityEffect(false);
             });
             this.publication = publication;
             this.usernameLabel.setText(publication.getUser().getNom_user() + " " + publication.getUser().getPrenom_user());
@@ -170,6 +174,18 @@ private static final  User loggedInUser = UserData.getInstance().getLoggedInUser
             e.printStackTrace();
         }
     }
+    private void applyLuminosityEffect(boolean onHover) {
+        ColorAdjust colorAdjust = new ColorAdjust();
+
+        if (onHover) {
+            // Reduce brightness, increase contrast, and desaturate the image on mouse hover
+            colorAdjust.setBrightness(-0.5);
+
+
+        }
+
+        postImage.setEffect(colorAdjust);
+    }
     private void updateCommentCountLabel(int publicationId) {
         int commentsCount = serviceCommentaire.getCommentsCountForPublication(publicationId);
         commentsLabel.setText("(" + commentsCount + ")");
@@ -185,7 +201,7 @@ private static final  User loggedInUser = UserData.getInstance().getLoggedInUser
 
     @FXML
     void likeButtonClicked(MouseEvent event) {
-        int userId = 44; // Replace with the actual user ID
+        int userId = loggedInUser.getId_user();
         int publicationId = publication.getId_publication();
 
         if (!userLiked) {
@@ -271,8 +287,8 @@ private static final  User loggedInUser = UserData.getInstance().getLoggedInUser
             removePostFromUI();
 
             // Check if profilePublicationsController is not null before calling refreshPosts
-            if (profilePublicationsController != null) {
-                profilePublicationsController.refreshPosts();
+            if (profileController != null) {
+                profileController.refreshPosts();
             }
         }
     }
