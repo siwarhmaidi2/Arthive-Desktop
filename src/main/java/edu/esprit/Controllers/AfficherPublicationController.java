@@ -4,10 +4,7 @@ import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.Version;
 import com.restfb.types.FacebookType;
-import edu.esprit.entities.Publication;
-import edu.esprit.entities.Reaction;
-import edu.esprit.entities.User;
-import edu.esprit.entities.UserData;
+import edu.esprit.entities.*;
 import edu.esprit.services.ServiceCommentaire;
 import edu.esprit.services.ServicePublication;
 import edu.esprit.services.ServiceReaction;
@@ -38,8 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 public class AfficherPublicationController {
@@ -119,22 +115,16 @@ public class AfficherPublicationController {
 
     public void setData(Publication publication) {
         try {
-            if (loggedInUser != null) {
-                // Step 3: User is authenticated, proceed to retrieve photo
-                String userPhotoUrl = loggedInUser.getPhoto();
-                // Step 4: Check if the user has a valid photo URL
+
+                User publicationUser = publication.getUser();
+                String userPhotoUrl = publicationUser.getPhoto();
+
                 if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
                     // Step 5: Load and display the user's photo
                     Image userPhoto = new Image(userPhotoUrl);
                     this.profileImage.setImage(userPhoto);
-                } else {
-                    // Step 6: User does not have a valid photo URL
-                    System.out.println("User does not have a valid photo URL.");
-                    // Consider using a default photo or displaying a placeholder image
-                }//
-//
+                }
 
-            }
             // Load post image
             String postImageUrl = publication.getUrl_file();
             Image postImage = new Image(postImageUrl);
@@ -252,6 +242,18 @@ public class AfficherPublicationController {
             heartIcon.setImage(new Image("/Image/emptyHeart.png"));
         }
         updateLikesLabel(); // Update likes label
+        saveReactions();
+    }
+    private void saveReactions() {
+        Set<Reaction> reactionSet = serviceReaction.getAll();
+
+        List<Reaction> reactions = new ArrayList<>(reactionSet);
+        ReactionJsonSerializer.saveReactions(reactions, "reactions.json");
+    }
+
+    private void loadReactions() {
+        List<Reaction> reactions = ReactionJsonSerializer.loadReactions("reactions.json");
+        // Process loaded reactions as needed
     }
 
     @FXML

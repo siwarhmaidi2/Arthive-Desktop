@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1018.0" prefWidth="1509.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.VosEvenements">
+
+   <children>
+      <Label fx:id="userNameLabel" layoutX="569.0" layoutY="115.0" prefHeight="39.0" prefWidth="546.0" text="Label">
+         <font>
+            <Font name="Arial Black" size="26.0" />
+         </font></Label>
+      <ScrollPane fx:id="scroll" layoutX="232.0" layoutY="264.0" prefHeight="519.0" prefWidth="1264.0">
+         <content>
+            <GridPane fx:id="eventsGrid" hgap="10.0" maxHeight="67.0" maxWidth="305.0" prefHeight="41.0" prefWidth="305.0" vgap="10.0">
+              <columnConstraints>
+                <ColumnConstraints maxWidth="375.0" minWidth="185.0" prefWidth="263.0" />
+                <ColumnConstraints maxWidth="375.0" minWidth="185.0" prefWidth="263.0" />
+              </columnConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <Button fx:id="creerEvenement" layoutX="1018.0" layoutY="210.0" mnemonicParsing="false" onAction="#CreerEvenement" stylesheets="@Event.css" text="+ Créer un évènement">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <styleClass>
+            <String fx:value="create-post-button" />
+            <String fx:value="search-button" />
+         </styleClass>
+      </Button>
+      <HBox layoutX="339.0" layoutY="25.0" prefHeight="53.0" prefWidth="588.0" styleClass="search-box" stylesheets="@Event.css">
+         <children>
+            <TextField fx:id="searchField" maxHeight="100.0" maxWidth="400.0" prefColumnCount="20" prefHeight="53.0" prefWidth="384.0" promptText="Rechercher" styleClass="transparent" stylesheets="@Event.css" />
+         </children>
+      </HBox>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="851.0" layoutX="-1.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="229.0" />
+      <Hyperlink layoutX="81.0" layoutY="486.0" text="Groupes" textFill="#070000" wrapText="true" />
+      <Hyperlink layoutX="82.0" layoutY="539.0" text="Messages" textFill="#070000" wrapText="true" />
+      <Hyperlink layoutX="87.0" layoutY="643.0" text="Evènements" textFill="#070000" />
+      <Hyperlink layoutX="56.0" layoutY="332.0" text="Siwar hmaidi" textFill="#000000fb">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Hyperlink>
+      <Button cacheShape="false" centerShape="false" focusTraversable="false" layoutX="19.0" layoutY="713.0" mnemonicParsing="true" prefHeight="29.0" prefWidth="189.0" scaleShape="false" stylesheets="@Event.css" text="Créer">
+         <effect>
+            <Blend />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <styleClass>
+            <String fx:value="create-post-button" />
+            <String fx:value="search-button" />
+         </styleClass>
+      </Button>
+      <Hyperlink layoutX="81.0" layoutY="434.0" text="Fil d'actualité" textFill="#070000" wrapText="true" />
+      <Hyperlink layoutX="84.0" layoutY="587.0" text="Marketplace" textFill="#070000" />
+      <Button layoutX="785.0" layoutY="29.0" maxWidth="589.0" minHeight="31.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="141.0" styleClass="search-button" stylesheets="@Event.css" text="Rechercher" textFill="WHITE" />
+      <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="1364.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../OneDrive/Bureau/PIDEV/8345293.png" />
+         </image>
+      </ImageView>
+      <Hyperlink layoutX="1325.0" layoutY="68.0" text="Déconnexion" textFill="#0f0bfb" />
+      <ImageView fitHeight="195.0" fitWidth="327.0" layoutX="20.0" layoutY="-31.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/hive__2_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="39.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/avatar.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="39.0" layoutY="433.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/home.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="38.0" layoutY="485.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/grp.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="39.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/message-icon-2043x2048-z7d1f8at.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="39.0" layoutY="585.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/marketplace.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="41.0" layoutX="38.0" layoutY="641.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/839888.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="40.0" layoutY="721.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/add-50.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="1174.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/services-parametres-et-icone-d-engrenage-bleue.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="1223.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/icone-de-panier-bleu.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

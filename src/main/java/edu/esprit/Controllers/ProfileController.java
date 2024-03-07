@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -34,7 +35,8 @@ import java.util.List;
 
 public class ProfileController {
 
-
+    @FXML
+    private Hyperlink afficherEvent;
     @FXML
     private Hyperlink linkMarket;
     @FXML
@@ -84,6 +86,8 @@ public class ProfileController {
     public void setMarketPlaceController(MarketPlace marketPlaceController) {
         this.marketPlaceController = marketPlaceController;
     }
+
+
 
     public void initialize() throws Exception{
         User loggedInUser = UserData.getInstance().getLoggedInUser();
@@ -260,5 +264,28 @@ public class ProfileController {
 
 
     }
+    @FXML
+    void switchToEvent(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherEvent.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Evènements");
+            stage.show();
+
+            // Close the current window
+            Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            homeStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    //add a new method to switch to event
+
 
 }

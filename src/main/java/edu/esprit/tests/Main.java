@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
 
-import edu.esprit.entities.Message;
+
 
 
 import javafx.application.Application;
@@ -36,7 +36,7 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
         primaryStage.setTitle("Arthive Login");
-        primaryStage.setScene(new Scene(root, 1366, 768));
+        primaryStage.setScene(new Scene(root, 1365, 705));
         primaryStage.show();
     }
 

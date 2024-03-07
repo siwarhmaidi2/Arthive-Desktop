@@ -177,4 +177,26 @@ private Hyperlink nom;
 
         }
     }
+
+    @FXML
+    void switchToEvent(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherEvent.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Evènements");
+            stage.show();
+
+            // Close the current window (Home)
+            Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            homeStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }

@@ -62,7 +62,7 @@
       </ImageView>
       <Hyperlink layoutX="85.0" layoutY="443.0" text="Groupes" textFill="#070000" wrapText="true" />
       <Hyperlink layoutX="85.0" layoutY="493.0" text="Messages" textFill="#070000" wrapText="true" />
-      <Hyperlink layoutX="84.0" layoutY="600.0" text="Evènements" textFill="#070000" />
+      <Hyperlink fx:id="afficherEvent" layoutX="82.0" layoutY="597.0" onAction="#switchToEvent" text="Evènements" textFill="#070000" />
       <Hyperlink fx:id="nom" layoutX="31.0" layoutY="339.0" onAction="#SwitchToProfile" text="Text">
          <font>
             <Font name="System Bold" size="17.0" />
@@ -73,11 +73,7 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Hyperlink>
-      <ImageView fx:id="profileImage" fitHeight="126.0" fitWidth="161.0" layoutX="47.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/profile.png" />
-         </image>
-      </ImageView>
+      <ImageView fx:id="profileImage" fitHeight="126.0" fitWidth="161.0" layoutX="47.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="250.0" fitWidth="241.0" layoutX="3.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/hive__2_-removebg-preview.png" />

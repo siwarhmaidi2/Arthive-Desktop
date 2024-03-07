@@ -1,5 +1,3 @@
-
-
 /* Style de fond pour l'interface */
 .root {
     background-color: #6e8de1;
@@ -56,12 +54,10 @@
 
 
 .date-picker > .arrow-button:hover {
-    -fx-background-color: #45a049; /* Couleur du bouton au survol */
+    -fx-background-color:  rgba(3, 13, 189, 0.65); /* Couleur du bouton au survol */
 }
 
-.date-picker > .arrow-button:pressed {
-    -fx-background-color: rgba(3, 13, 189, 0.65); /* Couleur du bouton lorsqu'il est enfoncé */
-}
+
 .date-picker > .text-field {
     -fx-font-size: 14;
     -fx-background-color: rgb(255, 255, 255); /* Couleur du fond du champ de texte */
@@ -104,9 +100,9 @@
 }
 
 /* Style pour chaque cellule du GridPane lorsqu'elles sont pressées */
-.grid-pane > .label:pressed {
-    -fx-background-color: #e0e0e0; /* Couleur de fond des cellules lorsqu'elles sont pressées */
-}
+/*.grid-pane > .label:pressed {
+    -fx-background-color: #e0e0e0;} /* Couleur de fond des cellules lorsqu'elles sont pressées */
+
 .search-box{
     -fx-background-color:#FFFFFF;
     -fx-background-radius: 100;
@@ -115,10 +111,10 @@
     -fx-background-color: rgba(0,0,0,0);
 }
 .search-button{
-    -fx-background-color: rgba(4, 13, 187, 0.65);
+    -fx-background-color: rgba(3, 13, 189, 0.65);
     -fx-background-radius: 30;
     -fx-text-fill: #fff;
-    -fx-font-size: 12px;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
 
 
@@ -172,25 +168,100 @@
     -fx-alignment: center; /* Center the image container */
 }
 
-.event-view .avatar {
-    -fx-background-color: #0077cc; /* Color for the circular shape */
-    -fx-background-radius: 50%; /* Make it circular */
-    -fx-min-width: 50px; /* Set width and height for the circular shape */
-    -fx-min-height: 50px;
-    -fx-max-width: 50px;
-    -fx-max-height: 50px;
-    -fx-margin: 0 0 10 0; /* Margin at the bottom of the circular shape */
+.avatar {
+    -fx-background-radius: 30;
+    -fx-border-width: 10px;
+    -fx-border-radius: 30;
+    -fx-cursor: pointer; /* Change cursor on hover */
+    -fx-transition: all 0.3s ease; /* Add a smooth transition effect */
+    -fx-alignment: center; /* Center the image container */
+
 }
 
-.buttonLike{
+.small-button {
     -fx-background-color: rgba(3, 13, 189, 0.65); /* Instagram blue color */
     -fx-text-fill: #fff;
-    -fx-font-size: 11px;
+    -fx-font-size: 14px; /* Smaller font size */
     -fx-font-weight: bold;
-    -fx-padding: 10px 20px;
+    -fx-padding: 8px 10px; /* Smaller padding */
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
-    -fx-cursor: hand; 
+    -fx-cursor: hand; /* Cursor style on hover */
+    -fx-min-width: 50px; /* Adjust the minimum width */
+    -fx-min-height: 30px; /* Adjust the minimum height */
+}
 
+.small-button:hover {
+    -fx-background-color: #0077cc; /* Darker shade on hover */
+}
 
+.split-menu-button {
+    -fx-background-color:rgba(3, 13, 189, 0.65); /* Background color for the button part */
+    -fx-text-fill: white; /* Text color for the button part */
+}
+
+.split-menu-button .label {
+    -fx-padding: 0 5 0 5; /* Padding for the text in the button part */
+}
+
+.split-menu-button .arrow {
+    -fx-background-color: rgba(3, 13, 189, 0.65); /* Background color for the arrow part */
+}
+
+.split-menu-button .arrow-button {
+    -fx-padding: 0 5 0 5; /* Padding for the arrow part */
+}
+
+.split-menu-button .menu-item {
+    -fx-background-color: rgba(3, 13, 189, 0.65); /* Background color for menu items */
+    -fx-text-fill: white; /* Text color for menu items */
+}
+
+.split-menu-button .menu-item:hover {
+    -fx-background-color:#0077cc; /* Hover background color for menu items */
+}
+
+.evenement-passe {
+    /* Vous pouvez ajuster ces propriétés pour correspondre à votre style préféré */
+    -fx-opacity: 0.5; /* Réduit l'opacité pour rendre l'événement moins visible */
+    -fx-background-color: #ddd; /* Change la couleur de fond pour indiquer qu'il est passé */
+    /* Ajoutez d'autres styles au besoin */
+}
+.combo-box {
+    -fx-font-size: 14px;
+    -fx-background-color: rgb(255, 255, 255); /* Couleur de fond principale */
+    -fx-border-color: rgba(3, 13, 189, 0.65);; /* Couleur de la bordure */
+    -fx-border-width: 2px;
+    -fx-text-fill: #ffffff; /* Couleur du texte */
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: rgba(3, 13, 189, 0.65);; /* Couleur de fond de la flèche */
+}
+
+.combo-box .arrow-button:hover {
+    -fx-background-color: #2574a9; /* Couleur de fond de la flèche au survol */
+}
+
+.combo-box .list-cell {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333; /* Couleur du texte de l'élément de liste */
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #d4e6f1; /* Couleur de fond de l'élément de liste au survol */
+}
+
+.combo-box .list-view {
+    -fx-background-color: #ffffff; /* Couleur de fond de la liste déroulante */
+    -fx-border-color: #3498db; /* Couleur de la bordure de la liste déroulante */
+    -fx-border-width: 2px;
+}
+
+.combo-box .list-view .scroll-bar {
+    -fx-background-color: #3498db; /* Couleur de fond de la barre de défilement */
+}
+
+.combo-box .list-view .scroll-bar-thumb {
+    -fx-background-color: #2980b9; /* Couleur de la poignée de la barre de défilement */
 }

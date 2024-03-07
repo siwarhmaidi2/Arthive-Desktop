@@ -1,9 +1,6 @@
 package edu.esprit.Controllers;
 
-import edu.esprit.entities.Commentaire;
-import edu.esprit.entities.Publication;
-import edu.esprit.entities.User;
-import edu.esprit.entities.UserData;
+import edu.esprit.entities.*;
 import edu.esprit.services.ServiceCommentaire;
 import edu.esprit.services.ServicePublication;
 import edu.esprit.services.ServiceUser;
@@ -164,6 +161,7 @@ public class AddCommentaireController implements Initializable {
             e.printStackTrace();
             showAlert("Une erreur s'est produite lors de l'ajout du commentaire.");
         }
+        saveCommentaires();
     }
 
     private void showAlert(String message) {
@@ -186,4 +184,15 @@ public class AddCommentaireController implements Initializable {
 
 
 
+    private void saveCommentaires() {
+        Set<Commentaire> commentaireSet = serviceCommentaire.getAll();
+        List<Commentaire> commentaires = new ArrayList<>(commentaireSet);
+        // Get your list of publications
+        CommentaireJsonSerializer.saveCommentaires(commentaires , "commentaires.json");
+    }
+
+    private void loadCommentaires() {
+        List<Commentaire> commentaires = CommentaireJsonSerializer.loadCommentaires("commentaires.json");
+        // Process loaded comments as needed
+    }
 }

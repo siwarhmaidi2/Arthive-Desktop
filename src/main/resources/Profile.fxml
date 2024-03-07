@@ -37,7 +37,7 @@
         </ImageView>
         <Hyperlink layoutX="86.0" layoutY="443.0" text="Groupes" textFill="#070000" wrapText="true" />
         <Hyperlink layoutX="84.0" layoutY="493.0" text="Messages" textFill="#070000" wrapText="true" />
-        <Hyperlink layoutX="82.0" layoutY="597.0" text="Evènements" textFill="#070000" />
+        <Hyperlink fx:id="afficherEvent" layoutX="82.0" layoutY="597.0" text="Evènements" textFill="#070000" onAction="#switchToEvent" />
         <Text fx:id="name2" layoutX="56.0" layoutY="308.0" text="Ayoub Toujani">
             <font>
                 <Font name="System Bold" size="17.0" />
