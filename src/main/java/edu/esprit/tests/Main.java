@@ -21,7 +21,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -88,8 +87,8 @@ public class Main extends Application {
 
         // Create a publication
       //Publication publication = new Publication("Test Content", "testfile.txt", new Timestamp(System.currentTimeMillis()),new User(44,"John", "Doe", "john.doe@example.com", "password", Date.valueOf("1990-01-01"), "City", 123456789));
-       Publication publication = new Publication("Test Content", "testfile.txt", new Timestamp(System.currentTimeMillis()),userService.getOneByID(44));
-        ServicePublication publicationService = new ServicePublication();
+//       Publication publication = new Publication("Test Content", "testfile.txt", new Timestamp(System.currentTimeMillis()),userService.getOneByID(44));
+//        ServicePublication publicationService = new ServicePublication();
 
         // Add a publication
       //publicationService.add(publication);
@@ -113,8 +112,8 @@ public class Main extends Application {
 
 
         // Create a comment
-Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalDateTime.now()), userService.getOneByID(30), publicationService.getOneByID(17));
-      ServiceCommentaire commentaireService = new ServiceCommentaire();
+//Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalDateTime.now()), userService.getOneByID(30), publicationService.getOneByID(17));
+//      ServiceCommentaire commentaireService = new ServiceCommentaire();
 
         // Add a comment
        //commentaireService.add(commentaire);
@@ -146,9 +145,9 @@ Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalD
 
         System.out.println(su.getAll());
 
-        long currentMillis = System.currentTimeMillis();
-        Date currentDate = new Date(currentMillis);
-        java.sql.Date sqlDate = new java.sql.Date(currentMillis);
+//        long currentMillis = System.currentTimeMillis();
+//        Date currentDate = new Date(currentMillis);
+//        java.sql.Date sqlDate = new java.sql.Date(currentMillis);
 
         //User u1 = new Admin("zied","zhiri","zied.zhiri@esprit.tn","123456",sqlDate, "Tunis", "12345678", "bio", "", "ROLE_ADMIN");
         //su.add(u1);
@@ -158,8 +157,8 @@ Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalD
         launch(args);
         // Create a reaction
 
-     Reaction reaction = new Reaction(userService.getOneByID(30), publicationService.getOneByID(17), Timestamp.valueOf(LocalDateTime.now()));
-     ServiceReaction reactionService = new ServiceReaction();
+//     Reaction reaction = new Reaction(userService.getOneByID(30), publicationService.getOneByID(17), Timestamp.valueOf(LocalDateTime.now()));
+//     ServiceReaction reactionService = new ServiceReaction();
 
         // Add a reaction
      // reactionService.add(reaction);
@@ -202,19 +201,19 @@ Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalD
         }
 */
 
-       ServiceReactionCommentaire reactionCommentaireService = new ServiceReactionCommentaire();
-       ReactionCommentaire    reactionCommentaire = new ReactionCommentaire(commentaireService.getOneByID(8),userService.getOneByID(30),publicationService.getOneByID(17), Timestamp.valueOf(LocalDateTime.now()));
+//       ServiceReactionCommentaire reactionCommentaireService = new ServiceReactionCommentaire();
+//       ReactionCommentaire    reactionCommentaire = new ReactionCommentaire(commentaireService.getOneByID(8),userService.getOneByID(30),publicationService.getOneByID(17), Timestamp.valueOf(LocalDateTime.now()));
 
       //reactionCommentaireService.add(reactionCommentaire);
 
         // Get all reactions for a comment
-        Set<ReactionCommentaire> reactionsForComment = reactionCommentaireService.getAll();
+//        Set<ReactionCommentaire> reactionsForComment = reactionCommentaireService.getAll();
 
         // Print the reactions
-        System.out.println("List of Reactions:");
-        for (ReactionCommentaire r : reactionsForComment) {
-            System.out.println(r);
-        }
+//        System.out.println("List of Reactions:");
+//        for (ReactionCommentaire r : reactionsForComment) {
+//            System.out.println(r);
+//        }
 
 
         // update a reaction

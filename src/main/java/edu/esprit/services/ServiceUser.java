@@ -105,18 +105,21 @@ public class ServiceUser implements IServiceUser<User> {
 
     public Set<User> getItems(){
         Set<User> users = new HashSet<>();
-        String req = "SELECT nom_user, prenom_user, email, d_naissance_user, ville, num_tel_user FROM users";
+        String req = "SELECT id_user, nom_user, prenom_user, email, d_naissance_user, ville, num_tel_user, bio, mdp_user FROM users WHERE role ='ROLE_USER'";
         try{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while(rs.next()){
+                int id = rs.getInt("id_user");
                 String nom = rs.getString("nom_user");
                 String prenom = rs.getString("prenom_user");
                 String email = rs.getString("email");
                 Date dateNaiss = rs.getDate("d_naissance_user");
                 String ville = rs.getString("ville");
                 String numtel = rs.getString("num_tel_user");
-                User u = new User(nom, prenom, email, dateNaiss, ville, numtel);
+                String bio = rs.getString("bio");
+                String password = rs.getString("mdp_user");
+                User u = new User(id, nom, prenom, email, dateNaiss, ville, numtel,bio, password);
                 users.add(u);
             }
         } catch (SQLException e) {
@@ -188,6 +191,24 @@ public class ServiceUser implements IServiceUser<User> {
         return false;
     }
 
+    public boolean checkEmailUserAdmin(User user) {
+        String req = "SELECT * FROM users WHERE email = ? AND id_user != ?";
+        try {
+            System.out.println("Checking email: " + user.getEmail() + " for user ID: " + user.getId_user());
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, user.getEmail());
+            ps.setInt(2, user.getId_user());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                System.out.println("Email already exists.");
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
     @Override
     public void update(User user) {
         String req = "UPDATE users SET nom_user = ?, prenom_user = ?, email = ?, mdp_user = ?, d_naissance_user = ?, ville = ?, num_tel_user = ?, bio = ?, photo = ? WHERE id_user = ?";
@@ -210,6 +231,10 @@ public class ServiceUser implements IServiceUser<User> {
         }
     }
 
+
+
+
+
     public void updateProfile(User user) {
         String req = "UPDATE users SET nom_user = ?, prenom_user = ?, d_naissance_user = ?, ville = ?, num_tel_user = ?, bio = ? WHERE id_user = ?";
         try {
@@ -221,6 +246,26 @@ public class ServiceUser implements IServiceUser<User> {
             ps.setString(5, user.getNum_tel_user());
             ps.setString(6, user.getBio());
             ps.setInt(7, user.getId_user());
+            ps.executeUpdate();
+            System.out.println("User Profile updated !");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateProfileUser(User user) {
+        String req = "UPDATE users SET nom_user = ?, prenom_user = ?, d_naissance_user = ?, ville = ?, num_tel_user = ?, email = ?, mdp_user= ?,bio = ? WHERE id_user = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, user.getNom_user());
+            ps.setString(2, user.getPrenom_user());
+            ps.setDate(3, user.getD_naissance_user());
+            ps.setString(4, user.getVille());
+            ps.setString(5, user.getNum_tel_user());
+            ps.setString(6, user.getEmail());
+            ps.setString(7, user.getMdp_user());
+            ps.setString(8, user.getBio());
+            ps.setInt(9, user.getId_user());
             ps.executeUpdate();
             System.out.println("User Profile updated !");
         } catch (SQLException e) {

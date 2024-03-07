@@ -64,13 +64,16 @@ public class User {
         this.role = role;
     }
 
-    public User(String nom_user, String prenom_user, String email, Date d_naissance_user, String Ville, String num_tel_user){
+    public User(int id,String nom_user, String prenom_user, String email, Date d_naissance_user, String Ville, String num_tel_user, String bio, String mdp){
+        this.id_user = id;
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
         this.email = email;
         this.d_naissance_user = d_naissance_user;
         this.ville = Ville;
         this.num_tel_user = num_tel_user;
+        this.bio = bio;
+        this.mdp_user = mdp;
     }
 
 

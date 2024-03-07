@@ -58,10 +58,10 @@ public class LoginController {
             if(loggedInUser != null && loggedInUser.getRole().equals("ROLE_ADMIN")){
                 UserData.getInstance().setLoggedInUser(loggedInUser);
                 System.out.println(UserData.getInstance().getLoggedInUser());
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeAdmin.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminResources/HomeAdmin.fxml"));
                 Parent homeRoot = loader.load();
                 HomeAdminController homeAdminController = loader.getController();
-                Main.changeScene("/HomeAdmin.fxml");
+                Main.changeScene("/AdminResources/HomeAdmin.fxml");
             }
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
