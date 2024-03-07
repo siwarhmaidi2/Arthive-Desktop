@@ -1,6 +1,9 @@
 package edu.esprit.crud;
 
+import edu.esprit.entities.Participation;
+
 public interface ICrudParticipations <T>{
-    public void ajouter(T t);
-    public void supprimer(T t);
+    public void add(T t);
+    public void delete(T t);
+   // Participation getOneByNameParticipant(String name);
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="674.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.AcheterProduit">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="679.0" layoutX="557.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="225.0" />
+      <HBox layoutX="14.0" layoutY="16.0" prefHeight="36.0" prefWidth="530.0">
+         <children>
+            <ImageView fx:id="avatar" fitHeight="54.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/avatar.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="userName" prefHeight="36.0" prefWidth="303.0" text="chams ben said " textFill="#5f4d86">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="publicationTime" alignment="CENTER" prefHeight="36.0" prefWidth="210.0" text="Time" textFill="#b3afbc" />
+         </children>
+      </HBox>
+      <VBox layoutX="34.0" layoutY="83.0" prefHeight="581.0" prefWidth="507.0">
+         <children>
+            <ImageView fx:id="imageProduit" fitHeight="364.0" fitWidth="510.0" pickOnBounds="true" preserveRatio="true" />
+            <Region prefHeight="51.0" prefWidth="507.0" />
+            <Label fx:id="nomProduit" alignment="CENTER" prefHeight="91.0" prefWidth="507.0" text="Nom Image " textAlignment="CENTER" textFill="#1417b5">
+               <font>
+                  <Font name="System Italic" size="27.0" />
+               </font>
+            </Label>
+            <Region prefHeight="51.0" prefWidth="507.0" />
+            <Label prefHeight="93.0" prefWidth="507.0" text="Description : " textFill="#5faae8">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="descriptProduit" prefHeight="135.0" prefWidth="519.0" styleClass="descriptProduit" stylesheets="@CSS/descriptProduit.css" text="Description " textFill="#443a4d">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Label fx:id="prix" layoutX="574.0" layoutY="221.0" prefHeight="92.0" prefWidth="181.0" text=" Le Prix de la piece  &#10;est : .....$ " textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="nbrStock" layoutX="591.0" layoutY="312.0" prefHeight="82.0" prefWidth="153.0" text=" Piece(s) disponible en Stock " textAlignment="CENTER" textFill="#f7f6f8" wrapText="true">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Text fill="#838080" fontSmoothingType="LCD" layoutX="577.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pour acheter veuillez cliquer sur  Ajouter Panier" textAlignment="CENTER" wrappingWidth="173.00000131130219" />
+      <Button layoutX="582.0" layoutY="494.0" mnemonicParsing="false" onAction="#ajouterPanier" prefHeight="49.0" prefWidth="173.0" stylesheets="@CSS/button.css" text="             Ajouter Panier" />
+      <ImageView fitHeight="49.0" fitWidth="51.0" layoutX="590.0" layoutY="495.0">
+         <image>
+            <Image url="@Images/marketPlace.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="225.0" layoutX="552.0" layoutY="-17.0">
+         <image>
+            <Image url="@Image/hive__2_-removebg-preview.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

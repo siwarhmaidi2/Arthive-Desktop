@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="705.0" prefWidth="1362.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.MarketPlace">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="705.0" layoutX="-1.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="235.0" />
+      <Label layoutX="80.0" layoutY="424.0" textFill="WHITE">
+         <font>
+            <Font name="Arial Narrow" size="18.0" />
+         </font>
+         <effect>
+            <Glow level="0.5" />
+         </effect>
+      </Label>
+    <AnchorPane layoutX="441.0" layoutY="326.0" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+      <VBox layoutX="238.0" layoutY="115.0" prefHeight="62.0" prefWidth="1126.0">
+         <children>
+            <Label alignment="BOTTOM_LEFT" contentDisplay="RIGHT" prefHeight="34.0" prefWidth="1120.0" text="     Filtrer " textFill="#5449d0">
+               <font>
+                  <Font name="System Italic" size="23.0" />
+               </font>
+               <effect>
+                  <Glow level="0.12" />
+               </effect>
+            </Label>
+            <HBox prefHeight="28.0" prefWidth="599.0">
+               <children>
+                  <Label alignment="BASELINE_CENTER" prefHeight="28.0" prefWidth="245.0" text="    Avec Prix :     " textFill="#0f0bfb">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Slider fx:id="filtragePrix" prefHeight="26.0" prefWidth="216.0" styleClass="Event-view" stylesheets="@Event.css">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Slider>
+                  <Region prefHeight="47.0" prefWidth="13.0" />
+                  <TextField fx:id="prixMax" prefHeight="35.0" prefWidth="58.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="355.0" text="                             Avec Categorie :  " textFill="#0f0bfb">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <ComboBox fx:id="categorie" opacity="0.82" prefHeight="25.0" prefWidth="223.0" promptText="Choisir Categorie " stylesheets="@Event.css">
+                     <styleClass>
+                        <String fx:value="choice-box" />
+                        <String fx:value="Event-view" />
+                     </styleClass></ComboBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Label alignment="CENTER" layoutX="240.0" layoutY="76.0" prefHeight="49.0" prefWidth="1126.0" text="MarketPlace " textFill="#5449d0">
+         <font>
+            <Font name="System Italic" size="33.0" />
+         </font>
+         <effect>
+            <Glow level="0.15" />
+         </effect>
+      </Label>
+      <Button layoutX="443.0" layoutY="196.0" mnemonicParsing="false" onAction="#btnAddP" opacity="0.65" prefHeight="37.0" prefWidth="200.0" stylesheets="@CSS/button.css" text="Ajouter Produit " textFill="#3333c4">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="850.0" layoutY="198.0" mnemonicParsing="false" onAction="#afficherliste" opacity="0.65" prefHeight="33.0" prefWidth="200.0" styleClass="search-button" stylesheets="@Event.css" text="Votre liste Produit " textFill="#3131a8">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <ScrollPane layoutX="248.0" layoutY="243.0" prefHeight="456.0" prefWidth="1120.0">
+         <content>
+            <GridPane fx:id="produitGrid" layoutX="185.0" layoutY="194.0" prefHeight="444.0" prefWidth="1104.0" vgap="20">
+               <columnConstraints>
+                  <ColumnConstraints maxWidth="431.0" minWidth="342.0" prefWidth="363.0" />
+                  <ColumnConstraints maxWidth="424.0" minWidth="268.0" prefWidth="368.0" />
+                  <ColumnConstraints maxWidth="475.0" minWidth="188.0" prefWidth="246.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints prefHeight="500.0" />
+                  <RowConstraints prefHeight="500.0" />
+                  <RowConstraints prefHeight="500.0" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <Button fx:id="btnPanier" layoutX="957.0" layoutY="8.0" mnemonicParsing="false" onAction="#afficherPanier" opacity="0.65" prefHeight="33.0" prefWidth="70.0" styleClass="search-button" textFill="#356fa4">
+         <stylesheets>
+            <URL value="@CSS/search-button.css" />
+            <URL value="@Event.css" />
+         </stylesheets></Button>
+      <ImageView fitHeight="43.0" fitWidth="41.0" layoutX="966.0" layoutY="7.0" opacity="0.71">
+         <image>
+            <Image url="@Images/marketPlace.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="73.0" fitWidth="80.0" layoutX="641.0" layoutY="67.0" opacity="0.71">
+         <image>
+            <Image url="@Images/marketPlace.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="incrementer" layoutX="999.0" layoutY="13.0" prefHeight="24.0" prefWidth="24.0" text="( 0 )" textFill="WHITE" />
+      <HBox layoutX="317.0" layoutY="5.0" prefHeight="53.0" prefWidth="588.0" styleClass="search-box" stylesheets="@Event.css">
+         <children>
+            <TextField fx:id="searchField" maxHeight="100.0" maxWidth="400.0" prefColumnCount="20" prefHeight="53.0" prefWidth="384.0" promptText="Rechercher" styleClass="transparent" stylesheets="@Event.css" />
+         </children>
+      </HBox>
+      <Hyperlink layoutX="83.0" layoutY="402.0" onAction="#groupe" text="Groupes" textFill="#070000" wrapText="true" />
+      <Hyperlink layoutX="88.0" layoutY="455.0" onAction="#message" text="Messages" textFill="#070000" wrapText="true" />
+      <Hyperlink layoutX="89.0" layoutY="559.0" onAction="#event" text="Evènements" textFill="#070000" />
+      <Hyperlink layoutX="72.0" layoutY="280.0" text="Nom" textFill="#000000fb">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Hyperlink>
+      <Button cacheShape="false" centerShape="false" focusTraversable="false" layoutX="19.0" layoutY="626.0" mnemonicParsing="true" prefHeight="29.0" prefWidth="189.0" scaleShape="false" stylesheets="@Event.css" text="Créer">
+         <effect>
+            <Blend />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <styleClass>
+            <String fx:value="create-post-button" />
+            <String fx:value="search-button" />
+         </styleClass>
+      </Button>
+      <Hyperlink layoutX="83.0" layoutY="350.0" onAction="#home" text="Fil d'actualité" textFill="#070000" wrapText="true" />
+      <Hyperlink fx:id="linkMarket" layoutX="86.0" layoutY="503.0" onAction="#marketPlace" text="Marketplace" textFill="#070000" />
+      <Button layoutX="759.0" layoutY="8.0" maxWidth="589.0" minHeight="31.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="141.0" styleClass="search-button" stylesheets="@Event.css" text="Rechercher" textFill="WHITE" />
+      <Hyperlink layoutX="1230.0" layoutY="44.0" text="Déconnexion" textFill="#0f0bfb" />
+      <ImageView fitHeight="200.0" fitWidth="212.0" layoutX="-5.0" layoutY="-13.0">
+         <image>
+            <Image url="@Image/hive__2_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="94.0" fitWidth="95.0" layoutX="53.0" layoutY="169.0">
+         <image>
+            <Image url="@Image/event.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="23.0" fitWidth="26.0" layoutX="52.0" layoutY="344.0">
+         <image>
+            <Image url="@Image/home.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="45.0" layoutY="395.0">
+         <image>
+            <Image url="@Image/grp.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="23.0" fitWidth="26.0" layoutX="53.0" layoutY="455.0">
+         <image>
+            <Image url="@Image/message-icon-2043x2048-z7d1f8at.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="23.0" fitWidth="26.0" layoutX="54.0" layoutY="502.0">
+         <image>
+            <Image url="@Image/marketplace.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="23.0" fitWidth="26.0" layoutX="52.0" layoutY="637.0">
+         <image>
+            <Image url="@Image/add-50.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="26.0" layoutX="1259.0" layoutY="6.0">
+         <image>
+            <Image url="@Image/logout.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="33.0" layoutX="1130.0" layoutY="7.0">
+         <image>
+            <Image url="@Image/services-parametres-et-icone-d-engrenage-bleue.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="56.0" layoutY="554.0">
+         <image>
+            <Image url="@Image/839888.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

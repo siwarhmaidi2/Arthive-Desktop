@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ServiceReaction implements IServiceReaction<Reaction> {
+public class ServiceReaction implements IService<Reaction> {
     Connection cnx = DataSource.getInstance().getCnx();
     private ServiceUser serviceUser = new ServiceUser();
     private ServicePublication servicePublication = new ServicePublication();
@@ -112,4 +112,56 @@ public class ServiceReaction implements IServiceReaction<Reaction> {
 
         return reactions;
     }
+
+    public int addLike(int publicationId, int userId) {
+        if (!hasUserLiked(publicationId, userId)) {
+            String query = "INSERT INTO reactions (id_user, id_publication, d_ajout_reaction) VALUES (?, ?, CURRENT_TIMESTAMP)";
+            try {
+                PreparedStatement ps = cnx.prepareStatement(query);
+                ps.setInt(1, userId);
+                ps.setInt(2, publicationId);
+                ps.executeUpdate();
+                return 1; // Indicate success
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return 0; // Indicate failure or that the user has already liked
+    }
+
+    public int removeLike(int publicationId, int userId) {
+        if (hasUserLiked(publicationId, userId)) {
+            String query = "DELETE FROM reactions WHERE id_user = ? AND id_publication = ?";
+            try {
+                PreparedStatement ps = cnx.prepareStatement(query);
+                ps.setInt(1, userId);
+                ps.setInt(2, publicationId);
+                ps.executeUpdate();
+                return 1; // Indicate success
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return 0; // Indicate failure or that the user hasn't liked
+    }
+
+    public boolean hasUserLiked(int publicationId, int userId) {
+        String query = "SELECT COUNT(*) FROM reactions WHERE id_user = ? AND id_publication = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(query);
+            ps.setInt(1, userId);
+            ps.setInt(2, publicationId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+
 }

@@ -8,11 +8,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="1051.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.HomeAdminController">
    <children>
@@ -30,11 +33,13 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnPublications" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styleAdmin.css" text="Publications" textFill="#e7e5e5">
+           
+            <Button fx:id="buttonPublication" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#switchToFetchAllPublications" prefHeight="42.0" prefWidth="259.0" stylesheets="@styleAdmin.css" text="Publications" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Image/publication.png" />
+                        <Image url="@../Image/icons8_Xbox_Menu_32px.png" />
+
                      </image>
                   </ImageView>
                </graphic>
@@ -48,6 +53,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
+
             <Button fx:id="btnUsers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#showUsers" prefHeight="42.0" prefWidth="259.0" stylesheets="@styleAdmin.css" text="Utilisateurs">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -59,75 +65,90 @@
                <padding>
                   <Insets left="50.0" />
                </padding>
+
             </Button>
             <Button fx:id="btnProduits" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styleAdmin.css" text="Produits">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/marketplace.png" />
+
+
                      </image>
                   </ImageView>
                </graphic>
                <padding>
                   <Insets left="50.0" />
                </padding>
+
             </Button>
             <Button fx:id="btnGroups" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styleAdmin.css" text="Groupes">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/grp.png" />
+
                      </image>
                   </ImageView>
                </graphic>
                <padding>
                   <Insets left="50.0" />
                </padding>
+
             </Button>
             <Button fx:id="btnEvents" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styleAdmin.css" text="Evenements">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/839888.png" />
+
                      </image>
                   </ImageView>
                </graphic>
                <padding>
                   <Insets left="50.0" />
                </padding>
+
             </Button>
             <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styleAdmin.css" text="Paramètres">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../RestaurantMgtSampleUI-master/src/images/icons8_Slider__32px.png" />
+
                      </image>
                   </ImageView>
                </graphic>
                <padding>
                   <Insets left="50.0" />
                </padding>
+
             </Button>
             <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styleAdmin.css" text="Déconnexion">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../RestaurantMgtSampleUI-master/src/images/icons8_Sign_Out_32px.png" />
+
                      </image>
                   </ImageView>
                </graphic>
                <padding>
                   <Insets left="50.0" />
                </padding>
+
             </Button>
          </children>
       </VBox>
       <StackPane layoutX="258.0" prefHeight="622.0" prefWidth="793.0" style="-fx-background-color: #02030A;">
+
          <children>
             <Pane fx:id="pnlCustomer" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
+
             <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0">
+
                <children>
                   <Label layoutX="57.0" layoutY="25.0" text="ArtHive Client Admin Dashboard" textFill="#e7e5e5">
                      <font>
@@ -138,7 +159,9 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
+
                               <Label fx:id="userCount" text="22000" textFill="#2a73ff">
+
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
@@ -146,9 +169,11 @@
                               <Label text="Utilisateurs" textFill="#e7e5e5" />
                            </children>
                         </VBox>
+
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label fx:id="productsCount" text="1000" textFill="#fa5f7e">
+                                
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
@@ -158,7 +183,9 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
+
                               <Label fx:id="groupsCount" text="780" textFill="#de0000">
+
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
@@ -168,7 +195,9 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
+
                               <Label fx:id="eventsCount" text="780" textFill="#9cde00">
+
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
@@ -178,12 +207,13 @@
                         </VBox>
                      </children>
                   </HBox>
+
                   <Button fx:id="addBtn" layoutX="14.0" layoutY="173.0" mnemonicParsing="false" onAction="#addUser" style="-fx-background-color: blue; -fx-background-radius: 20px; -fx-text-fill: white; -fx-pref-height: 30px; -fx-pref-width: 120px;" text="Add User">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <ScrollPane fx:id="scrollPane" layoutX="4.0" layoutY="209.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="786.0" style="-fx-background-color: black;" stylesheets="@styleAdmin.css">
+                  <ScrollPane fx:id="postGrid" layoutX="4.0" layoutY="209.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="786.0" style="-fx-background-color: black;" stylesheets="@styleAdmin.css">
       </ScrollPane>
                </children>
             </Pane>

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
 
-import edu.esprit.entities.Message;
+
 
 
 import javafx.application.Application;
@@ -36,7 +36,7 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
         primaryStage.setTitle("Arthive Login");
-        primaryStage.setScene(new Scene(root, 1366, 768));
+        primaryStage.setScene(new Scene(root, 1365, 705));
         primaryStage.show();
     }
 
@@ -112,8 +112,10 @@ public class Main extends Application {
 
 
         // Create a comment
-//Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalDateTime.now()), userService.getOneByID(30), publicationService.getOneByID(17));
-//      ServiceCommentaire commentaireService = new ServiceCommentaire();
+
+Commentaire commentaire = new Commentaire("Nice post!", Timestamp.valueOf(LocalDateTime.now()), userService.getOneByID(44), publicationService.getOneByID(28));
+      ServiceCommentaire commentaireService = new ServiceCommentaire();
+
 
         // Add a comment
        //commentaireService.add(commentaire);
@@ -143,7 +145,7 @@ public class Main extends Application {
 
         LocalDate birthDate = LocalDate.of(1990, 5, 15);
 
-        System.out.println(su.getAll());
+      //  System.out.println(su.getAll());
 
 //        long currentMillis = System.currentTimeMillis();
 //        Date currentDate = new Date(currentMillis);
@@ -157,8 +159,10 @@ public class Main extends Application {
         launch(args);
         // Create a reaction
 
-//     Reaction reaction = new Reaction(userService.getOneByID(30), publicationService.getOneByID(17), Timestamp.valueOf(LocalDateTime.now()));
-//     ServiceReaction reactionService = new ServiceReaction();
+
+   //  Reaction reaction = new Reaction(userService.getOneByID(30), publicationService.getOneByID(17), Timestamp.valueOf(LocalDateTime.now()));
+     //ServiceReaction reactionService = new ServiceReaction();
+
 
         // Add a reaction
      // reactionService.add(reaction);
@@ -210,10 +214,13 @@ public class Main extends Application {
 //        Set<ReactionCommentaire> reactionsForComment = reactionCommentaireService.getAll();
 
         // Print the reactions
-//        System.out.println("List of Reactions:");
-//        for (ReactionCommentaire r : reactionsForComment) {
-//            System.out.println(r);
-//        }
+
+      /*  System.out.println("List of Reactions:");
+        for (ReactionCommentaire r : reactionsForComment) {
+            System.out.println(r);
+        }
+        */
+
 
 
         // update a reaction

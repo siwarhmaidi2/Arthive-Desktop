@@ -2,6 +2,8 @@ package edu.esprit.Controllers;
 
 import edu.esprit.entities.UserData;
 import edu.esprit.tests.Main;
+
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -52,9 +54,10 @@ public class LoginController {
             ProfileController profileController = profileLoder.getController();
 
             //redirect to home page, replace with actual Home page
-            Main.changeScene("/Profile.fxml");
-        }
+
+            Main.changeScene("/Home.fxml");
         else{
+            //redirect to admin home page, replace with actual admin home page
             if(loggedInUser != null && loggedInUser.getRole().equals("ROLE_ADMIN")){
                 UserData.getInstance().setLoggedInUser(loggedInUser);
                 System.out.println(UserData.getInstance().getLoggedInUser());
@@ -63,11 +66,17 @@ public class LoginController {
                 HomeAdminController homeAdminController = loader.getController();
                 Main.changeScene("/AdminResources/HomeAdmin.fxml");
             }
+
+
+
+
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Login failed");
                 alert.setHeaderText(null);
-                alert.setContentText("Invalid email or password");
+
+                alert.setContentText("Invalid email ou mot de pass");
+
                 alert.showAndWait();
                 System.out.println("Login failed");
                 //show error message
@@ -77,7 +86,8 @@ public class LoginController {
     }
 
     public void handleHyperlinkAction(ActionEvent event) throws IOException{
-        Main m = new Main();
+        Main m = new Main ();
         m.changeScene("/Signup.fxml");
     }
 }
+
