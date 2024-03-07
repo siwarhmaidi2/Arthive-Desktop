@@ -44,10 +44,10 @@ public class HomeController implements Initializable {
     private Label messageLabel;
     @FXML
     private GridPane postGrid;
-@FXML
-private ImageView profileImage;
-@FXML
-private Hyperlink nom;
+    @FXML
+    private ImageView profileImage;
+    @FXML
+    private Hyperlink nom;
     @FXML
     private Button searchButton;
 
@@ -87,7 +87,7 @@ private Hyperlink nom;
             try {
                 // Load the image resource from the classpath
 
-               messageImage.setImage(messageImage.getImage());
+                messageImage.setImage(messageImage.getImage());
                 messageLabel.setText(messageLabel.getText() + " \"" + searchText + "\"");
                 postGrid.getChildren().clear();
                 messageBox.setVisible(true);
@@ -111,7 +111,7 @@ private Hyperlink nom;
     }
 
 
-        public void refreshContent() {
+    public void refreshContent() {
         posts = new ArrayList<>(data());
         posts.sort(Comparator.comparing(Publication::getD_creation_publication).reversed());
 
