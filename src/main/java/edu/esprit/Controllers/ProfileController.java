@@ -1,15 +1,18 @@
 package edu.esprit.Controllers;
 
+
 import edu.esprit.entities.PanierState;
 import edu.esprit.entities.Publication;
 import edu.esprit.entities.User;
 import edu.esprit.entities.UserData;
 import edu.esprit.services.ServicePublication;
+
 import edu.esprit.services.ServiceUser;
 import edu.esprit.tests.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -20,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+
 import javafx.scene.text.Text;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
@@ -30,8 +34,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Paths;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ProfileController {
 
@@ -68,6 +74,7 @@ public class ProfileController {
     Hyperlink logoutBtn;
 
     private File selectedFile;
+
     private List<Publication> posts;
     @FXML
     private GridPane postGrid;
@@ -89,8 +96,10 @@ public class ProfileController {
 
 
 
+
     public void initialize() throws Exception{
         User loggedInUser = UserData.getInstance().getLoggedInUser();
+
 
         if (loggedInUser != null) {
             // Step 3: User is authenticated, proceed to retrieve photo
@@ -106,12 +115,14 @@ public class ProfileController {
                 System.out.println("User does not have a valid photo URL.");
                 // Consider using a default photo or displaying a placeholder image
             }//
+
         name.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
         name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
         region.setText(loggedInUser.getVille());
         email.setText(loggedInUser.getEmail());
         birthDate.setText(loggedInUser.getD_naissance_user().toString());
         bio.setText(loggedInUser.getBio());
+
 //        image.setImage(imgUser);
 //        image2.setImage(imgUser);
 
@@ -162,6 +173,7 @@ public class ProfileController {
         Stage stage = (Stage) postGrid.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
+
 
 
     public void openEditProfileWindow(ActionEvent event){
@@ -217,6 +229,7 @@ public class ProfileController {
         UserData.getInstance().setLoggedInUser(null);
         Main.changeScene("/Login.fxml");
     }
+
 
     @FXML
     void marketPlace(ActionEvent event) {
@@ -286,6 +299,7 @@ public class ProfileController {
 
 
     //add a new method to switch to event
+
 
 
 }
