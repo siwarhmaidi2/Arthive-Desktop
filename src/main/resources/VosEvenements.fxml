@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1018.0" prefWidth="1509.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.VosEvenements">
+<AnchorPane prefHeight="705.0" prefWidth="1365.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.VosEvenements">
 
    <children>
       <Label fx:id="userNameLabel" layoutX="569.0" layoutY="115.0" prefHeight="39.0" prefWidth="546.0" text="Label">
@@ -52,7 +52,7 @@
       <Hyperlink layoutX="81.0" layoutY="486.0" text="Groupes" textFill="#070000" wrapText="true" />
       <Hyperlink layoutX="82.0" layoutY="539.0" text="Messages" textFill="#070000" wrapText="true" />
       <Hyperlink layoutX="87.0" layoutY="643.0" text="Evènements" textFill="#070000" />
-      <Hyperlink layoutX="56.0" layoutY="332.0" text="Siwar hmaidi" textFill="#000000fb">
+      <Hyperlink fx:id="name" layoutX="56.0" layoutY="332.0" onAction="#SwitchToProfile" text="Siwar hmaidi" textFill="#000000fb">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
@@ -74,16 +74,16 @@
       <Button layoutX="785.0" layoutY="29.0" maxWidth="589.0" minHeight="31.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="141.0" styleClass="search-button" stylesheets="@Event.css" text="Rechercher" textFill="WHITE" />
       <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="1364.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../OneDrive/Bureau/PIDEV/8345293.png" />
+            <Image url="@Image/logout.png" />
          </image>
       </ImageView>
-      <Hyperlink layoutX="1325.0" layoutY="68.0" text="Déconnexion" textFill="#0f0bfb" />
+      <Hyperlink layoutX="1325.0" layoutY="68.0" text="Déconnexion" textFill="#0f0bfb" fx:id="logout" onAction="#logout" />
       <ImageView fitHeight="195.0" fitWidth="327.0" layoutX="20.0" layoutY="-31.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/hive__2_-removebg-preview.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="39.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="photo" fitHeight="150.0" fitWidth="200.0" layoutX="39.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/avatar.png" />
          </image>

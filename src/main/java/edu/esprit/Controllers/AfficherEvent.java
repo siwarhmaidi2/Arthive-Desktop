@@ -7,6 +7,7 @@ import edu.esprit.services.CrudParticipations;
 import edu.esprit.entities.Event;
 import edu.esprit.entities.User;
 import edu.esprit.enums.CategorieEvenement;
+import edu.esprit.tests.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +26,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -48,6 +50,12 @@ public class AfficherEvent implements Initializable {
     private Event evenementToModify;
     @FXML
     private VBox messageBox;
+
+    @FXML
+    private ImageView photo;
+
+    @FXML
+    private Hyperlink name ;
 
     @FXML
     private ImageView messageImage;
@@ -153,6 +161,8 @@ public class AfficherEvent implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         afficherEvenements();
+        this.name.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
+        this.photo.setImage(new Image(loggedInUser.getPhoto()));
         eventsGrid.setVgap(30); // Espace vertical de 10 pixels
         eventsGrid.setHgap(40); // Espace horizontal de 10 pixels
         Button vosEvenementsButton = new Button("Vos évènements");
@@ -476,6 +486,26 @@ public class AfficherEvent implements Initializable {
             refreshEvenementsList();
         }
     }
+
+    public void logout(ActionEvent event) throws IOException {
+        UserData.getInstance().setLoggedInUser(null);
+        Main.changeScene("/Login.fxml");
+    }
+    public void SwitchToProfile(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profile.fxml"));
+            Parent root = loader.load();
+            //dont open new window
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+
+        }
+    }
+
 
 }
 

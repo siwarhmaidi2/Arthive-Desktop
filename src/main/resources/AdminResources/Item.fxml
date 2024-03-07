@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="itemC" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="1622.0" style="-fx-background-color: #02030A; -fx-border-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.ItemController">
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints />
+        <ColumnConstraints />
+        <ColumnConstraints />
+        <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints minWidth="10.0" />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+    </columnConstraints>
+    <children>
+        <Label fx:id="name" prefHeight="17.0" prefWidth="288.0" text="Name" textFill="#b7c3d7" wrapText="false" GridPane.columnIndex="0">
+         <padding>
+            <Insets right="200.0" />
+         </padding></Label>
+        <Label fx:id="country" prefHeight="17.0" prefWidth="292.0" text="country" textFill="#b7c3d7" wrapText="false" GridPane.columnIndex="1">
+         <padding>
+            <Insets right="200.0" />
+         </padding></Label>
+        <Label fx:id="birthDate" prefHeight="17.0" prefWidth="317.0" text="birthDate" textFill="#b7c3d7" wrapText="false" GridPane.columnIndex="2">
+         <padding>
+            <Insets right="200.0" />
+         </padding></Label>
+        <Label fx:id="phone" prefHeight="17.0" prefWidth="329.0" text="Tel" textFill="#b7c3d7" wrapText="false" GridPane.columnIndex="3">
+         <padding>
+            <Insets right="200.0" />
+         </padding></Label>
+        <Label fx:id="email" prefHeight="17.0" prefWidth="319.0" text="email" textFill="#b7c3d7" wrapText="false" GridPane.columnIndex="4">
+         <padding>
+            <Insets right="200.0" />
+         </padding></Label>
+      <Button fx:id="editBtn" mnemonicParsing="false" onAction="#editUser" prefHeight="34.0" style="-fx-background-color: white;" GridPane.columnIndex="5">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/pencil.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deleteUser" style="-fx-background-color: white;" GridPane.columnIndex="6">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/trash.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Button>
+    </children>
+    <effect>
+        <DropShadow blurType="GAUSSIAN" height="5.0" radius="2.0" width="5.0" />
+    </effect>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <opaqueInsets>
+      <Insets top="10.0" />
+   </opaqueInsets>
+</GridPane>

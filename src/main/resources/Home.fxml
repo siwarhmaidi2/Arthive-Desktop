@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="753.0" prefWidth="1470.0" styleClass="root" stylesheets="@Event.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.HomeController">
+<AnchorPane maxHeight="762.0" maxWidth="1365.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="762.0" prefWidth="1361.0" styleClass="root" stylesheets="@Event.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.HomeController">
    <children>
       <VBox fx:id="messageBox" layoutX="433.0" layoutY="467.0" prefHeight="136.0" prefWidth="620.0">
          <children>
@@ -44,7 +44,7 @@
             </Button>
          </children>
       </HBox>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="753.0" layoutX="-1.0" layoutY="-2.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="234.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="760.0" layoutX="-1.0" layoutY="-2.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="234.0" />
       <ImageView fitHeight="45.0" fitWidth="41.0" layoutX="29.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/grp.png" />
@@ -108,25 +108,25 @@
          </image>
       </ImageView>
       <Hyperlink layoutX="84.0" layoutY="545.0" text="Marketplace" textFill="#070000" />
-      <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="1387.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="1238.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/logout.png" />
          </image>
       </ImageView>
-      <Hyperlink layoutX="1364.0" layoutY="57.0" text="Déconnexion" textFill="#0f0bfb" />
-      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="1201.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+      <Hyperlink fx:id="logoutBtn" layoutX="1211.0" layoutY="56.0" onAction="#logout" text="Déconnexion" textFill="#0f0bfb" />
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="1087.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/panier.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="41.0" fitWidth="52.0" layoutX="1297.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="52.0" layoutX="1171.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/services-parametres-et-icone-d-engrenage-bleue.png" />
          </image>
       </ImageView>
-      <ScrollPane layoutX="239.0" layoutY="97.0" prefHeight="654.0" prefWidth="1217.0">
+      <ScrollPane layoutX="239.0" layoutY="100.0" prefHeight="660.0" prefWidth="1112.0">
          <content>
-            <GridPane fx:id="postGrid">
+            <GridPane fx:id="postGrid" prefHeight="650.0" prefWidth="1104.0">
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
@@ -134,4 +134,5 @@
          </content>
       </ScrollPane>
    </children>
+
 </AnchorPane>

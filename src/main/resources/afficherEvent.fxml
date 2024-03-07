@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="931.0" prefWidth="1531.0" styleClass="body" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.AfficherEvent">
+<AnchorPane prefHeight="705.0" prefWidth="1365.0" styleClass="body" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.AfficherEvent">
    <children>
       <ScrollPane layoutX="223.0" layoutY="243.0" prefHeight="524.0" prefWidth="1282.0">
          <content>
@@ -45,8 +45,8 @@
             </Label>
          </children>
       </VBox>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="931.0" layoutX="-3.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="218.0" />
-      <Hyperlink layoutX="41.0" layoutY="293.0" text="Siwar hmaidi" textFill="#000000fb">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="768.0" layoutX="-3.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="218.0" />
+      <Hyperlink fx:id="name" layoutX="41.0" layoutY="293.0" text="Siwar hmaidi" textFill="#000000fb" onAction="#SwitchToProfile">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
@@ -56,7 +56,7 @@
       <Hyperlink layoutX="74.0" layoutY="457.0" text="Messages" textFill="#070000" wrapText="true" />
       <Hyperlink layoutX="77.0" layoutY="510.0" text="Marketplace" textFill="#070000" />
       <Hyperlink layoutX="78.0" layoutY="567.0" text="Evènements" textFill="#070000" />
-      <Button cacheShape="false" centerShape="false" focusTraversable="false" layoutX="6.0" layoutY="692.0" mnemonicParsing="true" prefHeight="29.0" prefWidth="189.0" scaleShape="false" stylesheets="@Event.css" text="Créer">
+      <Button cacheShape="false" centerShape="false" focusTraversable="false" layoutX="11.0" layoutY="618.0" mnemonicParsing="true" prefHeight="29.0" prefWidth="189.0" scaleShape="false" stylesheets="@Event.css" text="Créer">
          <effect>
             <Blend />
          </effect>
@@ -68,18 +68,18 @@
             <String fx:value="search-button" />
          </styleClass>
       </Button>
-      <Hyperlink layoutX="1352.0" layoutY="53.0" text="Déconnexion" />
-      <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="1276.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+      <Hyperlink layoutX="1215.0" layoutY="45.0" text="Déconnexion" fx:id="logout" onAction="#logout" />
+      <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="1154.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/services-parametres-et-icone-d-engrenage-bleue.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="29.0" fitWidth="32.0" layoutX="1386.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="29.0" fitWidth="32.0" layoutX="1248.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/logout.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="45.0" fitWidth="43.0" layoutX="1207.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="45.0" fitWidth="43.0" layoutX="1060.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/icone-de-panier-bleu.png" />
          </image>
@@ -89,7 +89,7 @@
             <Image url="@Image/hive__2_-removebg-preview.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="photo" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/avatar.png" />
          </image>
@@ -119,7 +119,7 @@
             <Image url="@Image/839888.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="29.0" fitWidth="35.0" layoutX="19.0" layoutY="700.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="29.0" fitWidth="35.0" layoutX="27.0" layoutY="627.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/add-50.png" />
          </image>

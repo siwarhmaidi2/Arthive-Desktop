@@ -5,14 +5,17 @@ import edu.esprit.services.CrudEvent;
 import edu.esprit.services.ServiceUser;
 import edu.esprit.entities.Event;
 import edu.esprit.entities.User;
+import edu.esprit.tests.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
@@ -32,6 +35,12 @@ import javafx.scene.image.Image;
 
 
 public class VosEvenements implements Initializable {
+
+    @FXML
+    private Hyperlink name ;
+
+    @FXML
+    private javafx.scene.image.ImageView photo;
     @FXML
     private ImageView eventImageView;
 
@@ -67,6 +76,8 @@ public class VosEvenements implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.name.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
+        this.photo.setImage(new Image(loggedInUser.getPhoto()));
        Button vosEvenementsButton = new Button("Vos évènements");
         vosEvenementsButton.setOnAction(this::afficherVosEvenements);
         ServiceUser serviceUser = new ServiceUser();
@@ -192,4 +203,22 @@ public class VosEvenements implements Initializable {
         // Mettez à jour la liste des événements ici
     }
 
+    public void SwitchToProfile(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profile.fxml"));
+            Parent root = loader.load();
+            //dont open new window
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+
+        }
+    }
+    public void logout(ActionEvent event) throws IOException {
+        UserData.getInstance().setLoggedInUser(null);
+        Main.changeScene("/Login.fxml");
+    }
 }

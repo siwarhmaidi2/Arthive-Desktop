@@ -4,6 +4,7 @@ import edu.esprit.entities.Publication;
 import edu.esprit.entities.User;
 import edu.esprit.entities.UserData;
 import edu.esprit.services.ServicePublication;
+import edu.esprit.tests.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +34,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class HomeController implements Initializable {
-
+    @FXML
+    private Hyperlink logoutBtn;
     @FXML
     private VBox messageBox;
 
@@ -197,6 +199,10 @@ private Hyperlink nom;
         }
     }
 
-
+    public void logout(ActionEvent event) throws IOException {
+        UserData.getInstance().setLoggedInUser(null);
+        Main.changeScene("/Login.fxml");
+    }
 
 }
+

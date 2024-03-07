@@ -1,16 +1,10 @@
 package edu.esprit.Controllers;
 
 import edu.esprit.entities.User;
-import edu.esprit.entities.UserData;
 import edu.esprit.services.ServiceUser;
 import edu.esprit.utils.CountryComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-
 import javafx.scene.control.*;
 import javafx.scene.control.skin.ComboBoxListViewSkin;
 import javafx.stage.Stage;
@@ -18,9 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class ProfileEditController {
-
-
+public class ProfileAddController {
     @FXML
     private TextField name;
     @FXML
@@ -32,64 +24,64 @@ public class ProfileEditController {
     @FXML
     private DatePicker birthDate;
     @FXML
+    private TextField email;
+    @FXML
+    private PasswordField password;
+    @FXML
+    private PasswordField passwordRepeat;
+    @FXML
     private TextArea bio;
     @FXML
     private Button submit;
 
-    private User loggedInUser;
     private ServiceUser su = new ServiceUser();
 
-    private ProfileController profileController;
+    public void initialize() {
+        navigateOnPress();
 
-    public void setProfileController(ProfileController profileController) {
-        this.profileController = profileController;
-    }
-
-    public void initialize() throws IOException {
-
-        loggedInUser = UserData.getInstance().getLoggedInUser();
         CountryComboBox.populateCountriesComboBox(countries);
-
-        name.setText(loggedInUser.getNom_user());
-        fname.setText(loggedInUser.getPrenom_user());
-        countries.setValue(loggedInUser.getVille());
-        numTel.setText(loggedInUser.getNum_tel_user());
-        birthDate.setValue(loggedInUser.getD_naissance_user().toLocalDate());
-        bio.setText(loggedInUser.getBio());
-
-
     }
 
-
-    public void updateProfile(ActionEvent event) {
-        if (checkForm()) {
-            loggedInUser.setNom_user(name.getText());
-            loggedInUser.setPrenom_user(fname.getText());
-            loggedInUser.setVille(countries.getValue());
-            loggedInUser.setNum_tel_user(numTel.getText());
-            loggedInUser.setD_naissance_user(java.sql.Date.valueOf(birthDate.getValue()));
-            loggedInUser.setBio(bio.getText());
-            su.updateProfile(loggedInUser);
-            UserData.getInstance().setLoggedInUser(loggedInUser);
+    public void AddUser(ActionEvent event) throws IOException {
+        if(checkForm() && !checkExist()){
+            registerUser();
             closeAndUpdateProfilePage();
-
-        }else{
+        }else if(checkExist()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid information");
+            alert.setTitle("Email déjà utilisé");
             alert.setHeaderText(null);
-            alert.setContentText("Please fill in all the fields correctly");
+            alert.setContentText("L'email que vous avez entré est déjà utilisé");
             alert.showAndWait();
         }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Formulaire Invalide");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez remplir correctement tous les champs");
+            alert.showAndWait();
+
+        }
+    }
+    private void registerUser(){
+        ServiceUser su = new ServiceUser();
+        User u = new User(name.getText(), fname.getText(), email.getText(), password.getText(), java.sql.Date.valueOf(birthDate.getValue()), countries.getValue().toString(), numTel.getText().toString(),"", "file:/C:/Users/ziedz/Downloads/arthive-client/src/main/resources/Image/profil.png", "ROLE_USER");
+        su.add(u);
     }
 
+    private boolean checkExist(){
+        ServiceUser su = new ServiceUser();
+        return su.checkEmail(email.getText());
+    }
 
 
     private boolean checkForm() {
         return !name.getText().isEmpty() && !fname.getText().isEmpty()
                 && name.getText().matches("[a-zA-Z]+") && fname.getText().matches("[a-zA-Z]+")
-                && !countries.getSelectionModel().isEmpty()
+                && !email.getText().isEmpty() && email.getText().matches("[^@]+@[^@]+\\.[a-zA-Z]{2,}")
+                && !password.getText().isEmpty() && !countries.getSelectionModel().isEmpty()
                 && !numTel.getText().isEmpty() && numTel.getText().matches("\\d*")
-                && birthDate.getValue() != null && isAgeValid(birthDate);
+                && birthDate.getValue() != null && isAgeValid(birthDate)
+                && password.getText().length() >= 8 && passwordRepeat.getText().equals(password.getText());
     }
 
 
@@ -127,16 +119,12 @@ public class ProfileEditController {
             }
         });
     }
-
-    private void closeAndUpdateProfilePage() {
+    private void closeAndUpdateProfilePage() throws IOException {
         Stage stage = (Stage) submit.getScene().getWindow();
-        try{
-            profileController.initialize();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
         stage.close();
     }
+
+
+
 
 }
