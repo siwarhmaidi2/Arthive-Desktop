@@ -83,7 +83,7 @@
                      <children>
                         <ImageView fx:id="commentIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#switchToCommentAdd" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../Users/MSI/Desktop/5338282.png" />
+                              <Image url="@Image/5338282.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="commentsLabel" prefHeight="25.0" prefWidth="25.0">

@@ -272,7 +272,7 @@ public Set<Publication> getAll() {
         return getAll().stream()
                 .filter(publication ->
                         publication.getContenu_publication().toLowerCase().contains(searchTextLowerCase) ||
-                                (publication.getUser().getNom_user() + " " + publication.getUser().getPrenom_user()).toLowerCase().contains(searchTextLowerCase))
+                                (publication.getUser().getNom_user() + " " + publication.getUser().getPrenom_user()).toLowerCase().contains(searchTextLowerCase)).sorted((p1, p2) -> p2.getD_creation_publication().compareTo(p1.getD_creation_publication()))
                 .collect(Collectors.toList());
     }
 

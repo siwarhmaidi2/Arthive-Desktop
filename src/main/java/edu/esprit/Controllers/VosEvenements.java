@@ -221,4 +221,18 @@ public class VosEvenements implements Initializable {
         UserData.getInstance().setLoggedInUser(null);
         Main.changeScene("/Login.fxml");
     }
+
+    public void SwitchToHomePage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
+    public void SwitchToEvents(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherEvent.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
+
 }

@@ -206,6 +206,10 @@ public class getAllComments {
             saveCommentButton.setVisible(true);
             // You can also change other styles as needed, such as background color or font style.
         }
+        else {
+            showAlert("Vous n'avez pas la permission de modifier ce commentaire.");
+            content.setEditable(false);
+        }
     }
 
     @FXML

@@ -104,6 +104,8 @@ private Hyperlink nom;
     }
 
     private List<Publication> performSearch(String searchText) {
+
+        //i want to return the method searchPublications from the servicePublication and order by date with stream
         return servicePublication.searchPublications(searchText);
     }
 
@@ -225,6 +227,12 @@ private Hyperlink nom;
     public void logout(ActionEvent event) throws IOException {
         UserData.getInstance().setLoggedInUser(null);
         Main.changeScene("/Login.fxml");
+    }
+    public void SwitchToHomePage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) postGrid.getScene().getWindow();
+        stage.setScene(new Scene(root));
     }
 
 }

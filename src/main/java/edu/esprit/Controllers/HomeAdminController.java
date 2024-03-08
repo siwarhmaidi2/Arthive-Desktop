@@ -3,7 +3,9 @@ package edu.esprit.Controllers;
 
 import edu.esprit.entities.*;
 
+import edu.esprit.services.CrudEvent;
 import edu.esprit.services.ServiceProduit;
+import edu.esprit.tests.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,8 +20,10 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import edu.esprit.entities.UserData;
@@ -50,6 +54,21 @@ public class HomeAdminController {
     ImageView photo;
     @FXML
     Label userCount;
+//    @FXML
+//    private Label nbrUser;
+
+    @FXML
+    private Label nbrPub;
+
+    @FXML
+    private Label nbrProd;
+
+    @FXML
+    private Label nbrGrp;
+
+    @FXML
+    private Label nbrEvent;
+
     @FXML
     Label productsCount;
     @FXML
@@ -129,7 +148,10 @@ public class HomeAdminController {
             e.printStackTrace();
         }
 
-
+        updateProductCountLabel();
+        updatePubCountLabel();
+       // updatUserCountLabel();
+        updatEventCountLabel();
 
     }
 
@@ -267,7 +289,7 @@ public class HomeAdminController {
 
     ServiceProduit serviceProduit = new ServiceProduit();
     public void afficherProduits() {
-        // addBtn.setVisible(false);
+         addBtn.setVisible(false);
         postGrid.setVisible(true);
         postGrid.getChildren().clear();
         Set<Produit> produits = serviceProduit.getAll();
@@ -322,5 +344,178 @@ public class HomeAdminController {
         afficherProduits();
 
     }
+    public void logout(ActionEvent event) throws IOException {
+        UserData.getInstance().setLoggedInUser(null);
+        Main.changeScene("/Login.fxml");
+    }
 
+    private void updateProductCountLabel() {
+        Set<Produit> produits = serviceProduit.getAll();
+        long totalProducts = produits.stream().count();
+        nbrProd.setText(String.valueOf(totalProducts));
+    }
+
+    private void updatePubCountLabel() {
+        Set<Publication> publications = servicePublication.getAll();
+        long totalPubs = publications.stream().count();
+        nbrPub.setText(String.valueOf(totalPubs));
+    }
+
+//    private void updatUserCountLabel() {
+//        Set<User> users = serviceUser.getAll();
+//        long totalUsers = users.stream().count();
+//        nbrUser.setText(String.valueOf(totalUsers));
+//    }
+
+    private void updatEventCountLabel() {
+        Set<Event> events = crudEvent.getAll();
+        long totalEvent = events.stream().count();
+        nbrEvent.setText(String.valueOf(totalEvent));
+    }
+
+
+    private CrudEvent crudEvent = new CrudEvent();
+
+    private GridPane createEventPane(Event evenement) {
+        GridPane pane = new GridPane();
+
+        pane.add(new javafx.scene.control.Label("Titre: " + evenement.getTitre_evenement()), 0, 0);
+        pane.add(new javafx.scene.control.Label("Date: " + evenement.getD_debut_evenement()), 0, 1);
+        pane.add(new javafx.scene.control.Label("Lieu: " + evenement.getLieu_evenement()), 0, 2);
+
+        Button supprimer = new Button("Supprimer");
+
+        supprimer.setUserData(evenement);
+        pane.add(supprimer, 0, 3);
+
+
+        Hyperlink voirDetail = new Hyperlink("Voir détail");
+        voirDetail.setOnAction(this::voirDetailClicked);
+        voirDetail.setUserData(evenement); // Assurez-vous que evenement est un objet de type Event
+        pane.add(voirDetail, 0, 4);
+        pane.add(voirDetail, 0, 4);
+
+
+
+        ImageView eventImageView = new ImageView();
+        eventImageView.setFitWidth(300); // Initial width
+        eventImageView.setFitHeight(100); // Initial height
+
+        EventAdminController eventView = new EventAdminController();
+        //eventView.initializeEvent(evenement, 50, 50);
+        pane.add(eventView, 0, 5); // Ajoutez EventView à la grille
+
+        return pane;
+
+    }
+
+
+    private void afficherEvenements() {
+        addBtn.setVisible(false);
+        postGrid.setVisible(true);
+        postGrid.getChildren().clear();
+        Set<Event> evenements = crudEvent.getAll();
+        List<Event> evenementsList = new ArrayList<>(evenements);
+        // Tri des événements par date de début de manière croissante
+        evenementsList.sort(Comparator.comparing(Event::getD_debut_evenement));
+        AfficherEvent afficherEvent = new AfficherEvent();
+
+
+        int colIndex = 0;
+        int rowIndex = 0;
+
+        for (Event evenement : evenements) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminResources/EventAdmin.fxml"));
+                //Parent root = loader.load();
+                AnchorPane anchorPane = loader.load();
+                EventAdminController eventViewController = loader.getController();
+                // Initialiser les données de l'événement après avoir chargé le FXML
+               // eventViewController.initialize(evenement, 50, 50);
+                // Load and set the image for the event
+                String imagePath = "/Image/" + evenement.getImage();
+                InputStream inputStream = getClass().getResourceAsStream(imagePath);
+
+                if (inputStream != null) {
+                    Image eventImage = new Image(inputStream);
+                    eventViewController.setEventImageView(eventImage);
+                } else {
+                    System.out.println("Failed to load image: " + imagePath);
+                }
+
+                // Vérifier si la date de fin de l'événement est passée
+                if (evenement.getD_fin_evenement().toLocalDateTime().isBefore(LocalDateTime.now())) {
+                    Hyperlink voirDetail = eventViewController.getVoirDetail();
+                    voirDetail.setDisable(true);
+
+                }
+
+                // Ajouter EventView à la GridPane
+                postGrid.add(anchorPane, colIndex, rowIndex);
+
+
+                // Incrémenter les indices de colonne et de ligne
+                colIndex++;
+
+                if (colIndex >= 4) { // Si vous voulez afficher 3 produits par ligne, vous pouvez ajuster cette valeur selon vos besoins
+                    colIndex = 0;
+                    rowIndex++;
+                }
+                //set grid width
+                postGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                postGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                postGrid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                postGrid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                postGrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                postGrid.setMaxHeight(Region.USE_PREF_SIZE);
+                //GridPane.setMargin(anchorPane, new Insets(10,20,30,40));
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+    public void voirDetailClicked(ActionEvent event) {
+        Hyperlink source = (Hyperlink) event.getSource();
+
+        // Assurez-vous que userData est de type Event
+        Object userData = source.getUserData();
+
+        System.out.println("Type of userData: " + userData.getClass().getName());
+
+        if (userData instanceof Event) {
+            Event evenement = (Event) userData;
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/voirDetail.fxml"));
+                Parent root = loader.load();
+
+                VoirDetail detailsController = loader.getController();
+
+                // Utilisez la classe EventDetailsController pour initialiser les détails
+                detailsController.initializeDetails(evenement);
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle(" Détail");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("UserData is not an instance of Event. Check your setup.");
+        }
+
+    }
+
+    public void showEvents(ActionEvent event) {
+        addBtn.setVisible(false);
+        postGrid.setVisible(true);
+        afficherEvenements();
+    }
 }

@@ -16,8 +16,7 @@
    <children>
       <MenuButton mnemonicParsing="false" prefHeight="26.0" prefWidth="0.0" styleClass="search-box" stylesheets="@style.css">
         <items>
-          <MenuItem fx:id="updatePost" mnemonicParsing="false" text="Modifier" />
-          <MenuItem fx:id="deletePost" mnemonicParsing="false"  text="Supprimer" />
+          <MenuItem fx:id="deletePost" mnemonicParsing="false" onAction="#deletePublication" text="Supprimer" />
         </items>
          <VBox.margin>
             <Insets left="23.0" />
@@ -67,7 +66,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="74.0" prefWidth="66.0" spacing="2.0">
                      <children>
-                        <ImageView fx:id="heartIcon" fitHeight="30.0" fitWidth="30.0"  pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="heartIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Image/emptyHeart.png" />
                            </image>
@@ -81,9 +80,9 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="70.0" prefWidth="55.0" spacing="5.0">
                      <children>
-                        <ImageView fx:id="commentIcon" fitHeight="30.0" fitWidth="30.0"  pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="commentIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../Users/MSI/Desktop/5338282.png" />
+                              <Image url="@/Image/5338282.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="commentsLabel" prefHeight="25.0" prefWidth="25.0">
