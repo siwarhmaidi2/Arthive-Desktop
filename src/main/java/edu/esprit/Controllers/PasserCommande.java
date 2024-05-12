@@ -501,7 +501,7 @@ public class PasserCommande  implements Initializable {
     }
 
 
-    private void processPayment() {
+   /* private void processPayment() {
         try {
             // Set your secret key here
             Stripe.apiKey = "sk_test_51OqzOo08LA3XIQ1gQCOI8jQ5LlS31uBqWmFh1lW72yikzP6KQscO2HooOUMm06R4haFRAXALv9HZi7Xm4x1V6krW00aYXjVTsR";
@@ -523,7 +523,7 @@ public class PasserCommande  implements Initializable {
             System.out.println("Paiement échoué. Erreur: " + e.getMessage());
         }
     }
-
+*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         User loggedInUser = UserData.getInstance().getLoggedInUser();
