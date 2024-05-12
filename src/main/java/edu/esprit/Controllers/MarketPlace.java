@@ -141,17 +141,10 @@ public class MarketPlace implements Initializable {
 
         if (loggedInUser != null) {
             // Step 3: User is authenticated, proceed to retrieve photo
-            String userPhotoUrl = loggedInUser.getPhoto();
-            // Step 4: Check if the user has a valid photo URL
-            if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
-                // Step 5: Load and display the user's photo
-                Image userPhoto = new Image(userPhotoUrl);
-                this.image2.setImage(userPhoto);
-            } else {
-                // Step 6: User does not have a valid photo URL
-                System.out.println("User does not have a valid photo URL.");
-                // Consider using a default photo or displaying a placeholder image
-            }//
+            String userPhoto = loggedInUser.getPhoto();
+            String userPhotoUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+userPhoto;
+            Image userImage = new Image(userPhotoUrl);
+            image2.setImage(userImage);
             name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
         }
 
@@ -366,7 +359,7 @@ public class MarketPlace implements Initializable {
         if (filteredProducts.isEmpty()) {
 
             produitGrid.getChildren().clear();
-            messageImage.setImage(new Image("/Image/ay.png"));
+            messageImage.setImage(new Image("file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/ay.png"));
             messageLabel.setText("Aucun événement trouvé pour le terme de recherche : " + searchTerm);
             if (messageBox != null) {
                 messageBox.setVisible(true);
@@ -417,8 +410,11 @@ public class MarketPlace implements Initializable {
                 produitController.setDescriptionProduit(produit.getDescription_produit());
                 produitController.setProduitId(produit.getId_produit());
                 // Load and set the image of the product
-                Image produitImage = new Image(produit.getImage_produit());
-                produitController.setProduitImage(produitImage);
+                String produitImage = produit.getImage_produit();
+                // Assuming your images are stored in a specific directory, construct the full URL
+                String produitImageUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+produitImage;
+                Image image = new Image(produitImageUrl);
+                produitController.setProduitImage(image);
 
                 produitController.initialize();
 

@@ -108,7 +108,8 @@ public class SignupController {
 
     private void registerUser(){
         ServiceUser su = new ServiceUser();
-        User u = new User(name.getText(), fname.getText(), email.getText(), password.getText(), java.sql.Date.valueOf(birthDate.getValue()), countries.getValue().toString(), numTel.getText().toString(),"", "file:/C:/Users/ziedz/Downloads/arthive-client/src/main/resources/Image/profil.png", "ROLE_USER");
+
+        User u = new User(name.getText(), fname.getText(), email.getText(), password.getText(), java.sql.Date.valueOf(birthDate.getValue()), countries.getValue().toString(), numTel.getText().toString(),"","profil.png", "ROLE_USER");
         su.add(u);
     }
 

@@ -67,13 +67,7 @@ public class VosEvenements implements Initializable {
     public void initData(int userId) {
         userNameLabel.setText("Vos évènements");
         List<Event> userEvents = crudEvent.getEventsForUser(userId);
-        // ... le reste du code pour afficher les événements dans votre GridPane
-        //afficherEvenements(userEvents);
     }
-
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.name.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
@@ -125,20 +119,13 @@ public class VosEvenements implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/EventView.fxml"));
                 AnchorPane anchorPane = loader.load();
                 EventView eventViewController = loader.getController();
-
                 // Initialiser les données de l'événement après avoir chargé le FXML
                 eventViewController.initializeEvent(evenement, 10, 50);
-
                 // Load and set the image for the event
-                String imagePath = "/Image/" + evenement.getImage();
-                InputStream inputStream = getClass().getResourceAsStream(imagePath);
+                String imagePath = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+ evenement.getImage();
 
-                if (inputStream != null) {
-                    Image eventImageView = new Image(inputStream);
-                    eventViewController.setEventImageView(eventImageView);
-                } else {
-                    System.out.println("Failed to load image: " + imagePath);
-                }
+                Image eventImage = new Image(imagePath);
+                eventViewController.setEventImageView(eventImage);
 
                 // Afficher les boutons de modification et de suppression
                 eventViewController.getVoirDetail().setVisible(true);

@@ -109,21 +109,13 @@ private static final  User loggedInUser = UserData.getInstance().getLoggedInUser
             if (loggedInUser != null) {
                 // Step 3: User is authenticated, proceed to retrieve photo
                 String userPhotoUrl = loggedInUser.getPhoto();
-                // Step 4: Check if the user has a valid photo URL
-                if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
-                    // Step 5: Load and display the user's photo
-                    Image userPhoto = new Image(userPhotoUrl);
-                    this.profileImage.setImage(userPhoto);
-                } else {
-                    // Step 6: User does not have a valid photo URL
-                    System.out.println("User does not have a valid photo URL.");
-                    // Consider using a default photo or displaying a placeholder image
-                }//
-//
-
+                // Step 5: Load and display the user's photo
+                String userPath = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+userPhotoUrl;
+                this.profileImage.setImage(new Image(userPath));
             }
-            // Load post image
-            String postImageUrl = publication.getUrl_file();
+            String postImageFileName = publication.getUrl_file();
+            // Assuming your images are stored in a specific directory, construct the full URL
+            String postImageUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+postImageFileName;
             Image postImage = new Image(postImageUrl);
             this.postImage.setImage(postImage);
 

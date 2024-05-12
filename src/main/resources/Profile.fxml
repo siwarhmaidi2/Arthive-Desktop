@@ -82,18 +82,13 @@
         </ImageView>
         <Hyperlink fx:id="linkMarket" layoutX="83.0" layoutY="545.0" onAction="#marketPlace" text="Marketplace" textFill="#070000" />
         <Hyperlink fx:id="logoutBtn" layoutX="1127.0" layoutY="22.0" onAction="#logout" prefHeight="41.0" prefWidth="114.0" text="Déconnexion" textFill="#0f0bfb" AnchorPane.topAnchor="22.0">
-         <graphic>
-              <ImageView fitHeight="32.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                      <Image url="@Image/logout.png" />
-                  </image>
-              </ImageView>
-         </graphic></Hyperlink>
-        <ImageView fitHeight="41.0" fitWidth="52.0" layoutX="1067.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Image/services-parametres-et-icone-d-engrenage-bleue.png" />
-            </image>
-        </ImageView>
+            <graphic>
+                <ImageView fitHeight="32.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/logout.png" />
+                    </image>
+                </ImageView>
+            </graphic></Hyperlink>
         <ScrollPane layoutX="246.0" layoutY="344.0" prefHeight="397.0" prefWidth="1211.0">
             <content>
                 <GridPane fx:id="postGrid">
@@ -111,67 +106,61 @@
                     </image>
                 </ImageView>
                 <Text fx:id="name" layoutX="252.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Foulen Fleni" wrappingWidth="376.0">
-               <font>
-                  <Font name="System Bold" size="28.0" />
-               </font></Text>
+                    <font>
+                        <Font name="System Bold" size="28.0" />
+                    </font></Text>
                 <Text fx:id="bio" layoutX="262.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BIO" wrappingWidth="313.13671875">
-               <font>
-                  <Font size="16.0" />
-               </font></Text>
+                    <font>
+                        <Font size="16.0" />
+                    </font></Text>
                 <Button fx:id="editBtn" layoutX="1110.0" layoutY="12.0" mnemonicParsing="false" onAction="#openEditProfileWindow" style="-fx-background-color: #0f0bfb; -fx-background-radius: 20px; -fx-pref-width: 100px; -fx-pref-height: 30px;">
-               <graphic>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Profile">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-               </graphic>
+                    <graphic>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Profile">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Text>
+                    </graphic>
                 </Button>
                 <Text fx:id="region" layoutX="267.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country" wrappingWidth="117.0">
-               <font>
-                  <Font size="20.0" />
-               </font></Text>
+                    <font>
+                        <Font size="20.0" />
+                    </font></Text>
                 <Text fx:id="email" layoutX="575.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email" wrappingWidth="313.1367187499999">
-               <font>
-                  <Font size="20.0" />
-               </font></Text>
-            <Button fx:id="editPfpBtn" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#changePfp" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 50%;">
-               <graphic>
-                  <ImageView fx:id="editButton1" fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/pencil.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <ImageView fitHeight="30.0" fitWidth="32.0" layoutX="230.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Image/location.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="32.0" layoutX="535.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Image/email.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="32.0" layoutX="895.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Image/cake.png" />
-               </image>
-            </ImageView>
-            <Text fx:id="birthDate" layoutX="939.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BirthDate">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
+                    <font>
+                        <Font size="20.0" />
+                    </font></Text>
+                <Button fx:id="editPfpBtn" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#changePfp" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 50%;">
+                    <graphic>
+                        <ImageView fx:id="editButton1" fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Image/upload.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <ImageView fitHeight="30.0" fitWidth="32.0" layoutX="230.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/location.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="30.0" fitWidth="32.0" layoutX="535.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/email.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="30.0" fitWidth="32.0" layoutX="895.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/birth.png" />
+                    </image>
+                </ImageView>
+                <Text fx:id="birthDate" layoutX="939.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BirthDate">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
             </children>
         </Pane>
-      <Button fx:id="btnPanier" layoutX="864.0" layoutY="28.0" mnemonicParsing="false" onAction="#afficherPanier" opacity="0.65" prefHeight="33.0" prefWidth="70.0" styleClass="search-button" stylesheets="@Event.css" textFill="#356fa4" />
-      <ImageView fitHeight="43.0" fitWidth="41.0" layoutX="873.0" layoutY="27.0" opacity="0.71">
-         <image>
-            <Image url="@Images/marketPlace.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="incrementer" layoutX="906.0" layoutY="33.0" prefHeight="24.0" prefWidth="24.0" text="( 0 )" textFill="WHITE" />
+        <Label fx:id="incrementer" layoutX="906.0" layoutY="33.0" prefHeight="24.0" prefWidth="24.0" text="( 0 )" textFill="WHITE" />
     </children>
 </AnchorPane>

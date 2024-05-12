@@ -127,8 +127,9 @@ public class HomeAdminController {
             refreshContent();
         addBtn.setVisible(false);
         User loggedinUser = UserData.getInstance().getLoggedInUser();
-
-        String pfpPath = loggedinUser.getPhoto();
+        String userPhotoUrl = loggedInUser.getPhoto();
+        // Step 5: Load and display the user's photo
+        String pfpPath = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+userPhotoUrl;
         this.photo.setImage(new Image(pfpPath));
 
 

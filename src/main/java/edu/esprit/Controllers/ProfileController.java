@@ -119,8 +119,6 @@ public class ProfileController {
         birthDate.setText(loggedInUser.getD_naissance_user().toString());
         bio.setText(loggedInUser.getBio());
 
-//        image.setImage(imgUser);
-//        image2.setImage(imgUser);
 
         posts = new ArrayList<>(data(loggedInUser));
         refreshPosts();
@@ -205,11 +203,12 @@ public class ProfileController {
             try {
                 Image selectedImage = new Image(selectedFile.toURI().toString());
                 System.out.println("Chemin de l'image sélectionnée : " + selectedFile.toURI().toString()); // Imprimer le chemin de l'image
-
+                // add just the name of the selected file
+                String name = selectedFile.getName();
                 image.setImage(selectedImage);
                 image2.setImage(selectedImage);
                 User loggedInUser = UserData.getInstance().getLoggedInUser();
-                loggedInUser.setPhoto(selectedFile.toURI().toString());
+                loggedInUser.setPhoto(name);
                 ServiceUser su = new ServiceUser();
                 su.updatePhoto(loggedInUser);
 
@@ -291,11 +290,6 @@ public class ProfileController {
             e.printStackTrace();
         }
     }
-
-
-
-    //add a new method to switch to event
-
 
 
 }

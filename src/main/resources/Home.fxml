@@ -108,22 +108,12 @@
          </image>
       </ImageView>
       <Hyperlink fx:id="marketplace" layoutX="84.0" layoutY="545.0" onAction="#switchtomarketplace" text="Marketplace" textFill="#070000" />
-      <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="1238.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="1325.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/logout.png" />
          </image>
       </ImageView>
-      <Hyperlink fx:id="logoutBtn" layoutX="1211.0" layoutY="56.0" onAction="#logout" text="Déconnexion" textFill="#0f0bfb" />
-      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="1087.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/panier.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="41.0" fitWidth="52.0" layoutX="1171.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/services-parametres-et-icone-d-engrenage-bleue.png" />
-         </image>
-      </ImageView>
+      <Hyperlink fx:id="logoutBtn" layoutX="1298.0" layoutY="43.0" onAction="#logout" text="Déconnexion" textFill="#0f0bfb" />
       <ScrollPane layoutX="239.0" layoutY="100.0" prefHeight="646.0" prefWidth="1188.0">
          <content>
             <GridPane fx:id="postGrid" prefHeight="632.0" prefWidth="1173.0">

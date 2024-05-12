@@ -93,21 +93,16 @@ public class ModifierPublicationController implements Initializable {
         User loggedInUser = UserData.getInstance().getLoggedInUser();
         if (loggedInUser != null) {
             // Step 3: User is authenticated, proceed to retrieve photo
-            String userPhotoUrl = loggedInUser.getPhoto();
-            // Step 4: Check if the user has a valid photo URL
-            if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
-                // Step 5: Load and display the user's photo
-                Image userPhoto = new Image(userPhotoUrl);
-                this.profileImage.setImage(userPhoto);
-            } else {
-                // Step 6: User does not have a valid photo URL
-                System.out.println("L'utilisateur n'a pas d'URL de photo valide.");
-                // Consider using a default photo or displaying a placeholder image
-            }//
-//
-
-        }
-        postImage.setImage(new Image(publication.getUrl_file()));
+            String userPhoto = loggedInUser.getPhoto();
+            String userPhotoUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+userPhoto;
+            Image userImage = new Image(userPhotoUrl);
+            this.profileImage.setImage(userImage);
+            }
+        String postImageFileName = publication.getUrl_file();
+        // Assuming your images are stored in a specific directory, construct the full URL
+        String postImageUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+postImageFileName;
+        Image postImage = new Image(postImageUrl);
+        this.postImage.setImage(postImage);
 
         // Set other UI elements as needed
         usernameLabel.setText(publication.getUser().getNom_user() + " " + publication.getUser().getPrenom_user());
@@ -115,8 +110,6 @@ public class ModifierPublicationController implements Initializable {
         String timeElapsed = calculateTimeElapsed(publicationDateTime);
         dateLabel.setText(timeElapsed);
     }
-
-
     @FXML
     private void handleSaveUpdate(ActionEvent event) {
         if (publication != null) {

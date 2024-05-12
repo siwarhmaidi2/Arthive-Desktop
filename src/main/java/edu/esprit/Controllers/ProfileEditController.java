@@ -49,15 +49,13 @@ public class ProfileEditController {
 
         loggedInUser = UserData.getInstance().getLoggedInUser();
         CountryComboBox.populateCountriesComboBox(countries);
-navigateOnPress();
+        navigateOnPress();
         name.setText(loggedInUser.getNom_user());
         fname.setText(loggedInUser.getPrenom_user());
         countries.setValue(loggedInUser.getVille());
         numTel.setText(loggedInUser.getNum_tel_user());
         birthDate.setValue(loggedInUser.getD_naissance_user().toLocalDate());
         bio.setText(loggedInUser.getBio());
-
-
     }
 
 

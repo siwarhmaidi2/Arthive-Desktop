@@ -66,7 +66,6 @@ private Hyperlink nom;
         String path = loggedInUser.getPhoto();
         String userImageUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+path;
         Image userImage = new Image(userImageUrl);
-
         profileImage.setImage(userImage);
         nom.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
         nom.setFont(new Font("System Bold", 17.0));

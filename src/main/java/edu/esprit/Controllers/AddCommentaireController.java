@@ -65,25 +65,15 @@ public class AddCommentaireController implements Initializable {
         if (currentPublication != null) {
             updateCommentList();
         }
-
-
         if (loggedInUser != null) {
             // Step 3: User is authenticated, proceed to retrieve photo
             String userPhotoUrl = loggedInUser.getPhoto();
-            // Step 4: Check if the user has a valid photo URL
-            if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
-                // Step 5: Load and display the user's photo
-                Image userPhoto = new Image(userPhotoUrl);
-                this.profileImage.setImage(userPhoto);
-            } else {
-                // Step 6: User does not have a valid photo URL
-                System.out.println("L'utilisateur n'a pas d'URL de photo valide.");
-                // Consider using a default photo or displaying a placeholder image
-            }//
-//
-
+            // Step 5: Load and display the user's photo
+            String userPath = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+userPhotoUrl;
+            this.profileImage.setImage(new Image(userPath));
+            }
         }
-    }
+
     public void setPublication(Publication publication) {
         this.currentPublication = publication;
         if (commentContainer != null) {

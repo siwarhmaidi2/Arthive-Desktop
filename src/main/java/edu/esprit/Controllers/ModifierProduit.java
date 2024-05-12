@@ -167,8 +167,11 @@ public class ModifierProduit implements Initializable {
         // Récupérer les détails du produit à modifier
         ServiceProduit serviceProduit = new ServiceProduit();
         Produit produit = serviceProduit.getOneByID(produitId);
-        Image produitImage = new Image(produit.getImage_produit());
-        imageMod.setImage(produitImage);
+        String produitImage = produit.getImage_produit();
+        // Assuming your images are stored in a specific directory, construct the full URL
+        String produitImageUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+produitImage;
+        Image image = new Image(produitImageUrl);
+        imageMod.setImage(image);
         nomModifier.setText(produit.getNom_produit());
         descripModifier.setText(produit.getDescription_produit());
         priceSpinnerMod.getValueFactory().setValue(produit.getPrix_produit());
@@ -184,20 +187,12 @@ public class ModifierProduit implements Initializable {
 
         if (loggedInUser != null) {
             // Step 3: User is authenticated, proceed to retrieve photo
-            String userPhotoUrl = loggedInUser.getPhoto();
-            // Step 4: Check if the user has a valid photo URL
-            if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
-                // Step 5: Load and display the user's photo
-                Image userPhoto = new Image(userPhotoUrl);
-                this.image2.setImage(userPhoto);
-            } else {
-                // Step 6: User does not have a valid photo URL
-                System.out.println("User does not have a valid photo URL.");
-                // Consider using a default photo or displaying a placeholder image
-            }//
-            name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());}
-
-
+            String userPhoto = loggedInUser.getPhoto();
+            String userPhotoUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+userPhoto;
+            Image userImage = new Image(userPhotoUrl);
+            image2.setImage(userImage);
+            name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
+        }
         SpinnerValueFactory<Double> priceFactory = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, Double.MAX_VALUE, 0, 0.1);
         SpinnerValueFactory<Integer> stockFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, 0);
 

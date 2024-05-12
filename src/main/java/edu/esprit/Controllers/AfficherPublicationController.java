@@ -121,13 +121,10 @@ public class AfficherPublicationController {
                     // Step 5: Load and display the user's photo
             String userPhotoUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+userPhoto;
             Image userImage = new Image(userPhotoUrl);
-                    this.profileImage.setImage(userImage);
+            this.profileImage.setImage(userImage);
 
-            // Load post image
-            //String postImageUrl = publication.getUrl_file();
             String postImageFileName = publication.getUrl_file();
             // Assuming your images are stored in a specific directory, construct the full URL
-
             String postImageUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+postImageFileName;
             Image postImage = new Image(postImageUrl);
             this.postImage.setImage(postImage);
