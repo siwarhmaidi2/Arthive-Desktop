@@ -18,7 +18,7 @@
          <children>
             <ImageView fx:id="postImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Users/MSI/Desktop/png-transparent-plastic-arts-art-institute-of-chicago-culture-the-arts-floresta-encantada-culture-pin-painting-thumbnail.png" />
+                  <Image url="@Image/aaa.jpg" />
                </image>
             </ImageView>
             <TextField fx:id="postTextTextField" prefHeight="62.0" prefWidth="200.0" styleClass="text-field" stylesheets="@Event.css" StackPane.alignment="BOTTOM_CENTER">
@@ -32,7 +32,7 @@
          <children>
             <ImageView fx:id="profileImage" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Users/MSI/Desktop/png-transparent-plastic-arts-art-institute-of-chicago-culture-the-arts-floresta-encantada-culture-pin-painting-thumbnail.png" />
+                  <Image url="@Image/profile.png" />
                </image>
             </ImageView>
             <VBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="112.0">

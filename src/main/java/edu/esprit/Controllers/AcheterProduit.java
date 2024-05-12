@@ -8,19 +8,23 @@ import edu.esprit.services.ServiceProduit;
 import edu.esprit.services.ServiceUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class AcheterProduit {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AcheterProduit implements Initializable {
     @FXML
     private ImageView art;
 
     @FXML
-    private ImageView avatar;
+    private ImageView image2;
 
     @FXML
-    private Label userName;
+    private Label name2;
 
     @FXML
     private Label publicationTime;
@@ -64,7 +68,7 @@ public class AcheterProduit {
 
     public void initData(Image image, String userName, String publicationTime, String nomProduit, String prix, String nbrStock, String descriptProduit, int produitId) {
         this.imageProduit.setImage(image);
-        this.userName.setText(userName);
+        this.name2.setText(userName);
         this.publicationTime.setText(publicationTime);
         this.nomProduit.setText(nomProduit);
         this.prix.setText(prix + " Par Pièce");
@@ -112,9 +116,25 @@ public class AcheterProduit {
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        User loggedInUser = UserData.getInstance().getLoggedInUser();
 
-
-
+        if (loggedInUser != null) {
+            // Step 3: User is authenticated, proceed to retrieve photo
+            String userPhotoUrl = loggedInUser.getPhoto();
+            // Step 4: Check if the user has a valid photo URL
+            if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
+                // Step 5: Load and display the user's photo
+                Image userPhoto = new Image(userPhotoUrl);
+                this.image2.setImage(userPhoto);
+            } else {
+                // Step 6: User does not have a valid photo URL
+                System.out.println("User does not have a valid photo URL.");
+                // Consider using a default photo or displaying a placeholder image
+            }//
+            name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());}
+    }
 }
 
 

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="674.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.AcheterProduit">
+<AnchorPane prefHeight="674.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.AcheterProduit">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="679.0" layoutX="557.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="225.0" />
       <HBox layoutX="14.0" layoutY="16.0" prefHeight="36.0" prefWidth="530.0">
@@ -64,7 +64,7 @@
          </font>
       </Label>
       <Text fill="#838080" fontSmoothingType="LCD" layoutX="577.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pour acheter veuillez cliquer sur  Ajouter Panier" textAlignment="CENTER" wrappingWidth="173.00000131130219" />
-      <Button layoutX="582.0" layoutY="494.0" mnemonicParsing="false" onAction="#ajouterPanier" prefHeight="49.0" prefWidth="173.0" styleClass="search-button" stylesheets="@Event.css" text="             Ajouter Panier" />
+      <Button layoutX="582.0" layoutY="494.0" mnemonicParsing="false" onAction="#ajouterPanier" prefHeight="49.0" prefWidth="173.0" styleClass="search-button" stylesheets="@Event.css" text="         Ajouter Panier" />
       <ImageView fitHeight="49.0" fitWidth="51.0" layoutX="590.0" layoutY="495.0">
          <image>
             <Image url="@Images/marketPlace.png" />

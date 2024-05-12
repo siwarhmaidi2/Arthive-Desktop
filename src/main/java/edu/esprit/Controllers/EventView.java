@@ -401,16 +401,16 @@ public class EventView extends AnchorPane implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Réservez la date...!");
                 alert.showAndWait();
-//                String ACCOUNT_SID = "AC830d90420c028fbee80b831b4fb7c216";
-//                String AUTH_TOKEN = "f23c4f80acf0709e57a15dc64009792f";
-//                Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-//                String userPhoneNumber ;
-//                Message message = Message.creator(
-//                        new PhoneNumber("+21692978106"),
-//                        new PhoneNumber("+13103073062"),
-//                        "Vous avez participé à l'événement ! Enregistrez la date." + evenement.getD_debut_evenement()).create();
-//
-//                System.out.println("SMS sent successfully to " + "+21692978106");
+                String ACCOUNT_SID = "AC830d90420c028fbee80b831b4fb7c216";
+                String AUTH_TOKEN = "f23c4f80acf0709e57a15dc64009792f";
+                Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+                String userPhoneNumber ;
+                Message message = Message.creator(
+                        new PhoneNumber("+21699356653"),
+                        new PhoneNumber("+13103073062"),
+                        "Vous avez participé à l'événement ! Enregistrez la date." + evenement.getD_debut_evenement()).create();
+
+                System.out.println("SMS sent successfully to " + "+21692978106");
 
             }
 

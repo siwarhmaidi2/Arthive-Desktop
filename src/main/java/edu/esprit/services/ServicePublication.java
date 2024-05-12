@@ -106,33 +106,6 @@ public class ServicePublication implements IService<Publication> {
         return publication;
     }
 
-
-//    @Override
-//    public Set<Publication> getAll() {
-//        Set<Publication> publications = new HashSet<>();
-//
-//        String query = "SELECT * FROM publications ORDER BY d_creation_publication DESC";
-//        try (
-//                Statement statement = cnx.createStatement();
-//                ResultSet resultSet = statement.executeQuery(query)
-//        ) {
-//
-//            while (resultSet.next()) {
-//                int idPublication = resultSet.getInt("id_publication");
-//                String contenuPublication = resultSet.getString("contenu_publication");
-//                Timestamp dateCreationPublication = resultSet.getTimestamp("d_creation_publication");
-//                int idUser = resultSet.getInt("id_user");
-//                String urlFile = resultSet.getString("url_file");
-//                Publication publication = new Publication(idPublication, contenuPublication, urlFile, dateCreationPublication, serviceUser.getOneByID(idUser));
-//                publications.add(publication);
-//            }
-//
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//
-//        return publications;
-//    }
 @Override
 public Set<Publication> getAll() {
     Set<Publication> publications = new HashSet<>();

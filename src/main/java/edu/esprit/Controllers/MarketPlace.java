@@ -70,6 +70,8 @@ public class MarketPlace implements Initializable {
 
     private List<Produit> produitsList;
 
+    private ProduitPost produitController = new ProduitPost();
+
 
 
     private PanierState panierState = PanierState.getInstance();
@@ -218,21 +220,21 @@ public class MarketPlace implements Initializable {
                 produitController.setPrixProduit("Prix :" + produit.getPrix_produit() + "$");
                 produitController.setStockProduit(produit.getStock_produit() + " en Stock");
                 produitController.setDescriptionProduit(produit.getDescription_produit());
-                Image userImage = new Image(produit.getUser().getPhoto());
-                produitController.setAvatarImage(userImage);
+               // produitController.setAvatarImage(userImage);
 
 
                 produitController.setProduitId(produit.getId_produit());
 
                 //Charger et définir l'image du produit
-                Image produitImage = new Image(produit.getImage_produit());
-                produitController.setProduitImage(produitImage);
-
+                String produitImage = produit.getImage_produit();
+                // Assuming your images are stored in a specific directory, construct the full URL
+                String produitImageUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+produitImage;
+                Image image = new Image(produitImageUrl);
+                produitController.setProduitImage(image);
                 // Vérifier si le stock est égal à 0 et désactiver le bouton d'achat en conséquence
                 if (produit.getStock_produit() == 0) {
                     produitController.getAcheterButton().setDisable(true); // Assurez-vous que le bouton est accessible depuis le contrôleur de ProduitPost
                 }
-
                 // Ajouter le ProduitPost au GridPane
                 produitGrid.add(produitNode, colIndex, rowIndex);
                 // Initialiser le Tooltip

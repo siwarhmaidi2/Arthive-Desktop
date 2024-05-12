@@ -110,7 +110,7 @@ public class AfficherEvent implements Initializable {
     private static final User loggedInUser = UserData.getInstance().getLoggedInUser();
 
 
-    //    public void participerButton(ActionEvent event) {
+//    public void participerButton(ActionEvent event) {
 //
 //        participerButton.setText("Participer");
 //
@@ -162,7 +162,7 @@ public class AfficherEvent implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         afficherEvenements();
         this.name.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
-        this.photo.setImage(new Image(loggedInUser.getPhoto()));
+        //this.photo.setImage(new Image(loggedInUser.getPhoto()));
         eventsGrid.setVgap(30); // Espace vertical de 10 pixels
         eventsGrid.setHgap(40); // Espace horizontal de 10 pixels
         Button vosEvenementsButton = new Button("Vos évènements");
@@ -225,15 +225,10 @@ public class AfficherEvent implements Initializable {
                 // Initialiser les données de l'événement après avoir chargé le FXML
                 eventViewController.initializeEvent(evenement, 50, 50);
                 // Load and set the image for the event
-                String imagePath = "/Image/" + evenement.getImage();
-                InputStream inputStream = getClass().getResourceAsStream(imagePath);
+                String imagePath = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+ evenement.getImage();
 
-                if (inputStream != null) {
-                    Image eventImage = new Image(inputStream);
+                    Image eventImage = new Image(imagePath);
                     eventViewController.setEventImageView(eventImage);
-                } else {
-                    System.out.println("Failed to load image: " + imagePath);
-                }
 
                 // Vérifier si la date de fin de l'événement est passée
                 if (evenement.getD_fin_evenement().toLocalDateTime().isBefore(LocalDateTime.now())) {
@@ -328,17 +323,11 @@ public class AfficherEvent implements Initializable {
                 AnchorPane anchorPane = loader.load();
                 EventView eventViewController = loader.getController();
                 eventViewController.initializeEvent(evenement, 50, 50);
-
                 // Load and set the image for the event
-                String imagePath = "/Image/" + evenement.getImage();
-                InputStream inputStream = getClass().getResourceAsStream(imagePath);
-
-                if (inputStream != null) {
-                    Image eventImage = new Image(inputStream);
+                String imagePath = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/" + evenement.getImage();
+                    Image eventImage = new Image(imagePath);
                     eventViewController.setEventImageView(eventImage);
-                } else {
-                    System.out.println("Failed to load image: " + imagePath);
-                }
+
 
                 eventsGrid.add(anchorPane, colIndex, rowIndex);
 
@@ -353,7 +342,6 @@ public class AfficherEvent implements Initializable {
             }
         }
     }
-
 
     @FXML
     private void afficherVosEvenements(ActionEvent event) {
@@ -408,7 +396,6 @@ public class AfficherEvent implements Initializable {
         } else {
             System.out.println("EventView non initialisé.");
         }
-
         // Mettez à jour l'affichage de l'événement dans la vue AfficherEvent
         if (afficherEvent != null) {
             afficherEvent.updateEventInView(updatedEvent);

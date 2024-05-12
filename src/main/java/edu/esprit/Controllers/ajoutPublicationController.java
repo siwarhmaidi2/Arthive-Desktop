@@ -131,7 +131,7 @@ public class ajoutPublicationController {
         }
 
         String contenu = contentPost.getText();
-        String url_file = selectedFile.toURI().toString();
+        String fileName = selectedFile.getName();
 
         // Assuming your ServiceUser class has a method like: User authenticateUser(String email, String password)
         User loggedInUser = UserData.getInstance().getLoggedInUser();
@@ -141,7 +141,7 @@ public class ajoutPublicationController {
 
         if (loggedInUser != null) {
             // Assuming your Publication class has a constructor like: Publication(String contenu, String url_file, User user)
-            Publication publication = new Publication(contenu, url_file, loggedInUser);
+            Publication publication = new Publication(contenu, fileName, loggedInUser);
 
             publication.setD_creation_publication(Timestamp.valueOf(LocalDateTime.now())); // Set current timestamp
 

@@ -50,6 +50,9 @@ public class AjouterProduit implements Initializable {
     @FXML
     private Button annule;
 
+    private File selectedFile;
+
+
 
     @FXML
     private ComboBox<TypeCategorie> category;
@@ -188,15 +191,14 @@ public class AjouterProduit implements Initializable {
         fileChooser.getExtensionFilters().add(filter);
 
         // Afficher la boîte de dialogue de sélection de fichier
-        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        this.selectedFile = fileChooser.showOpenDialog(new Stage());
 
         // Charger l'image sélectionnée dans l'interface utilisateur
-        if (selectedFile != null) {
+        if (this.selectedFile != null) {
             // Vous pouvez implémenter le chargement de l'image dans un ImageView
             Image image = new Image(selectedFile.toURI().toString());
             System.out.println("Chemin de l'image sélectionnée : " + selectedFile.toURI().toString()); // Imprimer le chemin de l'image
             imageview.setImage(image);
-
             upload.setVisible(false);
             deleteArt.setVisible(true);
         }
@@ -324,7 +326,8 @@ public class AjouterProduit implements Initializable {
                 produit.setPrix_produit(prixProduit);
                 produit.setDescription_produit(descriptionProduit);
                 produit.setStock_produit(stockProduit);
-                produit.setImage_produit(urlImage);
+                String fileName = this.selectedFile.getName();
+                produit.setImage_produit(fileName);
                 produit.setDisponibilite(disponibilite);
                 produit.setCateg_produit(categorieProduit);
                 produit.setD_publication_produit(new Timestamp(System.currentTimeMillis()));

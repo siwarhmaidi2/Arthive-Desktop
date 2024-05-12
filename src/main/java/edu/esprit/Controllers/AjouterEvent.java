@@ -75,55 +75,6 @@ public class AjouterEvent implements Initializable {
         }
         return null;
     }
-
-    @FXML
-    private void ajouterEvent(ActionEvent event) {
-        if (!validateInput()) {
-            return; // Validation failed, do not proceed with adding event
-        }
-        // Récupérez les valeurs des champs
-        String titre = titreField.getText();
-        Timestamp dateDebut = convertDatePickerToTimestamp(dateDebutPicker);
-        Timestamp dateFin = convertDatePickerToTimestamp(dateFinPicker);
-        String description = descriptionArea.getText();
-        String lieu = lieuField.getText();
-        String image = imageView.getImage().getUrl();
-        CategorieEvenement categorieEvenement = category.getValue();
-
-        //Image image = imageView.getImage();
-
-
-
-
-        if (loggedInUser != null) {
-           // Event eventObj = new Event(titre, dateDebut, dateFin, description, lieu, loggedInUser, "siwar.jpg");
-            //String imageFilePath = selectedFile != null ? selectedFile.getAbsolutePath() : null;
-
-            Event eventt = new Event(titre,dateDebut,dateFin,description,lieu,loggedInUser,"test.jpg", category.getValue());
-//            eventt.setUser(loggedInUser); // Associez l'utilisateur actuel au produit
-//            eventt.setTitre_evenement(titre);
-//            eventt.setD_debut_evenement(dateDebut);
-//            eventt.setD_fin_evenement(dateFin);
-//            eventt.setDescription_evenement(description);
-//            eventt.setLieu_evenement(lieu);
-//            eventt.setImage(imageFilePath);
-
-            crudEvent.add(eventt);
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("succès");
-            alert.setHeaderText(null);
-            alert.setContentText("Événement ajouté avec succès!");
-            alert.showAndWait();
-
-            Stage stage = (Stage) titreField.getScene().getWindow();
-            stage.setTitle(" Ajouter évènement");
-            stage.close();
-        } else {
-            System.out.println("Error: User not found.");
-        }
-    }
-
     @FXML
     void chooseImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -131,15 +82,12 @@ public class AjouterEvent implements Initializable {
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
         );
         selectedFile = fileChooser.showOpenDialog(new Stage());
-
         if (selectedFile != null) {
             // Utilisez le chemin absolu du fichier sélectionné
             String absoluteImagePath = selectedFile.toURI().toString();
             Image image = new Image(absoluteImagePath);
-
             // Affichez l'image dans l'ImageView
             imageView.setImage(image);
-
             // Vous pouvez afficher le chemin du fichier sélectionné ici si nécessaire
             System.out.println("Chemin de l'image sélectionnée : " + absoluteImagePath);
             System.out.println("Selected Image: " + selectedFile.getPath());
@@ -152,29 +100,34 @@ public class AjouterEvent implements Initializable {
             alert.showAndWait();
         }
     }
-//    @FXML
-//    void uploadArt( javafx.scene.input.MouseEvent mouseEvent) {
-//        // Créer un sélecteur de fichiers pour les images
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Choisir une image");
-//
-//        // Filtrer les fichiers pour afficher uniquement les images
-//        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif");
-//        fileChooser.getExtensionFilters().add(filter);
-//
-//        // Afficher la boîte de dialogue de sélection de fichier
-//        File selectedFile = fileChooser.showOpenDialog(new Stage());
-//
-//        // Charger l'image sélectionnée dans l'interface utilisateur
-//        if (selectedFile != null) {
-//            // Vous pouvez implémenter le chargement de l'image dans un ImageView
-//            Image image = new Image(selectedFile.toURI().toString());
-//            System.out.println("Chemin de l'image sélectionnée : " + selectedFile.toURI().toString()); // Imprimer le chemin de l'image
-//            imageView.setImage(image);
-//
-//           // upload.setVisible(false);
-//        }
-//    }
+    @FXML
+    private void ajouterEvent(ActionEvent event) {
+        if (!validateInput()) {
+            return; // Validation failed, do not proceed with adding event
+        }
+        // Récupérez les valeurs des champs
+        String titre = titreField.getText();
+        Timestamp dateDebut = convertDatePickerToTimestamp(dateDebutPicker);
+        Timestamp dateFin = convertDatePickerToTimestamp(dateFinPicker);
+        String description = descriptionArea.getText();
+        String lieu = lieuField.getText();
+
+        CategorieEvenement categorieEvenement = category.getValue();
+        String fileName = selectedFile.getName();
+            Event eventt = new Event(titre,dateDebut,dateFin,description,lieu,loggedInUser,fileName, category.getValue());
+            crudEvent.add(eventt);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("succès");
+            alert.setHeaderText(null);
+            alert.setContentText("Événement ajouté avec succès!");
+            alert.showAndWait();
+
+            Stage stage = (Stage) titreField.getScene().getWindow();
+            stage.setTitle(" Ajouter évènement");
+            stage.close();
+
+    }
 
     private boolean validateInput() {
         // Validate each input field and show appropriate alert if validation fails

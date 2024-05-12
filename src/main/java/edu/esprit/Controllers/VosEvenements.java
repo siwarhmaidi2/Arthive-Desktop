@@ -77,7 +77,7 @@ public class VosEvenements implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.name.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
-        this.photo.setImage(new Image(loggedInUser.getPhoto()));
+        //this.photo.setImage(new Image(loggedInUser.getPhoto()));
        Button vosEvenementsButton = new Button("Vos évènements");
         vosEvenementsButton.setOnAction(this::afficherVosEvenements);
         ServiceUser serviceUser = new ServiceUser();

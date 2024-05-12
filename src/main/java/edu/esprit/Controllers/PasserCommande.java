@@ -22,6 +22,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -32,6 +34,13 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class PasserCommande  implements Initializable {
+
+    @FXML
+    private Hyperlink name2;
+
+    @FXML
+    private ImageView image2;
+
     @FXML
     private Button btnPanier;
 
@@ -126,12 +135,57 @@ public class PasserCommande  implements Initializable {
 
     @FXML
     void annulerComm(ActionEvent event) {
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirmation d'annulation");
+        confirmationAlert.setHeaderText(null);
+        confirmationAlert.setContentText("Êtes-vous sûr de vouloir annuler cette commande ?");
 
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Redirection vers l'interface MarketPlace.fxml
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/MarketPlace.fxml"));
+                Parent root = loader.load();
+                Stage marketPlaceStage = new Stage();
+                marketPlaceStage.setTitle("MarketPlace");
+                marketPlaceStage.setScene(new Scene(root));
+                marketPlaceStage.show();
+
+                // Fermer la fenêtre actuelle
+                Stage stage = (Stage) btnPanier.getScene().getWindow();
+                stage.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
-
     @FXML
     void marketPlace(ActionEvent event) {
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirmation de redirection");
+        confirmationAlert.setHeaderText(null);
+        confirmationAlert.setContentText("Êtes-vous sûr de vouloir accéder à la page MarketPlace ?");
 
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Redirection vers l'interface MarketPlace.fxml
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/MarketPlace.fxml"));
+                Parent root = loader.load();
+                Stage marketPlaceStage = new Stage();
+                marketPlaceStage.setTitle("MarketPlace");
+                marketPlaceStage.setScene(new Scene(root));
+                marketPlaceStage.show();
+
+                // Fermer la fenêtre actuelle
+                Stage stage = (Stage) btnPanier.getScene().getWindow();
+                stage.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
@@ -366,14 +420,11 @@ public class PasserCommande  implements Initializable {
 
     private void sendPaymentConfirmationEmail(String recipientEmail) {
         // Créer un objet SendGrid avec votre clé API
-        SendGrid sendgrid = new SendGrid("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");
-
+        SendGrid sendgrid = new SendGrid("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");
         // Créer un objet Email pour le destinataire
         Email recipient = new Email(recipientEmail);
-
         // Créer un objet Email pour l'expéditeur
         Email sender = new Email("shamsbensaid456@gmail.com"); // Mettez à jour avec votre adresse e-mail
-
         // Définir le sujet et le contenu de l'e-mail
         String subject = "Confirmation de paiement";
         String messageContent = "Votre paiement a été traité avec succès ! Vous allez recevoir votre commande Apres 48h";
@@ -475,8 +526,49 @@ public class PasserCommande  implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        User loggedInUser = UserData.getInstance().getLoggedInUser();
+
+        if (loggedInUser != null) {
+            // Step 3: User is authenticated, proceed to retrieve photo
+            String userPhotoUrl = loggedInUser.getPhoto();
+            // Step 4: Check if the user has a valid photo URL
+            if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
+                // Step 5: Load and display the user's photo
+                Image userPhoto = new Image(userPhotoUrl);
+                this.image2.setImage(userPhoto);
+            } else {
+                // Step 6: User does not have a valid photo URL
+                System.out.println("User does not have a valid photo URL.");
+                // Consider using a default photo or displaying a placeholder image
+            }//
+            name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
+        }
+
         incrementer.setText("(" + PanierState.getInstance().getItemCount() + ")");
         btnPanier.setStyle(PanierState.getInstance().getButtonColor());
+    }
+
+    @FXML
+    public void profil(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profile.fxml"));
+            Parent root = loader.load();
+            ProfileController profileController = loader.getController();
+
+            // Définir le contrôleur MarketPlace dans la fenêtre du profil
+            profileController.setMarketPlaceController(marketPlaceController);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Profil");
+            stage.show();
+
+            // Fermer la fenêtre actuelle (MarketPlace)
+            Stage marketPlaceStage = (Stage) name2.getScene().getWindow();
+            marketPlaceStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

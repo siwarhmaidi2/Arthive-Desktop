@@ -89,13 +89,11 @@ public class AddCommentaireController implements Initializable {
         if (commentContainer != null) {
             updateCommentList();
 
-            String postImageUrl = currentPublication.getUrl_file();
-            if (postImageUrl != null && !postImageUrl.isEmpty()) {
+            String postImage = currentPublication.getUrl_file();
+                String postImageUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+postImage;
                 Image publicationImage = new Image(postImageUrl);
                 this.postImage.setImage(publicationImage);
-            } else {
-                System.out.println("Post Image URL is null or empty.");
-            }
+
         }
     }
     private void updateCommentList() {

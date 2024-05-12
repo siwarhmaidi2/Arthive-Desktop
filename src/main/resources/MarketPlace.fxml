@@ -163,7 +163,7 @@
             <String fx:value="search-button" />
          </styleClass>
       </Button>
-      <Hyperlink layoutX="80.0" layoutY="351.0" onAction="#home" text="Fil d'actualité" textFill="#070000" wrapText="true">
+      <Hyperlink fx:id="home" layoutX="80.0" layoutY="351.0" onAction="#home" text="Fil d'actualité" textFill="#070000" wrapText="true">
          <font>
             <Font size="16.0" />
          </font></Hyperlink>
@@ -172,7 +172,7 @@
             <Font size="16.0" />
          </font></Hyperlink>
       <Button layoutX="759.0" layoutY="8.0" maxWidth="589.0" minHeight="31.0" mnemonicParsing="false" onAction="#rechercher" prefHeight="45.0" prefWidth="141.0" styleClass="search-button" stylesheets="@Event.css" text="Rechercher" textFill="WHITE" />
-      <Hyperlink layoutX="1230.0" layoutY="44.0" onAction="#logout" text="Déconnexion" textFill="#0f0bfb" />
+      <Hyperlink fx:id="logout" layoutX="1230.0" layoutY="44.0" onAction="#logout" text="Déconnexion" textFill="#0f0bfb" />
       <ImageView fitHeight="200.0" fitWidth="235.0" layoutX="-4.0" layoutY="-17.0">
          <image>
             <Image url="@Image/hive__2_-removebg-preview.png" />

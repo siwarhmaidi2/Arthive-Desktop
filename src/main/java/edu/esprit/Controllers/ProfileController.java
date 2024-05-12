@@ -103,18 +103,14 @@ public class ProfileController {
 
         if (loggedInUser != null) {
             // Step 3: User is authenticated, proceed to retrieve photo
-            String userPhotoUrl = loggedInUser.getPhoto();
-            // Step 4: Check if the user has a valid photo URL
-            if (userPhotoUrl != null && !userPhotoUrl.isEmpty()) {
-                // Step 5: Load and display the user's photo
-                Image userPhoto = new Image(userPhotoUrl);
-                this.image.setImage(userPhoto);
-                this.image2.setImage(userPhoto);
-            } else {
-                // Step 6: User does not have a valid photo URL
-                System.out.println("User does not have a valid photo URL.");
-                // Consider using a default photo or displaying a placeholder image
-            }//
+            String userPhoto = loggedInUser.getPhoto();
+
+            // Step 5: Load and display the user's photo
+            String userPhotoUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+userPhoto;
+            Image userImage = new Image(userPhotoUrl);
+            image.setImage(userImage);
+            image2.setImage(userImage);
+
 
         name.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
         name2.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());

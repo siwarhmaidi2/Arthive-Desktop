@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -123,7 +124,10 @@ public class AjouterPanier implements Initializable {
                     // Mettre à jour les attributs du contrôleur PanierList
                     panierListController.setProduitId(produit.getId_produit());
                     panierListController.setStockPanier(produit.getStock_produit());
-                    panierListController.setImagePanier(produit.getImage_produit());
+                    String produitImage = produit.getImage_produit();
+                    // Assuming your images are stored in a specific directory, construct the full URL
+                    String produitImageUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+produitImage;
+                    panierListController.setImagePanier(produitImageUrl);
                     panierListController.setNomPanier(produit.getNom_produit());
                     panierListController.setPrixPanier(String.valueOf("Prix : " +produit.getPrix_produit()) + " $" );
 
