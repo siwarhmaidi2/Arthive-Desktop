@@ -42,66 +42,10 @@
             </Label>
          </children>
       </VBox>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="768.0" layoutX="-3.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="218.0" />
-      <Hyperlink fx:id="name" layoutX="41.0" layoutY="293.0" onAction="#SwitchToProfile" text="Siwar hmaidi" textFill="#000000fb">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Hyperlink>
-      <Hyperlink fx:id="home" layoutX="74.0" layoutY="354.0" onAction="#SwitchToHomePage" text="Fil d'actualité" textFill="#070000" wrapText="true" />
-      <Hyperlink layoutX="74.0" layoutY="408.0" text="Groupes" textFill="#070000" wrapText="true" />
-      <Hyperlink layoutX="74.0" layoutY="457.0" text="Messages" textFill="#070000" wrapText="true" />
-      <Hyperlink layoutX="77.0" layoutY="510.0" text="Marketplace" textFill="#070000" />
-      <Hyperlink layoutX="78.0" layoutY="567.0" text="Evènements" textFill="#070000" fx:id="events" onAction="#SwitchToEvents" />
-      <Hyperlink fx:id="logout" layoutX="1215.0" layoutY="45.0" onAction="#logout" text="Déconnexion"  />
-      <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="1154.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/services-parametres-et-icone-d-engrenage-bleue.png" />
-         </image>
-      </ImageView>
+      <Hyperlink fx:id="logout" layoutX="1215.0" layoutY="45.0" onAction="#logout" text="Déconnexion" />
       <ImageView fitHeight="29.0" fitWidth="32.0" layoutX="1248.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/logout.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="45.0" fitWidth="43.0" layoutX="1060.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/icone-de-panier-bleu.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="206.0" fitWidth="218.0" layoutX="-4.0" layoutY="-31.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/hive__2_-removebg-preview.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="photo" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/avatar.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="112.0" fitWidth="29.0" layoutX="33.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/home.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="34.0" fitWidth="29.0" layoutX="33.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/grp.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="33.0" layoutY="451.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/message-icon-2043x2048-z7d1f8at.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="33.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/marketplace.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="29.0" layoutX="33.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/839888.png" />
          </image>
       </ImageView>
       <Label layoutX="497.0" layoutY="107.0" text="Découvrir des évènements">
@@ -121,6 +65,58 @@
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="767.0" layoutX="1.0" layoutY="-1.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="232.0" />
+      <ImageView fitHeight="45.0" fitWidth="41.0" layoutX="31.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/grp.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="37.0" layoutX="32.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/839888.png" />
+         </image>
+      </ImageView>
+      <Hyperlink fx:id="Groups" layoutX="87.0" layoutY="447.0" onAction="#SwitchToGroups" text="Groupes" textFill="#070000" wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink fx:id="afficherEvent" layoutX="84.0" layoutY="567.0" onAction="#switchToEvent" text="Evènements" textFill="#070000">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink fx:id="name" layoutX="67.0" layoutY="346.0" onAction="#SwitchToProfile" text="Text">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Hyperlink>
+      <ImageView fx:id="profileImage" fitHeight="126.0" fitWidth="161.0" layoutX="49.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="250.0" fitWidth="241.0" layoutX="5.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/hive__2_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Hyperlink fx:id="home" layoutX="87.0" layoutY="397.0" onAction="#SwitchToHomePage" text="Fil d'actualité" textFill="#070000" wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Hyperlink>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="34.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/home.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="33.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/marketplace.png" />
+         </image>
+      </ImageView>
+      <Hyperlink fx:id="marketplace" layoutX="86.0" layoutY="504.0" onAction="#switchtomarketplace" text="Marketplace" textFill="#070000">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Hyperlink>
 
    </children>
 </AnchorPane>

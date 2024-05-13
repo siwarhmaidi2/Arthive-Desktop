@@ -5,6 +5,7 @@ package edu.esprit.Controllers;
 
 import edu.esprit.entities.Groupe;
 
+import edu.esprit.entities.User;
 import edu.esprit.entities.UserData;
 import edu.esprit.services.ServiceGroupe;
 import edu.esprit.tests.Main;
@@ -18,10 +19,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
@@ -33,6 +39,10 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HomeGroupe implements Initializable {
+    @FXML
+    private ImageView profileImage;
+    @FXML
+    private Hyperlink nom;
 
     @FXML
     private GridPane postGrid;
@@ -84,8 +94,17 @@ public class HomeGroupe implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        User loggedInUser = UserData.getInstance().getLoggedInUser();
         groups = new ArrayList<>(data());
+        String path = loggedInUser.getPhoto();
+        String userImageUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+path;
+        Image userImage = new Image(userImageUrl);
+        profileImage.setImage(userImage);
+        nom.setText(loggedInUser.getNom_user() + " " + loggedInUser.getPrenom_user());
+        nom.setFont(new Font("System Bold", 17.0));
+        nom.setTextFill(Color.BLACK);
         refreshGrid();
+
     }
 
     public void refreshContent() {

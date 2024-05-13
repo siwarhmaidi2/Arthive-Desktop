@@ -46,6 +46,8 @@ import edu.esprit.services.ServiceUser;
 
 
 public class AfficherEvent implements Initializable {
+    @FXML
+    private ImageView profileImage;
     private ModifierEvent getUpdatedEventDetails;
     private Event evenementToModify;
     @FXML
@@ -168,6 +170,10 @@ public class AfficherEvent implements Initializable {
         Button vosEvenementsButton = new Button("Vos évènements");
         vosEvenementsButton.setOnAction(this::afficherVosEvenements);
         categorieComboBox.setItems(FXCollections.observableArrayList(CategorieEvenement.values()));
+        String path = loggedInUser.getPhoto();
+        String userImageUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+path;
+        Image userImage = new Image(userImageUrl);
+        profileImage.setImage(userImage);
 
 
     }
@@ -509,6 +515,65 @@ public class AfficherEvent implements Initializable {
         stage.setScene(new Scene(root));
     }
 
+
+    @FXML
+    void switchtomarketplace(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MarketPlace.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("MarketPlace");
+            stage.show();
+
+            // Close the current window (Home)
+            Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            homeStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @FXML
+    void switchToEvent(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherEvent.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Evènements");
+            stage.show();
+
+            // Close the current window (Home)
+            Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            homeStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @FXML
+    void SwitchToGroups(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/homeGroupe.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("MarketPlace");
+            stage.show();
+            // Close the current window (Home)
+            Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            homeStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

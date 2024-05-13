@@ -37,7 +37,7 @@ public class ItemController {
 
     public void setUserData(User user) {
         name.setText(user.getNom_user() + " " + user.getPrenom_user());
-        country.setText(user.getVille());
+       country.setText(user.getVille());
         birthDate.setText(user.getD_naissance_user().toString());
         phone.setText(user.getNum_tel_user());
         email.setText(user.getEmail());

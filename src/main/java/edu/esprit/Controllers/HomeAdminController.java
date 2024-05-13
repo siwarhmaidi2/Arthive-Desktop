@@ -122,7 +122,6 @@ public class HomeAdminController {
 
     public void initialize() throws Exception{
               loggedInUser = UserData.getInstance().getLoggedInUser();
-
             posts = new ArrayList<>(data());
             refreshContent();
         addBtn.setVisible(false);
@@ -153,16 +152,11 @@ public class HomeAdminController {
         updatePubCountLabel();
        // updatUserCountLabel();
         updatEventCountLabel();
-
     }
-
     public void showUsers(ActionEvent event) throws IOException {
         addBtn.setVisible(true);
         postGrid.setVisible(false);
         GridPane contentBox = new GridPane();
-
-
-
 
         GridPane userItemTitle = FXMLLoader.load(getClass().getResource("/AdminResources/Item.fxml"));
         // Hide the buttons in userItemTitle
@@ -174,8 +168,6 @@ public class HomeAdminController {
 
         userItemTitle.setAlignment(Pos.TOP_LEFT);
         contentBox.setAlignment(Pos.TOP_LEFT);
-
-
 
         contentBox.getChildren().add(userItemTitle);
 
@@ -315,15 +307,20 @@ public class HomeAdminController {
                 produitController.setPrixProduit("Prix :" + produit.getPrix_produit() + "$");
                 produitController.setStockProduit(produit.getStock_produit() + " en Stock");
                 produitController.setDescriptionProduit(produit.getDescription_produit());
-                Image userImage = new Image(produit.getUser().getPhoto());
+                String userPhoto = loggedInUser.getPhoto();
+                String userPhotoUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+userPhoto;
+                Image userImage = new Image(userPhotoUrl);
                 produitController.setAvatarImage(userImage);
 
 
                 produitController.setProduitId(produit.getId_produit());
 
                 //Charger et définir l'image du produit
-                Image produitImage = new Image(produit.getImage_produit());
-                produitController.setProduitImage(produitImage);
+                String produitImage = produit.getImage_produit();
+                // Assuming your images are stored in a specific directory, construct the full URL
+                String produitImageUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+produitImage;
+                Image image = new Image(produitImageUrl);
+                produitController.setProduitImage(image);
 
                 // Ajouter le ProduitPost au GridPane
                 postGrid.add(produitNode, colIndex, rowIndex);
@@ -434,15 +431,10 @@ public class HomeAdminController {
                 // Initialiser les données de l'événement après avoir chargé le FXML
                // eventViewController.initialize(evenement, 50, 50);
                 // Load and set the image for the event
-                String imagePath = "/Image/" + evenement.getImage();
-                InputStream inputStream = getClass().getResourceAsStream(imagePath);
+                String imagePath = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+ evenement.getImage();
 
-                if (inputStream != null) {
-                    Image eventImage = new Image(inputStream);
-                    eventViewController.setEventImageView(eventImage);
-                } else {
-                    System.out.println("Failed to load image: " + imagePath);
-                }
+                Image eventImage = new Image(imagePath);
+                eventViewController.setEventImageView(eventImage);
 
                 // Vérifier si la date de fin de l'événement est passée
                 if (evenement.getD_fin_evenement().toLocalDateTime().isBefore(LocalDateTime.now())) {

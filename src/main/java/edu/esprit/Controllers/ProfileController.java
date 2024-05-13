@@ -55,7 +55,7 @@ public class ProfileController {
     @FXML
     Text name;
     @FXML
-    Text name2;
+    Hyperlink name2;
     @FXML
     Text region;
     @FXML
@@ -248,30 +248,46 @@ public class ProfileController {
             e.printStackTrace();
         }
     }
-    @FXML
-    public void afficherPanier(ActionEvent actionEvent) {
+
+
+    public void SwitchToProfile(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterPanier.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profile.fxml"));
             Parent root = loader.load();
-            AjouterPanier ajouterPanierController = loader.getController();
-
-            ajouterPanierController.setPanierState(panierState);
-            // Passer la référence du contrôleur MarketPlace à AjouterPanier
-            ajouterPanierController.setMarketPlaceController(marketPlaceController);
-
-            if (marketPlaceController != null) {
-                marketPlaceController.decrementCounter();
-            }
-
-            Stage stage = new Stage();
+            //dont open new window
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+
+
         }
-
-
     }
+
+    // switch to market
+
+    @FXML
+    void switchtomarketplace(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MarketPlace.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("MarketPlace");
+            stage.show();
+
+            // Close the current window (Home)
+            Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            homeStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     @FXML
     void switchToEvent(ActionEvent event) {
         try {
@@ -283,7 +299,27 @@ public class ProfileController {
             stage.setTitle("Evènements");
             stage.show();
 
-            // Close the current window
+            // Close the current window (Home)
+            Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            homeStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    @FXML
+    void SwitchToGroups(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/homeGroupe.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("MarketPlace");
+            stage.show();
+            // Close the current window (Home)
             Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             homeStage.close();
         } catch (IOException e) {

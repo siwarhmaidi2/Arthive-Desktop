@@ -103,7 +103,6 @@ public class AfficherProduit implements Initializable {
 
     public void afficherProduitsUtilisateurConnecte() {
         gridList.getChildren().clear();
-//        User loggedInUser = serviceUser.authenticateUser("chams@gmail.com", "chams2000");
         User loggedInUser = UserData.getInstance().getLoggedInUser();
 
         if (loggedInUser != null) {

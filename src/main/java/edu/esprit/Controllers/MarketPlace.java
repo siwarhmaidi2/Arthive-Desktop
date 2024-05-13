@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -33,7 +34,8 @@ public class MarketPlace implements Initializable {
 
     @FXML
     private Hyperlink name2;
-
+    @FXML
+    private Hyperlink marketplace;
     @FXML
     private ImageView image2;
 
@@ -213,7 +215,10 @@ public class MarketPlace implements Initializable {
                 produitController.setPrixProduit("Prix :" + produit.getPrix_produit() + "$");
                 produitController.setStockProduit(produit.getStock_produit() + " en Stock");
                 produitController.setDescriptionProduit(produit.getDescription_produit());
-               // produitController.setAvatarImage(userImage);
+                String userPhoto = loggedInUser.getPhoto();
+                String userPhotoUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+userPhoto;
+                Image userImage = new Image(userPhotoUrl);
+                produitController.setAvatarImage(userImage);
 
 
                 produitController.setProduitId(produit.getId_produit());
@@ -434,20 +439,6 @@ public class MarketPlace implements Initializable {
 
 
 
-//        @FXML
-//    void filterByCategory(ActionEvent event) {
-//        TypeCategorie selectedCategory = categorie.getValue();
-//        if (selectedCategory != null) {
-//            List<Produit> filteredProductsByCategory = filterProductsByCategory(selectedCategory);
-//            updateProductView(filteredProductsByCategory);
-//        } else {
-//            // Si aucune catégorie n'est sélectionnée, afficher tous les produits
-//            afficherProduits();
-//        }
-//    }
-
-
-
     private List<Produit> filterProductsByCategory(TypeCategorie category) {
         return serviceProduit.getAll().stream()
                 .filter(produit -> produit.getCateg_produit() == category)
@@ -475,38 +466,6 @@ public class MarketPlace implements Initializable {
         updateProductView(filteredProducts);
     }
 
-
-
-
-//    @FXML
-//    void filterByCategory(ActionEvent event) {
-//        TypeCategorie selectedCategory = categorie.getValue();
-//        if (selectedCategory != null) {
-//            double selectedPrice = filtragePrix.getValue();
-//            List<Produit> filteredProductsByPriceAndCategory = filterProductsByPriceAndCategory(selectedPrice, selectedCategory);
-//            updateProductView(filteredProductsByPriceAndCategory);
-//        } else {
-//            // Si aucune catégorie n'est sélectionnée, afficher tous les produits
-//            afficherProduits();
-//        }
-//    }
-
-//    @FXML
-//    void filterByCategory(ActionEvent event) {
-//        TypeCategorie selectedCategory = categorie.getValue();
-//        if (selectedCategory != null) {
-//            List<Produit> filteredProductsByCategory = filterProductsByCategory(selectedCategory);
-//            updateProductView(filteredProductsByCategory);
-//
-//            // Maintenant, appliquez le filtre par prix sur les produits filtrés par catégorie
-//            double selectedPrice = filtragePrix.getValue();
-//            List<Produit> filteredProductsByPriceAndCategory = filterProductsByPrice(filteredProductsByCategory, selectedPrice);
-//            updateProductView(filteredProductsByPriceAndCategory);
-//        } else {
-//            // Si aucune catégorie n'est sélectionnée, afficher tous les produits
-//            afficherProduits();
-//        }
-//    }
 
     @FXML
     void filterByCategory(ActionEvent event) {
@@ -587,6 +546,73 @@ public class MarketPlace implements Initializable {
     public void logout(ActionEvent event) throws IOException {
         UserData.getInstance().setLoggedInUser(null);
         Main.changeScene("/Login.fxml");
+    }
+
+    @FXML
+    void switchtomarketplace(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MarketPlace.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("MarketPlace");
+            stage.show();
+
+            // Close the current window (Home)
+            Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            homeStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+    @FXML
+    void switchToEvent(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherEvent.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Evènements");
+            stage.show();
+
+            // Close the current window (Home)
+            Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            homeStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void SwitchToHomePage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) produitGrid.getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
+
+    @FXML
+    void SwitchToGroups(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/homeGroupe.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("MarketPlace");
+            stage.show();
+            // Close the current window (Home)
+            Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            homeStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
