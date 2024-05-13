@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="753.0" prefWidth="1470.0" styleClass="root" stylesheets="@Event.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controllers.HomeGroupe">
+   <children>
+      <HBox layoutX="329.0" layoutY="15.0" prefHeight="54.0" prefWidth="631.0" styleClass="search-box" stylesheets="@Event.css">
+         <children>
+            <TextField fx:id="searchField" maxHeight="100.0" maxWidth="400.0" prefColumnCount="20" prefHeight="53.0" prefWidth="384.0" promptText="Rechercher" styleClass="transparent" stylesheets="@Event.css" />
+            <Button maxWidth="589.0" minHeight="31.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="134.0" styleClass="search-button" stylesheets="@Event.css" text="Rechercher" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="300.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4cbebeb" height="753.0" layoutX="-1.0" layoutY="-2.0" stroke="#dadada" strokeType="INSIDE" styleClass="root" width="234.0" />
+      <Hyperlink layoutX="46.0" layoutY="316.0" text="Ayoub Toujani" textFill="#000000fb">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Hyperlink>
+      <ImageView fitHeight="126.0" fitWidth="161.0" layoutX="47.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/hive__2_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="250.0" fitWidth="241.0" layoutX="3.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/hive__2_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="addPost" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="26.0" layoutY="660.0" mnemonicParsing="true" onAction="#switchToAddPublication" prefHeight="29.0" prefWidth="189.0" scaleShape="false" stylesheets="@Event.css" text="Créer">
+         <effect>
+            <Blend />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <styleClass>
+            <String fx:value="create-post-button" />
+            <String fx:value="search-button" />
+         </styleClass></Button>
+      <ImageView fitHeight="21.0" fitWidth="32.0" layoutX="53.0" layoutY="699.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/add-50.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="1387.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/hive__2_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Hyperlink layoutX="1364.0" layoutY="57.0" text="Déconnexion" textFill="#0f0bfb" />
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="1201.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/icone-de-panier-bleu.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="52.0" layoutX="1297.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/services-parametres-et-icone-d-engrenage-bleue.png" />
+         </image>
+      </ImageView>
+      <ScrollPane layoutX="239.0" layoutY="157.0" prefHeight="594.0" prefWidth="1218.0">
+         <content>
+            <GridPane fx:id="postGrid">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <Button fx:id="ReclamationBut" layoutX="1339.0" layoutY="121.0" mnemonicParsing="false" onAction="#switchToReclamation" prefHeight="26.0" prefWidth="100.0" text="Reclamation" textAlignment="CENTER" textFill="#e70c0c">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="45.0" fitWidth="41.0" layoutX="39.0" layoutY="442.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/grp.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="42.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/message-icon-2043x2048-z7d1f8at.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="37.0" layoutX="41.0" layoutY="604.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/839888.png" />
+         </image>
+      </ImageView>
+      <Hyperlink fx:id="Groups" layoutX="95.0" layoutY="453.0" onAction="#SwitchToGroups" text="Groupes" textFill="#070000" wrapText="true" />
+      <Hyperlink layoutX="95.0" layoutY="503.0" text="Messages" textFill="#070000" wrapText="true" />
+      <Hyperlink fx:id="afficherEvent" layoutX="92.0" layoutY="607.0" onAction="#switchToEvent" text="Evènements" textFill="#070000" />
+      <Hyperlink fx:id="nom" layoutX="75.0" layoutY="347.0" onAction="#SwitchToProfile" text="Text">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink fx:id="home" layoutX="95.0" layoutY="402.0" onAction="#SwitchToHomePage" text="Fil d'actualité" textFill="#070000" wrapText="true" />
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="42.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/home.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="41.0" layoutY="552.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/marketplace.png" />
+         </image>
+      </ImageView>
+      <Hyperlink fx:id="marketplace" layoutX="94.0" layoutY="555.0" onAction="#switchtomarketplace" text="Marketplace" textFill="#070000" />
+   </children>
+</AnchorPane>

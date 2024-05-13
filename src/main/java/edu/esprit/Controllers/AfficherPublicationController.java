@@ -1,9 +1,6 @@
 package edu.esprit.Controllers;
 
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.Version;
-import com.restfb.types.FacebookType;
+
 import edu.esprit.entities.*;
 import edu.esprit.services.ServiceCommentaire;
 import edu.esprit.services.ServicePublication;
@@ -39,6 +36,9 @@ import java.util.*;
 
 
 public class AfficherPublicationController {
+    @FXML
+    private MenuItem partager;
+
     @FXML
     private ImageView download;
     @FXML
@@ -116,7 +116,7 @@ public class AfficherPublicationController {
     public void setData(Publication publication) {
         try {
 
-                User publicationUser = publication.getUser();
+            User publicationUser = publication.getUser();
                 String userPhoto = publicationUser.getPhoto();
                     // Step 5: Load and display the user's photo
             String userPhotoUrl = "file:/C:/SymfonyProject/Nouveau_dossier/arthive_web/public/images/"+userPhoto;

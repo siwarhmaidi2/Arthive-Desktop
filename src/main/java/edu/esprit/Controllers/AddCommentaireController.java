@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 
 
 
+
 public class AddCommentaireController implements Initializable {
 
     @FXML
@@ -117,7 +118,6 @@ public class AddCommentaireController implements Initializable {
                 e.printStackTrace();
             }
         }
-
         updateCommentCountLabel();
     }
 
@@ -128,24 +128,40 @@ public class AddCommentaireController implements Initializable {
                 showAlert("Veuillez sélectionner une publication avant d'ajouter un commentaire.");
                 return;
             }
+            String commentContent = contentComment.getText().trim(); // Trim to remove leading/trailing whitespaces
 
-        String commentContent = contentComment.getText().trim(); // Trim to remove leading/trailing whitespaces
+            if (commentContent.isEmpty()) {
+                showAlert("Veuillez saisir un commentaire avant d'ajouter.");
+                return; // Do not proceed with adding the comment if it's empty
+            }
+            // Split the comment content into words
+            String[] words = commentContent.split("\\s+");
+            boolean containsProfanity = false;
+            for (String word : words) {
+                // Check for profanity
+                ProfanityFilterAPI.ProfanityResult profanityResult = ProfanityFilterAPI.checkProfanity(word);
+                if (profanityResult.hasProfanity()) {
+                    containsProfanity = true;
+                    // Replace the profane word with asterisks (*) in the comment content
+                    commentContent = commentContent.replaceAll(word, profanityResult.getCensored());
+                }
+            }
+           if (containsProfanity) {
+                // Handle the case where profanity is detected in the comment content
+                showAlert("Votre commentaire contient des propos inappropriés. Veuillez reformuler votre commentaire.");
+                return;
+            }
 
-        if (commentContent.isEmpty()) {
-            showAlert("Veuillez saisir un commentaire avant d'ajouter.");
-            return; // Do not proceed with adding the comment if it's empty
-        }
 
-        // Assuming the publication ID is set before calling this method
+            // Assuming the publication ID is set before calling this method
+            Commentaire newComment = new Commentaire(commentContent, new java.sql.Timestamp(System.currentTimeMillis()), loggedInUser, currentPublication);
+            // Assuming you have a method to get the logged-in user
+            serviceCommentaire.add(newComment);
 
-        Commentaire newComment = new Commentaire( commentContent, new java.sql.Timestamp(System.currentTimeMillis()), loggedInUser, currentPublication);
-        // Assuming you have a method to get the logged-in user
-        serviceCommentaire.add(newComment);
+            contentComment.clear();
+            updateCommentList(); // Update the UI after adding a new comment
 
-        contentComment.clear();
-        updateCommentList(); // Update the UI after adding a new comment
-
-    }  catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             showAlert("Une erreur s'est produite lors de l'ajout du commentaire.");
         }
@@ -153,12 +169,18 @@ public class AddCommentaireController implements Initializable {
     }
 
     private void showAlert(String message) {
-        Alert alert = new Alert(AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setHeaderText(null);
         alert.setContentText(message);
+
+        // Set the style of the alert dialog to red
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle("-fx-background-color: #ffcccc;"); // Set background color to light red
+
         alert.showAndWait();
     }
+
     private List<Commentaire> data() {
         return new ArrayList<>(serviceCommentaire.getAll());
     }

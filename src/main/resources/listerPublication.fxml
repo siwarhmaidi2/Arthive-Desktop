@@ -29,6 +29,7 @@
             <items>
                <MenuItem fx:id="signaler" mnemonicParsing="false" onAction="#onSignalerClicked" text="Signaler" />
                <MenuItem fx:id="telecharger" mnemonicParsing="false" onAction="#onDownloadClicked" text="Télécharger" />
+               <MenuItem fx:id="partager" mnemonicParsing="false" onAction="#onDownloadClicked" text="Partager Facebook" />
             </items>
             <StackPane.margin>
                <Insets bottom="320.0" left="310.0" />

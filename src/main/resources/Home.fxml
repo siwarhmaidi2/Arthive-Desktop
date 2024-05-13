@@ -60,7 +60,7 @@
             <Image url="@Image/839888.png" />
          </image>
       </ImageView>
-      <Hyperlink layoutX="85.0" layoutY="443.0" text="Groupes" textFill="#070000" wrapText="true" />
+      <Hyperlink fx:id="Groups" layoutX="85.0" layoutY="443.0" onAction="#SwitchToGroups" text="Groupes" textFill="#070000" wrapText="true" />
       <Hyperlink layoutX="85.0" layoutY="493.0" text="Messages" textFill="#070000" wrapText="true" />
       <Hyperlink fx:id="afficherEvent" layoutX="82.0" layoutY="597.0" onAction="#switchToEvent" text="Evènements" textFill="#070000" />
       <Hyperlink fx:id="nom" layoutX="65.0" layoutY="337.0" onAction="#SwitchToProfile" text="Text">
